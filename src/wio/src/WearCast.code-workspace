@@ -1,0 +1,12 @@
+{
+	"folders": [
+		{
+			"path": "../../../../../IdeaProjects/GitLab/GitLabLocal/WearCast"
+		}
+	],
+	"settings": {
+		"java.project.sourcePaths": [
+			"src"
+		]
+	}
+}
