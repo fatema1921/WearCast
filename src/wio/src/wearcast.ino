@@ -13,6 +13,8 @@ TFT_eSPI tft; //Initializing TFT LCD
 TFT_eSprite spr = TFT_eSprite(&tft); //Initializing buffer 
 
 void setup() {
+  // Set up pinmode
+  pinMode (pinTempSensor, INPUT);
 
   //INITIALIZE SERIAL AND TFT DISPLAY
   Serial.begin(9600);
