@@ -39,7 +39,7 @@ Sketches of the initial design of our website, all sketches are made in [Procrea
 ![homepage-bottom.jpeg](/docs/img/homepage-bottom.jpeg)
 ![avatar-wardrobe.jpg](/docs/img/avatar-wardrobe.jpg)
 ![avatar-wardrobe.GIF](/docs/img/avatar-wardrobe.GIF)
-![avatar-wardrobe.PNG](/docs/img/avatar-wardrobe.PNG)
+
 
 ## Dependencies & Requirements
 #### Required Hardware:
@@ -72,7 +72,7 @@ Required steps of installation process
 - Manually install the required [board library [2]](#required-software) via the  `Arduino IDE`.
     More information and the steps nessecary to install the library can be found in the [Getting Started](https://wiki.seeedstudio.com/Wio-Terminal-Getting-Started/#getting-started) guide from Seeed Studio.
 
-    NOTE THAT: If you are not able to find the `Additional Boards Manager URLs` in `File > Preferences` as described in the guide try access it through the menu bar `Arduino IDE > Settings__` then you should be able to see `Additional Boards Manager URLs`. Paste the link and click on `OK` (it might take a while before the `Seeeduino Wio Terminal` shows up in your list of boards).
+    NOTE THAT: If you are not able to find the `Additional Boards Manager URLs` in `File > Preferences` as described in the guide try access it through the menu bar `Arduino IDE > Settings` then you should be able to see `Additional Boards Manager URLs`. Paste the link and click on `OK` (it might take a while before the `Seeeduino Wio Terminal` shows up in your list of boards).
 
 
 - Manually install the required [libraries [3]](#required-software) via the `Arduino IDE` by following the steps below
@@ -82,8 +82,9 @@ Required steps of installation process
         2. Install the [required libraries](#dependencies--requirements) by searching for the library name in the search bar, select the latest version and click `install`.
 
     - For libraries that require additional source
-        1. Open `Arduino IDE` and navigate to `__Sketch > Include Libraries > Add .ZIP Library...`
+        1. Open `Arduino IDE` and navigate to `Sketch > Include Libraries > Add .ZIP Library...`
         2. Select `.ZIP > Open`
+        
         NOTE THAT: it is required to be a __.ZIP__ file, if your folder is unzipped you have to compress it first.
 
 #### Update the Wireless Core Firmware
