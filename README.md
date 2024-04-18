@@ -34,19 +34,34 @@ By analyzing and displaying these values, the user can access the weather data a
 ### Visuals
 
 #### Sketches
+Sketches of the initial design of our website, all sketches are made in [Procreate](https://procreate.com/).
+![homepage-top.jpeg](/docs/img/homepage-top.jpeg)
+![homepage-bottom.jpeg](/docs/img/homepage-bottom.jpeg)
+![avatar-wardrobe.jpg](/docs/img/avatar-wardrobe.jpg)
+![avatar-wardrobe.GIF](/docs/img/avatar-wardrobe.GIF)
+![avatar-wardrobe.PNG](/docs/img/avatar-wardrobe.PNG)
 
 ## Dependencies & Requirements
-Should be installed prior to the installation process.
-
+#### Required Hardware:
 1. Wio Seeed Terminal or compatible board
-2. Arduino IDE or Arduino CLI
+2. Grove Sensors for Wio Terminal
+    * [Temperature & Humidity Sensor | Seeed Studio Wiki](https://wiki.seeedstudio.com/Grove-TemperatureAndHumidity_Sensor/) (only used to measure humidity)
+    * [Temperature Sensor | Seeed Studio Wiki](https://wiki.seeedstudio.com/Grove-Temperature_Sensor_V1.2/)
+    * [RGB LED Stick | Seeed Studio Wiki](https://wiki.seeedstudio.com/Grove-RGB_LED_Stick-10-WS2813_Mini/)
+
+#### Required Software:
+Should be installed prior to the installation process.
+1. [Arduino IDE](https://www.arduino.cc/en/software) or [Arduino CLI](https://github.com/arduino/arduino-cli)
+2. Wio Terminal [Board Library](https://files.seeedstudio.com/arduino/package_seeeduino_boards_index.json)
 3. Collection of Arduino libraries:
-   *
-   *
-   *
-   *
-4. Grove Sensors for Wio Terminal
-   * list of required sensors
+    Libraries that can be installed through the Arduino IDE
+   * [Grove Temperature And Humidity Sensor](https://github.com/Seeed-Studio/Grove_Temperature_And_Humidity_Sensor)
+
+   Libraries that require an additional source to be installed (`.ZIP`)
+   * [TFT_eSPI](https://github.com/Bodmer/TFT_eSPI)
+   * []()
+   * []()
+   * []()
 
 
 ## Installation
@@ -54,6 +69,24 @@ Required steps of installation process
 
 
 ### Wio Terminal | Installation Process
+- Manually install the required [board library [2]](#required-software) via the  `Arduino IDE`.
+    More information and the steps nessecary to install the library can be found in the [Getting Started](https://wiki.seeedstudio.com/Wio-Terminal-Getting-Started/#getting-started) guide from Seeed Studio.
+
+    NOTE THAT: If you are not able to find the `Additional Boards Manager URLs` in `File > Preferences` as described in the guide try access it through the menu bar `Arduino IDE > Settings__` then you should be able to see `Additional Boards Manager URLs`. Paste the link and click on `OK` (it might take a while before the `Seeeduino Wio Terminal` shows up in your list of boards).
+
+
+- Manually install the required [libraries [3]](#required-software) via the `Arduino IDE` by following the steps below
+
+    - For libraries that can be installed directly through the `Arduino IDE`:
+        1. Open and navigate to `Tools > Manage Libraries...`
+        2. Install the [required libraries](#dependencies--requirements) by searching for the library name in the search bar, select the latest version and click `install`.
+
+    - For libraries that require additional source
+        1. Open `Arduino IDE` and navigate to `__Sketch > Include Libraries > Add .ZIP Library...`
+        2. Select `.ZIP > Open`
+        NOTE THAT: it is required to be a __.ZIP__ file, if your folder is unzipped you have to compress it first.
+
+#### Update the Wireless Core Firmware
 
 
 ### Web-based Application | Local Installation
