@@ -43,7 +43,7 @@ void setup_wifi() {
   tft.setTextSize(2);
   tft.setCursor((320 - tft.textWidth("Connecting to WiFi...")) /2, 120);
   tft.print("Connecting to WiFi...");
-  /* Print in Serial monitor */
+  /* Print in Serial Monitor */
   Serial.println();
   Serial.print("Connecting to ");
   Serial.println(ssid);
@@ -57,15 +57,15 @@ void setup_wifi() {
   }
 
   Serial.println();
-  Serial.println("WiFi connection established!")
+  Serial.println("WiFi connection established!");
 
   tft.fillScreen(TFT_BLACK);
-  tft.setCursor((320 - tft.textWidth("WiFi connection established!")) /2, 120);
-  tft.print("WiFi connection established!");
+  tft.setCursor((320 - tft.textWidth("WiFi connected")) /2, 120);
+  tft.print("WiFi connected");
 
-  /* PRINT LOCAL IP IN TERMINAL */
+  /* Print local IP in Serial Monitor */
   Serial.print("IP address: ");
-  Serial.println(WiFi.localOP());
+  Serial.println(WiFi.localIP());
 
 }
 
@@ -79,7 +79,7 @@ void setup_wifi() {
  * @param payload : The payload of MQTT message
  * @param length  : The length of payload
 */
-void callback(char* topic, byte* payload, unsigned in length){
+void callback(char* topic, byte* payload, unsigned int length){
   tft.fillScreen(TFT_BLACK);
   Serial.print("Message arrived [");
   Serial.print(topic);
@@ -99,7 +99,7 @@ void callback(char* topic, byte* payload, unsigned in length){
   tft.fillScreen(TFT_BLACK);
   tft.setCursor((320 - tft.textWidth("MQTT Message: ")) /2, 90);
   tft.print("MQTT Message: ");
-  tft.setCursor((320 - tft.textWidth(msg_p)) /2, 120)
+  tft.setCursor((320 - tft.textWidth(msg_p)) /2, 120);
   tft.print(msg_p); // Print recieved payload
 }
 
@@ -120,7 +120,7 @@ void reconnect() {
 
     /* Attempt to connect, publish, subscribe */
     if(client.connect(clientId.c_str())) {
-      Serial.println("Connection established!")
+      Serial.println("Connection established!");
       client.publish("Temperature", "Connection established!"); // Publish announcement
       // client.subscribe("WTin"); // Resubscribe
     } else {
@@ -203,7 +203,7 @@ void loop() {
   if(now - lastMsg > 2000) { // Check if 2 sec have elapsed since last message
     lastMsg = now; // Update time for last message
     ++ value; // Increment message value
-    
+
     /*
     snprintf(msg, 50, "%d", (int)temperature); // Format message, cast temperature to int
     Serial.print("Publish message: ");
