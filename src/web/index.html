@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<!--Ensures that the browser interprets the characters in the 
+			document correctly and displays them as intended.-->
+		<meta charset="UTF-8">
+		<!-- ensures that the content is scaled properly to fit the 
+			screen size and is at its original size without any zooming. -->
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title> MQTT Web Application</title>
+		<!-- Include the Eclipse Paho JavaScript library -->
+		<script src="web/assets/paho-mqtt.js"></script>
+		<!-- Include the script file -->
+		<script src="web/script.js"></script>
+	</head>
+	<body style="background-color:powderblue;">
+
+		<h1><b>Wear Cast</b></h1>
+		<hr>
+		<h4>don't know what to wear? <br> don't worry, we got you!</h4>
+
+		<img src="/src/web/wearcast-web/src/assets/img/outfit.jpeg" width="600" height="1100">
+        <img src="/src/web/wearcast-web/src/assets/img/outfit2.jpeg" width="600" height="1100">
+    
+    	<p id="temperatureParagraph"> Temperature: </p>
+		<br>
+		<script>
+			// Create an MQTT client instance
+			var client = new Paho.MQTT.Client("test.mosquitto.org", 1883, "WearCast-Web");
+			
+			// Set callback handlers
+			client.onConnectionLost = onConnectionLost;
+			client.onMessageArrived = onMessageArrived;
+
+			// Connect to MQTT broker
+			client.connect({
+				onSuccess: onConnect,
+				//userName: "mqtt_username",
+				//password: "mqtt_password"
+			});
+
+			// Called when the client connects
+			function onConnect() {
+				console.log("Connected to MQTT broker");
+				// Subscribe to a topic
+				client.subscribe("temperature");
+			}
+
+			// Called when the client loses its connection
+			function onConnectionLost(responseObject) {
+				if (responseObject.errorCode !== 0) {
+					console.log("Connection lost: " + responseObject.errorMessage);
+				}
+			}
+
+			// Called when a message arrives
+			function onMessageArrived(message) {
+				console.log("Message received: " + message.payloadString);
+				
+				// Extract temperature and humidity values from the message payload
+				var data = JSON.parse(message.payloadString);
+				var temperatureValue = data.temperature;
+				
+				// Update the content of the <p> tags with the temperature and humidity values
+				updateTemperature(temperatureValue);
+			}
+
+			// Update the content of the Temperature <p> tag
+			function updateTemperature(temperatureValue) {
+				var temperatureParagraph = document.getElementById("temperatureParagraph");
+				temperatureParagraph.textContent = "Temperature: " + temperatureValue;
+			}
+
+		</script>
+	</body>
+</html>
