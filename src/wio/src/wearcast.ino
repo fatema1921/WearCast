@@ -16,13 +16,15 @@ const int B_VALUE = 4275; // B value of the temperature sensor's thermistor
 /* Constant variables for WiFi */
 const char* ssid = "Elins iPhone"; // WiFi SSID (Name)
 const char* password = "yH59!Gum"; // WiFi Password
+
+/* Constant variable for MQTT */
 const char* mqtt_server = "test.mosquitto.org"; // MQTT Broker URL
 
 TFT_eSPI tft; // TFT_eSPI object for Wio Terminal's TFT screen
 TFT_eSprite spr = TFT_eSprite(&tft); // Initializing sprite buffer for graphical operations
 
 WiFiClient wioClient; // WiFi client object for Wio Terminal
-PubSubClient client(wioClient); // MQTT client object  for Wio Terminal
+PubSubClient client(wioClient); // MQTT client object for Wio Terminal
 long lastMsg = 0; // Timestamp of the last MQTT message
 char msg[50]; // Buffer for storing MQTT messages
 int value = 0; // Value used in MQTT messages for tracking
@@ -36,11 +38,11 @@ int value = 0; // Value used in MQTT messages for tracking
 */
 void setup_wifi() {
   delay(10);
-  /* PRINT IN *WIO* TERMINAL */
+  /* Print in Wio Terminal */
   tft.setTextSize(2);
   tft.setCursor((320 - tft.textWidth("Connecting to WiFi...")) /2, 120);
   tft.print("Connecting to WiFi...");
-  /* PRINT IN TERMINAL */
+  /* Print in Serial monitor */
   Serial.println();
   Serial.print("Connecting to ");
   Serial.println(ssid);
@@ -111,11 +113,11 @@ void reconnect() {
   while(!client.connected()) {
     Serial.print("Attempting MQTT connection...");
 
-    /* CREATE RANDOMIZED CLIENT ID */
+    /* Create randomized client ID */
     String clientId = "WioTerminal-";
     clientId += String(random(0xffff), HEX);
 
-    /* ATTEMPT TO CONNECT */
+    /* Attempt to connect, publish, subscribe */
     if(client.connect(clientId.c_str())) {
       Serial.println("Connection established!")
       client.publish("WTout", "Hello World!"); // Publish announcement
