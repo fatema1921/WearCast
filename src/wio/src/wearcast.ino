@@ -53,15 +53,14 @@ void setup_wifi() {
   while (WiFi.status() !=WL_CONNECTED) {
     delay(500);
     Serial.print(".");
-    tft.print("."); // MIGHT REMOVE
   }
 
   Serial.println();
   Serial.println("WiFi connection established!");
 
   tft.fillScreen(TFT_BLACK);
-  tft.setCursor((320 - tft.textWidth("WiFi connected")) /2, 120);
-  tft.print("WiFi connected");
+  tft.setCursor((320 - tft.textWidth("WiFi status: Connected")) /2, 120);
+  tft.print("WiFi status: Connected");
 
   /* Print local IP in Serial Monitor */
   Serial.print("IP address: ");
@@ -112,7 +111,7 @@ void callback(char* topic, byte* payload, unsigned int length){
 */
 void reconnect() {
   while(!client.connected()) {
-    Serial.print("Attempting MQTT connection...");
+    Serial.println("Attempting MQTT connection...");
 
     /* Create randomized client ID */
     String clientId = "WioTerminal-";
