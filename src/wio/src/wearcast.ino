@@ -8,6 +8,7 @@
 #include "TFT_eSPI.h" // TFT LCD library for Wio Terminal
 #include "rpcWiFi.h" // WiFi library for Wio Terminal
 #include <PubSubClient.h> // MQTT client library for Wio Terminal
+#include <ArduinoJson.h> // Include ArduinoJson library
 
 /* Constant variables for temperature */
 const int pinTempSensor = A0; // Analog pin A0 connected to Grove - Temperature Sensor
@@ -197,13 +198,28 @@ void loop() {
   delay(50); // Delay to stabilize the display
 
   /* MQTT message publishing*/
+
   long now = millis(); // Get current time
   if(now - lastMsg > 2000) { // Check if 2 sec have elapsed since last message
     lastMsg = now; // Update time for last message
     ++ value; // Increment message value
+    
+    /*
     snprintf(msg, 50, "%d", (int)temperature); // Format message, cast temperature to int
     Serial.print("Publish message: ");
     Serial.println(msg);
     client.publish("Temperature", msg); // Publish message to MQTT broker
+    */
+
+    // Format message as JSON
+    StaticJsonDocument<100> jsonDocument;
+    jsonDocument["value"] = (int)temperature;
+
+    // Serialize JSON document to the char array
+    serializeJson(jsonDocument, msg);
+    Serial.print("Publish message: ");
+    Serial.println(msg);
+    client.publish("Temperature", msg);
   }
+
 }
