@@ -56,7 +56,31 @@
 				}
 			}
 
-			
+			// Called when a message arrives
+			function onMessageArrived(message) {
+				console.log("Message received: " + message.payloadString);
+				
+				// Extract temperature and humidity values from the message payload
+				var data = JSON.parse(message.payloadString);
+				var temperatureValue = data.temperature;
+				var humidityValue = data.humidity;
+				
+				// Update the content of the <p> tags with the temperature and humidity values
+				updateTemperature(temperatureValue);
+				updateHumidity(humidityValue);
+			}
+
+			// Update the content of the Temperature <p> tag
+			function updateTemperature(temperatureValue) {
+				var temperatureParagraph = document.getElementById("temperatureParagraph");
+				temperatureParagraph.textContent = "Temperature: " + temperatureValue;
+			}
+
+			// Update the content of the Humidity <p> tag
+			function updateHumidity(humidityValue) {
+				var humidityParagraph = document.getElementById("humidityParagraph");
+				humidityParagraph.textContent = "Humidity: " + humidityValue;
+			}
 		</script>
 	</body>
 </html>
