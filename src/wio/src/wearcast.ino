@@ -120,8 +120,8 @@ void reconnect() {
     /* Attempt to connect, publish, subscribe */
     if(client.connect(clientId.c_str())) {
       Serial.println("Connection established!")
-      client.publish("WTout", "Hello World!"); // Publish announcement
-      client.subscribe("WTin"); // Resubscribe
+      client.publish("Temperature", "Connection established!"); // Publish announcement
+      // client.subscribe("WTin"); // Resubscribe
     } else {
       Serial.print("Attempt to connect failed, rc=");
       Serial.print(client.state()); // log/print generated return code (i.e. result of connection attempt)
@@ -201,9 +201,9 @@ void loop() {
   if(now - lastMsg > 2000) { // Check if 2 sec have elapsed since last message
     lastMsg = now; // Update time for last message
     ++ value; // Increment message value
-    snprintf(msg, 50, "Wio Terminal #%1d", value); // Format message
+    snprintf(msg, 50, "%d", (int)temperature); // Format message, cast temperature to int
     Serial.print("Publish message: ");
     Serial.println(msg);
-    client.publish("WTout", msg); // Publish message to MQTT broker
+    client.publish("Temperature", msg); // Publish message to MQTT broker
   }
 }
