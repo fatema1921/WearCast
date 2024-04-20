@@ -215,10 +215,19 @@ void loop() {
     jsonDocument["value"] = (int)temperature;
 
     // Serialize JSON document to the char array
+    /*
     serializeJson(jsonDocument, msg);
     Serial.print("Publish message: ");
     Serial.println(msg);
     client.publish("Temperature", msg);
+    */
+
+    String jsonString;
+    serializeJson(jsonDocument, jsonString);
+
+    Serial.print("Publish message: ");
+    Serial.println(jsonString);
+    client.publish("Temperature", jsonString.c_str());
   }
 
 }
