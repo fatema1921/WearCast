@@ -28,8 +28,16 @@ Using __sensors__ integrated with a __Wio Terminal__ the system is able to gathe
 By analyzing and displaying these values, the user can access the weather data alongside tailored clothing suggestions and empowering messages. This ensures that the user is always well-prepared and fashionably attired for any weather scenario.
 
 ### Background
+We've all been there: staring at the closet, trying to figure out what to wear as the weather changes outside. It is a struggle to know if we will be too hot, too cold or just right. Throw in factors like humidity and rain, and it is even trickier... That is where _WearCast_ comes in. We saw this common dilemma and decided to do something about it, _WearCast_ is our solution to help as many as possible to get dressed with confidence, no matter what the weather throws our way.
+
+By undertaking this project as a part of our System Development course at University of Gothenburg/Chalmers University of Technology, _WearCast_ serves as a testament to the intersection of academia and innovation where [the team](#authors-and-acknowledgment) behind _WearCast_ not only aims to address a real-world need but also to apply theoretical knowledge and technical skills in a practical context.
 
 ### Features
+* __Real-time Weather Data Integration__: utilizing sensors integrated with a Wio Terminal, _WearCast_ gathers raw data on key weather parameters such as temperature and humidity. This data is updated continously to provide users with the most accurate weather information.
+* __Personalized Clothing Recommendations__: _WearCast_ analyzes the gathered data to generate perzonalised clothing suggestions tailored to current weather conditions. Wheter it is for a sunny day calling for a light-colored, breathable outfit or a rainy forecast perfect for a waterproof attire, _WearCast_ ensures users are equipped with suitable outfit ideas.
+* __Interactive Web Interface__: featuring a user-friendly web interface that serves as a centralized hub for accessing weather data alongside outfit recommendations.
+* __Pinterest API Integration__: to enrich the user experiece, _WearCast_ integrates with the Pinterest API to generate visual inspiration for different styles based on weather conditions. By browsing this curated selection of clothing ideas tailored to the specific climate, _WearCast_ empowers users to make informed decisions about their outfits, ensuring they are both stylish and _weatherproof_ in any situation fostering their creativity and exploration in outfit choices.
+
 
 ### Visuals
 
