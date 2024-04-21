@@ -8,7 +8,8 @@
 #include "TFT_eSPI.h" // TFT LCD library for Wio Terminal
 #include "rpcWiFi.h" // WiFi library for Wio Terminal
 #include <PubSubClient.h> // MQTT client library for Wio Terminal
-//#include <ArduinoJson.h> // Include ArduinoJson library
+
+// #include <ArduinoJson.h> // Include ArduinoJson library
 
 /* Constant variables for temperature */
 const int pinTempSensor = A0; // Analog pin A0 connected to Grove - Temperature Sensor
@@ -40,14 +41,19 @@ int value = 0; // Value used in MQTT messages for tracking
 */
 void setup_wifi() {
   delay(10);
-  /* Print in Wio Terminal */
-  tft.setTextSize(2);
-  tft.setCursor((320 - tft.textWidth("Connecting to WiFi...")) /2, 120);
-  tft.print("Connecting to WiFi...");
+
   /* Print in Serial Monitor */
   Serial.println();
   Serial.print("Connecting to ");
   Serial.println(ssid);
+
+  /* Print in Wio Terminal */
+  tft.fillScreen(TFT_BLACK);
+  tft.fillRect(0, 190, 320, 50, TFT_LIGHTGREY); // Draw footer background rectangle
+  tft.setTextColor(TFT_BLACK); // Set text color to black
+  tft.setTextSize(2);
+  tft.setCursor((320 - tft.textWidth("Connecting to WiFi...")) /2, 210);
+  tft.print("Connecting to WiFi...");
 
   WiFi.begin(ssid, password);
 
@@ -56,11 +62,15 @@ void setup_wifi() {
     Serial.print(".");
   }
 
+  /* Print in Serial Monitor */
   Serial.println();
   Serial.println("WiFi connection established!");
 
+  /* Print in Wio Terminal */
   tft.fillScreen(TFT_BLACK);
-  tft.setCursor((320 - tft.textWidth("WiFi status: Connected")) /2, 120);
+  tft.fillRect(0, 190, 320, 50, TFT_LIGHTGREY); // Draw footer background rectangle
+  tft.setTextColor(TFT_BLACK); // Set text color to black
+  tft.setCursor((320 - tft.textWidth("WiFi status: Connected")) /2, 210);
   tft.print("WiFi status: Connected");
 
   /* Print local IP in Serial Monitor */
@@ -145,7 +155,7 @@ void setup() {
   tft.begin(); // Initialize TFT (i.e. Wio Terminal LCD screen)
   tft.setRotation(3); // Set screen rotation
 
-  spr.createSprite(TFT_HEIGHT,TFT_WIDTH); // Create buffer (enabling the composition and manipulation of graphical elements befor rendering them on the TFT screen)
+  // spr.createSprite(TFT_HEIGHT,TFT_WIDTH); // Create buffer (enabling the composition and manipulation of graphical elements befor rendering them on the TFT screen)
 
   Serial.println();
   Serial.begin(115200); // Initialize serial communication at 115200 baud rate; for communication with WiFi module
@@ -170,14 +180,14 @@ void loop() {
   if(!client.connected()) {
     reconnect(); // Attempt to reconnect to MQTT broker if not connected
   } client.loop(); // Allow the MQTT client to handle incoming messages and maintain the connection
-  
+
   /* Display header */
-  spr.fillSprite(TFT_WHITE); // Clear previous display by filling the background with white color
-  spr.fillRect(0, 0, 320, 50, TFT_LIGHTGREY); // Draw header background rectangle
-  spr.setTextColor(TFT_BLACK); // Set text color to black
-  spr.setTextSize(3); // Set text size
-  spr.drawString("WearCast", 90, 15); // Draw/display project name
-  spr.drawFastVLine(150, 50, 190, TFT_LIGHTGREY); // Draw vertical line across screen
+  tft.fillRect(0, 0, 320, 50, TFT_LIGHTGREY); // Draw header background rectangle
+  tft.setTextColor(TFT_BLACK); // Set text color to black
+  tft.setTextSize(3); // Set text size
+  tft.setCursor(90, 15);
+  tft.print("WearCast");
+  tft.drawFastVLine(150, 50, 190, TFT_LIGHTGREY); // Draw vertical line across screen
 
   /* Temperature reading */
   int analogValue = analogRead(pinTempSensor); // Read analog value from temperature sensor
@@ -186,14 +196,16 @@ void loop() {
   float temperature = 1.0 / (log(resistance/100000.0) / B_VALUE +1 / 298.15) - 273.15; // Convert to temperature (using datasheet)
 
   /* Display temperature */
-  spr.setTextColor(TFT_BLACK);
-  spr.setTextSize(2);
-  spr.drawString("Temperature", 10, 100);
-  spr.setTextSize(3);
-  spr.drawNumber(temperature, 50, 130); // Display temperature value
-  spr.drawString("C", 90, 130);
+  tft.setTextColor(TFT_WHITE);
+  tft.setTextSize(2);
+  tft.setCursor(10, 100);
+  tft.print("Temperature");
+  tft.setTextSize(3);
+  tft.setCursor(50, 130);
+  tft.print(temperature);
+  tft.setCursor(90, 130);
+  tft.print("C");
 
-  spr.pushSprite(0, 0); // Render sprite buffer to the Wio Terminal LCD screen
   delay(50); // Delay to stabilize the display
 
   /* MQTT message publishing*/
@@ -230,7 +242,6 @@ void loop() {
 
     /*String jsonString;
     serializeJson(jsonDocument, jsonString);
-    
 
     Serial.print("Publish message: ");
     Serial.println(jsonString);
