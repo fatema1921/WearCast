@@ -8,7 +8,7 @@
 #include "TFT_eSPI.h" // TFT LCD library for Wio Terminal
 #include "rpcWiFi.h" // WiFi library for Wio Terminal
 #include <PubSubClient.h> // MQTT client library for Wio Terminal
-#include <ArduinoJson.h> // Include ArduinoJson library
+//#include <ArduinoJson.h> // Include ArduinoJson library
 
 /* Constant variables for temperature */
 const int pinTempSensor = A0; // Analog pin A0 connected to Grove - Temperature Sensor
@@ -19,7 +19,8 @@ const char* ssid = "Elins iPhone"; // WiFi SSID (Name)
 const char* password = "yH59!Gum"; // WiFi Password
 
 /* Constant variable for MQTT */
-const char* mqtt_server = "test.mosquitto.org"; // MQTT Broker URL
+const char* mqtt_server = "broker.emqx.io"; // MQTT Broker URL
+const char* temperature_topic = "Temperature";
 
 TFT_eSPI tft; // TFT_eSPI object for Wio Terminal's TFT screen
 TFT_eSprite spr = TFT_eSprite(&tft); // Initializing sprite buffer for graphical operations
@@ -114,8 +115,7 @@ void reconnect() {
     Serial.println("Attempting MQTT connection...");
 
     /* Create randomized client ID */
-    String clientId = "WioTerminal-";
-    clientId += String(random(0xffff), HEX);
+    String clientId = "WioTerminal-" + String(random(0xffff), HEX);
 
     /* Attempt to connect, publish, subscribe */
     if(client.connect(clientId.c_str())) {
@@ -170,7 +170,7 @@ void loop() {
   if(!client.connected()) {
     reconnect(); // Attempt to reconnect to MQTT broker if not connected
   } client.loop(); // Allow the MQTT client to handle incoming messages and maintain the connection
-
+  
   /* Display header */
   spr.fillSprite(TFT_WHITE); // Clear previous display by filling the background with white color
   spr.fillRect(0, 0, 320, 50, TFT_LIGHTGREY); // Draw header background rectangle
@@ -198,10 +198,16 @@ void loop() {
 
   /* MQTT message publishing*/
 
-  long now = millis(); // Get current time
+  client.publish(temperature_topic, String(temperature).c_str());
+  Serial.print("Temperature: ");
+  Serial.println(temperature);
+  delay(5000);
+
+  /*long now = millis(); // Get current time
   if(now - lastMsg > 2000) { // Check if 2 sec have elapsed since last message
     lastMsg = now; // Update time for last message
     ++ value; // Increment message value
+    */
 
     /*
     snprintf(msg, 50, "%d", (int)temperature); // Format message, cast temperature to int
@@ -211,7 +217,7 @@ void loop() {
     */
 
     // Format message as JSON
-    StaticJsonDocument<100> jsonDocument;
+    /*StaticJsonDocument<100> jsonDocument;
     jsonDocument["value"] = (int)temperature;
 
     // Serialize JSON document to the char array
@@ -222,12 +228,12 @@ void loop() {
     client.publish("Temperature", msg);
     */
 
-    String jsonString;
+    /*String jsonString;
     serializeJson(jsonDocument, jsonString);
+    
 
     Serial.print("Publish message: ");
     Serial.println(jsonString);
     client.publish("Temperature", jsonString.c_str());
-  }
-
+    */
 }

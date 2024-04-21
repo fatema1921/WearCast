@@ -8,10 +8,8 @@
 			screen size and is at its original size without any zooming. -->
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title> MQTT Web Application</title>
-		<!-- Include the Eclipse Paho JavaScript library -->
-		<script src="web/assets/paho-mqtt.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.1/mqttws31.js" type="text/javascript"></script>
 		<!-- Include the script file -->
-		<script src="web/script.js"></script>
 	</head>
 	<body style="background-color:powderblue;">
 
@@ -23,10 +21,9 @@
         <img alt="Amazing outfit inspo" src="/src/web/assets/img/outfit2.jpeg" width="600" height="1100">
 
     	<p id="temperatureParagraph"> Temperature: </p>
-		<br>
 		<script>
 			// Create an MQTT client instance
-			var client = new Paho.MQTT.Client("test.mosquitto.org", 1883, "WearCast-Web");
+			var client = new Paho.MQTT.Client("broker.emqx.io", 8083, "clientId");
 
 			// Set callback handlers
 			client.onConnectionLost = onConnectionLost;
@@ -35,8 +32,7 @@
 			// Connect to MQTT broker
 			client.connect({
 				onSuccess: onConnect,
-				//userName: "mqtt_username",
-				//password: "mqtt_password"
+				// Other connection options if needed
 			});
 
 			// Called when the client connects
@@ -57,20 +53,13 @@
 			function onMessageArrived(message) {
 				console.log("Message received: " + message.payloadString);
 
-				// Extract temperature and humidity values from the message payload
-				var data = JSON.parse(message.payloadString);
-				var temperatureValue = data.temperature;
+				// Handle the incoming message
+				// Extract temperature value from the message payload
+				var temperatureValue = message.payloadString;
+				document.getElementById("temperatureParagraph").textContent = "Temperature: " + temperatureValue;
 
-				// Update the content of the <p> tags with the temperature and humidity values
-				updateTemperature(temperatureValue);
 			}
-
-			// Update the content of the Temperature <p> tag
-			function updateTemperature(temperatureValue) {
-				var temperatureParagraph = document.getElementById("temperatureParagraph");
-				temperatureParagraph.textContent = "Temperature: " + temperatureValue;
-			}
-
 		</script>
+		<br>
 	</body>
 </html>
