@@ -66,11 +66,14 @@ Should be installed prior to the installation process.
 1. [Arduino IDE](https://www.arduino.cc/en/software) or [Arduino CLI](https://github.com/arduino/arduino-cli)
 2. Wio Terminal [Board Library](https://files.seeedstudio.com/arduino/package_seeeduino_boards_index.json)
 3. Collection of Arduino libraries:
-
-
+    * rpcWiFi | seeed-studio/Seeed Arduino rpcWiFi@^1.0.7
+    * [PubSubClient](https://github.com/knolleary/pubsubclient) | knolleary/PubSubClient@^2.8
+	* [TFT_eSPI](https://github.com/Bodmer/TFT_eSPI) | bodmer/TFT_eSPI@^2.5.43
+    * .
+    * -- this list will be added to/updated further during Sprint 2 v1.5, v2.0
 
 ## Installation
-Required steps of installation process
+-- __INSERT:__ Required steps of installation process during Sprint 2 v1.5
 
 
 ### Wio Terminal | Installation Process
@@ -89,7 +92,7 @@ Required steps of installation process
     - For libraries that require additional source
         1. Open `Arduino IDE` and navigate to `Sketch > Include Libraries > Add .ZIP Library...`
         2. Select `.ZIP > Open`
-        
+
         NOTE THAT: it is required to be a __.ZIP__ file, if your folder is unzipped you have to compress it first.
 
 #### Update the Wireless Core Firmware
