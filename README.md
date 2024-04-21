@@ -10,8 +10,11 @@
        - [Visuals](#visuals)
            - [Sketches](#sketches)
    - [Dependencies & Requirements](#dependencies--requirements)
+            - [Required Hardware](#required-hardware)
+            - [Required Software](#required-software)
    - [Installation](#installation)
        - [Wio Terminal | Installation Process](#wio-terminal--installation-process)
+            - [Update the Wireless Core Firmware](#update-the-wireless-core-firmware)
        - [Web-based Application | Local Installation](#web-based-application--local-installation)
    - [Usage](#usage)
    - [Wio Terminal | Usage](#wio-terminal--usage)
@@ -50,26 +53,20 @@ Sketches of the initial design of our website, all sketches are made in [Procrea
 
 
 ## Dependencies & Requirements
-#### Required Hardware:
-1. Wio Seeed Terminal or compatible board
+#### Required Hardware Components:
+Should be aquired prior to the installation process.
+1. [Wio Seeed Terminal](https://www.seeedstudio.com/Wio-Terminal-p-4509.html) or compatible board
 2. Grove Sensors for Wio Terminal
-    * [Temperature & Humidity Sensor | Seeed Studio Wiki](https://wiki.seeedstudio.com/Grove-TemperatureAndHumidity_Sensor/) (only used to measure humidity)
-    * [Temperature Sensor | Seeed Studio Wiki](https://wiki.seeedstudio.com/Grove-Temperature_Sensor_V1.2/)
-    * [RGB LED Stick | Seeed Studio Wiki](https://wiki.seeedstudio.com/Grove-RGB_LED_Stick-10-WS2813_Mini/)
+    * [Temperature & Humidity Sensor | Seeed Studio Wiki](https://www.seeedstudio.com/Grove-Temperature-Humidity-Sensor-DHT11.html) (only used to measure humidity)
+    * [Temperature Sensor | Seeed Studio Wiki](https://www.seeedstudio.com/Grove-Temperature-Sensor.html)
+    * [RGB LED Stick | Seeed Studio Wiki](https://www.seeedstudio.com/Grove-RGB-LED-Stick-10-WS2813-Mini.html)
 
 #### Required Software:
 Should be installed prior to the installation process.
 1. [Arduino IDE](https://www.arduino.cc/en/software) or [Arduino CLI](https://github.com/arduino/arduino-cli)
 2. Wio Terminal [Board Library](https://files.seeedstudio.com/arduino/package_seeeduino_boards_index.json)
 3. Collection of Arduino libraries:
-    Libraries that can be installed through the Arduino IDE
-   * [Grove Temperature And Humidity Sensor](https://github.com/Seeed-Studio/Grove_Temperature_And_Humidity_Sensor)
 
-   Libraries that require an additional source to be installed (`.ZIP`)
-   * [TFT_eSPI](https://github.com/Bodmer/TFT_eSPI)
-   * []()
-   * []()
-   * []()
 
 
 ## Installation
