@@ -222,7 +222,7 @@ void loop() {
     client.publish("Temperature", msg);
     */
 
-    String jsonString;
+    String jsonString = String();
     serializeJson(jsonDocument, jsonString);
 
     Serial.print("Publish message: ");
