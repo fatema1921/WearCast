@@ -1,93 +1,128 @@
-# Project
+# WearCast
 
 
+### Table of Contents
+- [WearCast](#wearcast)
+       - [Table of Contents](#table-of-contents)
+   - [Description](#descripton)
+       - [Background](#background)
+       - [Features](#features)
+       - [Visuals](#visuals)
+           - [Sketches](#sketches)
+   - [Dependencies & Requirements](#dependencies--requirements)
+            - [Required Hardware](#required-hardware)
+            - [Required Software](#required-software)
+   - [Installation](#installation)
+       - [Wio Terminal | Installation Process](#wio-terminal--installation-process)
+            - [Update the Wireless Core Firmware](#update-the-wireless-core-firmware)
+       - [Web-based Application | Local Installation](#web-based-application--local-installation)
+   - [Usage](#usage)
+   - [Wio Terminal | Usage](#wio-terminal--usage)
+   - [Web-based Application | Local Usage](#web-based-application--local-usage)
+   - [Web-based Application | Live Demo](#web-based-application--live-demo)
+   - [Authors and acknowledgment](#authors-and-acknowledgment)
+   - [License](#license)
 
-## Getting started
+## Descripton
+The project _“WearCast”_ is a __two-tier system__ designed to give the user suggestions for appropriate clothing based on current weather conditions. 
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
+Using __sensors__ integrated with a __Wio Terminal__ the system is able to gather raw data of different weather parameters such as temperature and humidity. These sensors continuously gather data on the surrounding environment, which is processed and then transmitted to a __web-based user interface__ to be displayed as separate values. The system is also connected to a LED sensor that changes colors to red or blue to visually represent the temperature.
 
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
+By analyzing and displaying these values, the user can access the weather data alongside tailored clothing suggestions and empowering messages. This ensures that the user is always well-prepared and fashionably attired for any weather scenario.
 
-## Add your files
+### Background
+We've all been there: staring at the closet, trying to figure out what to wear as the weather changes outside. It is a struggle to know if we will be too hot, too cold or just right. Throw in factors like humidity and rain, and it is even trickier... That is where _WearCast_ comes in. We saw this common dilemma and decided to do something about it, _WearCast_ is our solution to help as many as possible to get dressed with confidence, no matter what the weather throws our way.
 
-- [ ] [Create](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-- [ ] [Add files using the command line](https://docs.gitlab.com/ee/gitlab-basics/add-file.html#add-a-file-using-the-command-line) or push an existing Git repository with the following command:
+By undertaking this project as a part of our System Development course at University of Gothenburg/Chalmers University of Technology, _WearCast_ serves as a testament to the intersection of academia and innovation where [the team](#authors-and-acknowledgment) behind _WearCast_ not only aims to address a real-world need but also to apply theoretical knowledge and technical skills in a practical context.
 
-```
-cd existing_repo
-git remote add origin https://git.chalmers.se/courses/dit113/2024/group-17/project.git
-git branch -M main
-git push -uf origin main
-```
+### Features
+* __Real-time Weather Data Integration__: utilizing sensors integrated with a Wio Terminal, _WearCast_ gathers raw data on key weather parameters such as temperature and humidity. This data is updated continously to provide users with the most accurate weather information.
+* __Personalized Clothing Recommendations__: _WearCast_ analyzes the gathered data to generate perzonalised clothing suggestions tailored to current weather conditions. Wheter it is for a sunny day calling for a light-colored, breathable outfit or a rainy forecast perfect for a waterproof attire, _WearCast_ ensures users are equipped with suitable outfit ideas.
+* __Interactive Web Interface__: featuring a user-friendly web interface that serves as a centralized hub for accessing weather data alongside outfit recommendations.
+* __Pinterest API Integration__: to enrich the user experiece, _WearCast_ integrates with the Pinterest API to generate visual inspiration for different styles based on weather conditions. By browsing this curated selection of clothing ideas tailored to the specific climate, _WearCast_ empowers users to make informed decisions about their outfits, ensuring they are both stylish and _weatherproof_ in any situation fostering their creativity and exploration in outfit choices.
 
-## Integrate with your tools
 
-- [ ] [Set up project integrations](https://git.chalmers.se/courses/dit113/2024/group-17/project/-/settings/integrations)
+### Visuals
 
-## Collaborate with your team
+#### Sketches
+Sketches of the initial design of our website, all sketches are made in [Procreate](https://procreate.com/).
+![homepage-top.jpeg](/docs/img/homepage-top.jpeg)
+![homepage-bottom.jpeg](/docs/img/homepage-bottom.jpeg)
+![avatar-wardrobe.jpg](/docs/img/avatar-wardrobe.jpg)
+![avatar-wardrobe.GIF](/docs/img/avatar-wardrobe.GIF)
 
-- [ ] [Invite team members and collaborators](https://docs.gitlab.com/ee/user/project/members/)
-- [ ] [Create a new merge request](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html)
-- [ ] [Automatically close issues from merge requests](https://docs.gitlab.com/ee/user/project/issues/managing_issues.html#closing-issues-automatically)
-- [ ] [Enable merge request approvals](https://docs.gitlab.com/ee/user/project/merge_requests/approvals/)
-- [ ] [Set auto-merge](https://docs.gitlab.com/ee/user/project/merge_requests/merge_when_pipeline_succeeds.html)
 
-## Test and Deploy
+## Dependencies & Requirements
+#### Required Hardware Components:
+Should be aquired prior to the installation process.
+1. [Wio Seeed Terminal](https://www.seeedstudio.com/Wio-Terminal-p-4509.html) or compatible board
+2. Grove Sensors for Wio Terminal
+    * [Temperature & Humidity Sensor | Seeed Studio Wiki](https://www.seeedstudio.com/Grove-Temperature-Humidity-Sensor-DHT11.html) (only used to measure humidity)
+    * [Temperature Sensor | Seeed Studio Wiki](https://www.seeedstudio.com/Grove-Temperature-Sensor.html)
+    * [RGB LED Stick | Seeed Studio Wiki](https://www.seeedstudio.com/Grove-RGB-LED-Stick-10-WS2813-Mini.html)
 
-Use the built-in continuous integration in GitLab.
-
-- [ ] [Get started with GitLab CI/CD](https://docs.gitlab.com/ee/ci/quick_start/index.html)
-- [ ] [Analyze your code for known vulnerabilities with Static Application Security Testing (SAST)](https://docs.gitlab.com/ee/user/application_security/sast/)
-- [ ] [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/ee/topics/autodevops/requirements.html)
-- [ ] [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/ee/user/clusters/agent/)
-- [ ] [Set up protected environments](https://docs.gitlab.com/ee/ci/environments/protected_environments.html)
-
-***
-
-# Editing this README
-
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!). Thanks to [makeareadme.com](https://www.makeareadme.com/) for this template.
-
-## Suggestions for a good README
-
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
-
-## Name
-Choose a self-explaining name for your project.
-
-## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
-
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
-
-## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
+#### Required Software:
+Should be installed prior to the installation process.
+1. [Arduino IDE](https://www.arduino.cc/en/software) or [Arduino CLI](https://github.com/arduino/arduino-cli)
+2. Wio Terminal [Board Library](https://files.seeedstudio.com/arduino/package_seeeduino_boards_index.json)
+3. Collection of Arduino libraries:
+    * rpcWiFi | seeed-studio/Seeed Arduino rpcWiFi@^1.0.7
+    * [PubSubClient](https://github.com/knolleary/pubsubclient) | knolleary/PubSubClient@^2.8
+	* [TFT_eSPI](https://github.com/Bodmer/TFT_eSPI) | bodmer/TFT_eSPI@^2.5.43
+    * .
+    * -- this list will be added to/updated further during Sprint 2 v1.5, v2.0
 
 ## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
+-- __INSERT:__ Required steps of installation process during Sprint 2 v1.5
+
+
+### Wio Terminal | Installation Process
+- Manually install the required [board library [2]](#required-software) via the  `Arduino IDE`.
+    More information and the steps nessecary to install the library can be found in the [Getting Started](https://wiki.seeedstudio.com/Wio-Terminal-Getting-Started/#getting-started) guide from Seeed Studio.
+
+    NOTE THAT: If you are not able to find the `Additional Boards Manager URLs` in `File > Preferences` as described in the guide try access it through the menu bar `Arduino IDE > Settings` then you should be able to see `Additional Boards Manager URLs`. Paste the link and click on `OK` (it might take a while before the `Seeeduino Wio Terminal` shows up in your list of boards).
+
+
+- Manually install the required [libraries [3]](#required-software) via the `Arduino IDE` by following the steps below
+
+    - For libraries that can be installed directly through the `Arduino IDE`:
+        1. Open and navigate to `Tools > Manage Libraries...`
+        2. Install the [required libraries](#dependencies--requirements) by searching for the library name in the search bar, select the latest version and click `install`.
+
+    - For libraries that require additional source
+        1. Open `Arduino IDE` and navigate to `Sketch > Include Libraries > Add .ZIP Library...`
+        2. Select `.ZIP > Open`
+
+        NOTE THAT: it is required to be a __.ZIP__ file, if your folder is unzipped you have to compress it first.
+
+#### Update the Wireless Core Firmware
+
+
+### Web-based Application | Local Installation
 
 ## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
 
-## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
+### Wio Terminal | Usage
+1. Arduino IDE | Usage
 
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
 
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
+### Web-based Application | Local Usage
 
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
 
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
+### Web-based Application | Live Demo
+
 
 ## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
+* Elin Forssell (@elifor)
+* Fatemeh Akbarifar (@fatakb)
+* Rawan Ahsan Abid (@rawanah)
+* Caszandra Alirani (@cazandra)
+* Reihaneh Abbasi (@abbasir)
+
 
 ## License
-For open source projects, say how it is licensed.
 
-## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
+
+
+
+
