@@ -69,13 +69,12 @@ void setup_wifi() {
      /* Print in Serial Monitor */
     Serial.println();
     Serial.println("WiFi connection established!");
-
     /* Print in Wio Terminal */
     tft.fillScreen(TFT_BLACK);
     tft.fillRect(0, 190, 320, 50, TFT_LIGHTGREY); // Draw footer background rectangle
     tft.setTextColor(TFT_BLACK); // Set text color to black
     tft.setCursor((320 - tft.textWidth("WiFi status: Connected")) /2, 210);
-    tft.print("WiFi status: Connected"); 
+    tft.print("WiFi status: Connected");
   } else {
     /* Print in Serial Monitor */
     Serial.println();
@@ -89,8 +88,7 @@ void setup_wifi() {
     tft.fillRect(0, 190, 320, 50, TFT_LIGHTGREY); // Draw footer background rectangle
     tft.setTextColor(TFT_BLACK); // Set text color to black
     tft.setCursor((320 - tft.textWidth("WiFi Connection Failed")) /2, 210);
-    tft.print("WiFi Connection Failed"); 
-
+    tft.print("WiFi Connection Failed");
   }
 }
 
@@ -170,8 +168,6 @@ void setup() {
   tft.begin(); // Initialize TFT (i.e. Wio Terminal LCD screen)
   tft.setRotation(3); // Set screen rotation
 
-  // spr.createSprite(TFT_HEIGHT,TFT_WIDTH); // Create buffer (enabling the composition and manipulation of graphical elements befor rendering them on the TFT screen)
-
   Serial.println();
   Serial.begin(115200); // Initialize serial communication at 115200 baud rate; for communication with WiFi module
 
@@ -231,9 +227,12 @@ void loop() {
   Serial.println(temperature);
   delay(5000);
 
+}
 
-  /** CODESNIPPETS - CURRENTLY NOT IN USE */
+/** CODESNIPPETS - CURRENTLY NOT IN USE */
   /*
+  spr.createSprite(TFT_HEIGHT,TFT_WIDTH); // Create buffer (enabling the composition and manipulation of graphical elements befor rendering them on the TFT screen)
+
 
   long now = millis(); // Get current time
   if(now - lastMsg > 2000) { // Check if 2 sec have elapsed since last message
@@ -263,5 +262,3 @@ void loop() {
   client.publish("Temperature", jsonString.c_str());
 
   */
-
-}
