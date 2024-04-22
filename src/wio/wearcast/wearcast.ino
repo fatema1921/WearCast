@@ -55,28 +55,43 @@ void setup_wifi() {
   tft.setCursor((320 - tft.textWidth("Connecting to WiFi...")) /2, 210);
   tft.print("Connecting to WiFi...");
 
+  /* Attempt to connect to WiFi */
   WiFi.begin(ssid, password);
-
-  while (WiFi.status() !=WL_CONNECTED) {
+  int attempts = 0;
+  while (WiFi.status() !=WL_CONNECTED && attempts < 20) {
     delay(500);
     Serial.print(".");
+    attempts++;
   }
 
-  /* Print in Serial Monitor */
-  Serial.println();
-  Serial.println("WiFi connection established!");
+  /* Check if WiFi connection was established */
+  if(WiFi.status() == WL_CONNECTED){
+     /* Print in Serial Monitor */
+    Serial.println();
+    Serial.println("WiFi connection established!");
 
-  /* Print in Wio Terminal */
-  tft.fillScreen(TFT_BLACK);
-  tft.fillRect(0, 190, 320, 50, TFT_LIGHTGREY); // Draw footer background rectangle
-  tft.setTextColor(TFT_BLACK); // Set text color to black
-  tft.setCursor((320 - tft.textWidth("WiFi status: Connected")) /2, 210);
-  tft.print("WiFi status: Connected");
+    /* Print in Wio Terminal */
+    tft.fillScreen(TFT_BLACK);
+    tft.fillRect(0, 190, 320, 50, TFT_LIGHTGREY); // Draw footer background rectangle
+    tft.setTextColor(TFT_BLACK); // Set text color to black
+    tft.setCursor((320 - tft.textWidth("WiFi status: Connected")) /2, 210);
+    tft.print("WiFi status: Connected"); 
+  } else {
+    /* Print in Serial Monitor */
+    Serial.println();
+    Serial.println("Attempt to establish WiFi connection failed!");
+    /* Print local IP in Serial Monitor */
+    Serial.print("IP address: ");
+    Serial.println(WiFi.localIP());
 
-  /* Print local IP in Serial Monitor */
-  Serial.print("IP address: ");
-  Serial.println(WiFi.localIP());
+    /* Print in Wio Terminal */
+    tft.fillScreen(TFT_BLACK);
+    tft.fillRect(0, 190, 320, 50, TFT_LIGHTGREY); // Draw footer background rectangle
+    tft.setTextColor(TFT_BLACK); // Set text color to black
+    tft.setCursor((320 - tft.textWidth("WiFi Connection Failed")) /2, 210);
+    tft.print("WiFi Connection Failed"); 
 
+  }
 }
 
 /**
@@ -187,7 +202,7 @@ void loop() {
   tft.setTextSize(3); // Set text size
   tft.setCursor(90, 15);
   tft.print("WearCast");
-  tft.drawFastVLine(150, 50, 190, TFT_LIGHTGREY); // Draw vertical line across screen
+  tft.drawFastVLine(160, 50, 160, TFT_LIGHTGREY); // Draw vertical line across screen
 
   /* Temperature reading */
   int analogValue = analogRead(pinTempSensor); // Read analog value from temperature sensor
@@ -200,51 +215,53 @@ void loop() {
   tft.setTextSize(2);
   tft.setCursor(10, 100);
   tft.print("Temperature");
+
   tft.setTextSize(3);
   tft.setCursor(50, 130);
-  tft.print(temperature);
+  tft.fillRect(35, 125, 100, 30, TFT_BLACK); // Clear the previously displayed temperature by filling a rectangle over it
+  tft.print((int)temperature);
   tft.setCursor(90, 130);
   tft.print("C");
 
   delay(50); // Delay to stabilize the display
 
   /* MQTT message publishing*/
-
   client.publish(temperature_topic, String(temperature).c_str());
   Serial.print("Temperature: ");
   Serial.println(temperature);
   delay(5000);
 
-  /*long now = millis(); // Get current time
+
+  /** CODESNIPPETS - CURRENTLY NOT IN USE */
+  /*
+
+  long now = millis(); // Get current time
   if(now - lastMsg > 2000) { // Check if 2 sec have elapsed since last message
     lastMsg = now; // Update time for last message
     ++ value; // Increment message value
-    */
 
-    /*
-    snprintf(msg, 50, "%d", (int)temperature); // Format message, cast temperature to int
-    Serial.print("Publish message: ");
-    Serial.println(msg);
-    client.publish("Temperature", msg); // Publish message to MQTT broker
-    */
+  snprintf(msg, 50, "%d", (int)temperature); // Format message, cast temperature to int
+  Serial.print("Publish message: ");
+  Serial.println(msg);
+  client.publish("Temperature", msg); // Publish message to MQTT broker
 
-    // Format message as JSON
-    /*StaticJsonDocument<100> jsonDocument;
-    jsonDocument["value"] = (int)temperature;
+  // Format message as JSON
+  StaticJsonDocument<100> jsonDocument;
+  jsonDocument["value"] = (int)temperature;
 
-    // Serialize JSON document to the char array
-    /*
-    serializeJson(jsonDocument, msg);
-    Serial.print("Publish message: ");
-    Serial.println(msg);
-    client.publish("Temperature", msg);
-    */
+  // Serialize JSON document to the char array
+  serializeJson(jsonDocument, msg);
+  Serial.print("Publish message: ");
+  Serial.println(msg);
+  client.publish("Temperature", msg);
 
-    /*String jsonString;
-    serializeJson(jsonDocument, jsonString);
+  String jsonString;
+  serializeJson(jsonDocument, jsonString);
 
-    Serial.print("Publish message: ");
-    Serial.println(jsonString);
-    client.publish("Temperature", jsonString.c_str());
-    */
+  Serial.print("Publish message: ");
+  Serial.println(jsonString);
+  client.publish("Temperature", jsonString.c_str());
+
+  */
+
 }
