@@ -5,6 +5,7 @@
 
 /* Import header/library files */
 #include <math.h> // Math library for mathematical calculations
+#include "DHT.h" // DHT library 
 #include "TFT_eSPI.h" // TFT LCD library for Wio Terminal
 #include "rpcWiFi.h" // WiFi library for Wio Terminal
 #include <PubSubClient.h> // MQTT client library for Wio Terminal
@@ -15,6 +16,10 @@
 const int pinTempSensor = A0; // Analog pin A0 connected to Grove - Temperature Sensor
 const int B_VALUE = 4275; // B value of the temperature sensor's thermistor
 
+/* Definitions for humidity sensor */
+#define DHTPIN PIN_WIRE_SCL //Use I2C port as Digital Port
+#define DHTTYPE DHT11 //Define DHT sensor type 
+
 /* Constant variables for WiFi */
 const char* ssid = "Elins iPhone"; // WiFi SSID (Name)
 const char* password = "yH59!Gum"; // WiFi Password
@@ -22,6 +27,9 @@ const char* password = "yH59!Gum"; // WiFi Password
 /* Constant variable for MQTT */
 const char* mqtt_server = "broker.emqx.io"; // MQTT Broker URL
 const char* temperature_topic = "Temperature";
+
+/* Initializations */
+DHT dht(DHTPIN, DHTTYPE); //Initializing DHT sensor
 
 TFT_eSPI tft; // TFT_eSPI object for Wio Terminal's TFT screen
 TFT_eSprite spr = TFT_eSprite(&tft); // Initializing sprite buffer for graphical operations
@@ -55,28 +63,41 @@ void setup_wifi() {
   tft.setCursor((320 - tft.textWidth("Connecting to WiFi...")) /2, 210);
   tft.print("Connecting to WiFi...");
 
+  /* Attempt to connect to WiFi */
   WiFi.begin(ssid, password);
-
-  while (WiFi.status() !=WL_CONNECTED) {
+  int attempts = 0;
+  while (WiFi.status() !=WL_CONNECTED && attempts < 20) {
     delay(500);
     Serial.print(".");
+    attempts++;
   }
 
-  /* Print in Serial Monitor */
-  Serial.println();
-  Serial.println("WiFi connection established!");
+  /* Check if WiFi connection was established */
+  if(WiFi.status() == WL_CONNECTED){
+     /* Print in Serial Monitor */
+    Serial.println();
+    Serial.println("WiFi connection established!");
+    /* Print in Wio Terminal */
+    tft.fillScreen(TFT_BLACK);
+    tft.fillRect(0, 190, 320, 50, TFT_LIGHTGREY); // Draw footer background rectangle
+    tft.setTextColor(TFT_BLACK); // Set text color to black
+    tft.setCursor((320 - tft.textWidth("WiFi status: Connected")) /2, 210);
+    tft.print("WiFi status: Connected");
+  } else {
+    /* Print in Serial Monitor */
+    Serial.println();
+    Serial.println("Attempt to establish WiFi connection failed!");
+    /* Print local IP in Serial Monitor */
+    Serial.print("IP address: ");
+    Serial.println(WiFi.localIP());
 
-  /* Print in Wio Terminal */
-  tft.fillScreen(TFT_BLACK);
-  tft.fillRect(0, 190, 320, 50, TFT_LIGHTGREY); // Draw footer background rectangle
-  tft.setTextColor(TFT_BLACK); // Set text color to black
-  tft.setCursor((320 - tft.textWidth("WiFi status: Connected")) /2, 210);
-  tft.print("WiFi status: Connected");
-
-  /* Print local IP in Serial Monitor */
-  Serial.print("IP address: ");
-  Serial.println(WiFi.localIP());
-
+    /* Print in Wio Terminal */
+    tft.fillScreen(TFT_BLACK);
+    tft.fillRect(0, 190, 320, 50, TFT_LIGHTGREY); // Draw footer background rectangle
+    tft.setTextColor(TFT_BLACK); // Set text color to black
+    tft.setCursor((320 - tft.textWidth("WiFi Connection Failed")) /2, 210);
+    tft.print("WiFi Connection Failed");
+  }
 }
 
 /**
@@ -151,11 +172,11 @@ void setup() {
   pinMode (pinTempSensor, INPUT); // Set up pinmode for temperature sensor
 
   Serial.begin(9600); // Initialize serial communication at 9600 baud rate; for general logging (initialize communication between microcontroller and computer (serial monitor))
+  
+  dht.begin(); //Start DHT sensor 
 
   tft.begin(); // Initialize TFT (i.e. Wio Terminal LCD screen)
   tft.setRotation(3); // Set screen rotation
-
-  // spr.createSprite(TFT_HEIGHT,TFT_WIDTH); // Create buffer (enabling the composition and manipulation of graphical elements befor rendering them on the TFT screen)
 
   Serial.println();
   Serial.begin(115200); // Initialize serial communication at 115200 baud rate; for communication with WiFi module
@@ -187,7 +208,7 @@ void loop() {
   tft.setTextSize(3); // Set text size
   tft.setCursor(90, 15);
   tft.print("WearCast");
-  tft.drawFastVLine(150, 50, 190, TFT_LIGHTGREY); // Draw vertical line across screen
+  tft.drawFastVLine(160, 50, 160, TFT_LIGHTGREY); // Draw vertical line across screen
 
   /* Temperature reading */
   int analogValue = analogRead(pinTempSensor); // Read analog value from temperature sensor
@@ -195,56 +216,62 @@ void loop() {
   resistance = 100000.0 * resistance;
   float temperature = 1.0 / (log(resistance/100000.0) / B_VALUE +1 / 298.15) - 273.15; // Convert to temperature (using datasheet)
 
+  /* Humidity reading */
+  int h = dht.readHumidity(); // Read digital value from humidity sensor 
+
   /* Display temperature */
   tft.setTextColor(TFT_WHITE);
   tft.setTextSize(2);
   tft.setCursor(10, 100);
   tft.print("Temperature");
+
   tft.setTextSize(3);
   tft.setCursor(50, 130);
-  tft.print(temperature);
+  tft.fillRect(35, 125, 100, 30, TFT_BLACK); // Clear the previously displayed temperature by filling a rectangle over it
+  tft.print((int)temperature);
   tft.setCursor(90, 130);
   tft.print("C");
 
   delay(50); // Delay to stabilize the display
 
   /* MQTT message publishing*/
-
   client.publish(temperature_topic, String(temperature).c_str());
   Serial.print("Temperature: ");
   Serial.println(temperature);
   delay(5000);
 
-  /*long now = millis(); // Get current time
+}
+
+/** CODESNIPPETS - CURRENTLY NOT IN USE */
+  /*
+  spr.createSprite(TFT_HEIGHT,TFT_WIDTH); // Create buffer (enabling the composition and manipulation of graphical elements befor rendering them on the TFT screen)
+
+
+  long now = millis(); // Get current time
   if(now - lastMsg > 2000) { // Check if 2 sec have elapsed since last message
     lastMsg = now; // Update time for last message
     ++ value; // Increment message value
-    */
 
-    /*
-    snprintf(msg, 50, "%d", (int)temperature); // Format message, cast temperature to int
-    Serial.print("Publish message: ");
-    Serial.println(msg);
-    client.publish("Temperature", msg); // Publish message to MQTT broker
-    */
+  snprintf(msg, 50, "%d", (int)temperature); // Format message, cast temperature to int
+  Serial.print("Publish message: ");
+  Serial.println(msg);
+  client.publish("Temperature", msg); // Publish message to MQTT broker
 
-    // Format message as JSON
-    /*StaticJsonDocument<100> jsonDocument;
-    jsonDocument["value"] = (int)temperature;
+  // Format message as JSON
+  StaticJsonDocument<100> jsonDocument;
+  jsonDocument["value"] = (int)temperature;
 
-    // Serialize JSON document to the char array
-    /*
-    serializeJson(jsonDocument, msg);
-    Serial.print("Publish message: ");
-    Serial.println(msg);
-    client.publish("Temperature", msg);
-    */
+  // Serialize JSON document to the char array
+  serializeJson(jsonDocument, msg);
+  Serial.print("Publish message: ");
+  Serial.println(msg);
+  client.publish("Temperature", msg);
 
-    /*String jsonString;
-    serializeJson(jsonDocument, jsonString);
+  String jsonString;
+  serializeJson(jsonDocument, jsonString);
 
-    Serial.print("Publish message: ");
-    Serial.println(jsonString);
-    client.publish("Temperature", jsonString.c_str());
-    */
-}
+  Serial.print("Publish message: ");
+  Serial.println(jsonString);
+  client.publish("Temperature", jsonString.c_str());
+
+  */
