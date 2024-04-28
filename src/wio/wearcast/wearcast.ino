@@ -217,7 +217,7 @@ void loop() {
   float temperature = 1.0 / (log(resistance/100000.0) / B_VALUE +1 / 298.15) - 273.15; // Convert to temperature (using datasheet)
 
   /* Humidity reading */
-  int h = dht.readHumidity(); // Read digital value from humidity sensor 
+  int humidity = dht.readHumidity(); // Read digital value from humidity sensor 
 
   /* Display temperature */
   tft.setTextColor(TFT_WHITE);
@@ -231,6 +231,19 @@ void loop() {
   tft.print((int)temperature);
   tft.setCursor(90, 130);
   tft.print("C");
+
+  /* Display humidity */
+  tft.setTextColor(TFT_WHITE);
+  tft.setTextSize(2);
+  tft.setCursor(130, 100);
+  tft.print("Humidity");
+
+  tft.setTextSize(3);
+  tft.setCursor(170, 130);
+  tft.fillRect(35, 125, 100, 30, TFT_BLACK);
+  tft.print(humidity);
+  tft.setCursor(210, 130);
+  tft.print("% RH");
 
   delay(50); // Delay to stabilize the display
 
