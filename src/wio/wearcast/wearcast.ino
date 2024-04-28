@@ -27,6 +27,7 @@ const char* password = "yH59!Gum"; // WiFi Password
 /* Constant variable for MQTT */
 const char* mqtt_server = "broker.emqx.io"; // MQTT Broker URL
 const char* temperature_topic = "Temperature";
+const char* humidity_topic = "Humidity";
 
 /* Initializations */
 DHT dht(DHTPIN, DHTTYPE); //Initializing DHT sensor
@@ -249,8 +250,11 @@ void loop() {
 
   /* MQTT message publishing*/
   client.publish(temperature_topic, String(temperature).c_str());
+  client.publish(humidity_topic, String(humidity).c_str());
   Serial.print("Temperature: ");
   Serial.println(temperature);
+  Serial.print("Humidity: " );
+  Serial.println(humidity);
   delay(5000);
 
 }
