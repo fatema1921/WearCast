@@ -240,6 +240,21 @@ void loop() {
   } else {
     color = pixels.Color(0, 0, 255); // Blue color
   }
+   numPixels = abs(temperature) / 5; // Every 5-degree change lights up one more light
+  if (numPixels > LED_COUNT) {
+    numPixels = LED_COUNT;
+  }
+
+  // Set the color and light up the pixels
+  for (int i = 0; i < LED_COUNT; i++) {
+    if (i < numPixels) {
+      pixels.setPixelColor(i, color);
+    } else {
+      pixels.setPixelColor(i, pixels.Color(0, 0, 0)); // Turn off the remaining pixels
+    }
+  }
+  pixels.show(); // Update the LED display
+ 
   /* MQTT message publishing*/
   client.publish(temperature_topic, String(temperature).c_str());
   Serial.print("Temperature: ");
