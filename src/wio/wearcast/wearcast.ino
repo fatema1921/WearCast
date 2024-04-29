@@ -237,7 +237,9 @@ void loop() {
 
   if (temperature >= 0) {
     color = pixels.Color(255, 0, 0); // Red color
-  } 
+  } else {
+    color = pixels.Color(0, 0, 255); // Blue color
+  }
   /* MQTT message publishing*/
   client.publish(temperature_topic, String(temperature).c_str());
   Serial.print("Temperature: ");
