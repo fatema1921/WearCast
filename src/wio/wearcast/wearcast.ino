@@ -5,6 +5,7 @@
 
 /* Import header/library files */
 #include <math.h> // Math library for mathematical calculations
+#include "Wire.h" // Wire library for I2C communication
 #include "DHT.h" // DHT library 
 #include "TFT_eSPI.h" // TFT LCD library for Wio Terminal
 #include "rpcWiFi.h" // WiFi library for Wio Terminal
@@ -171,10 +172,12 @@ void reconnect() {
 */
 void setup() {
   pinMode (pinTempSensor, INPUT); // Set up pinmode for temperature sensor
+  pinMode (DHTPIN, INPUT);
 
   Serial.begin(9600); // Initialize serial communication at 9600 baud rate; for general logging (initialize communication between microcontroller and computer (serial monitor))
   
   dht.begin(); //Start DHT sensor 
+  Wire.begin();
 
   tft.begin(); // Initialize TFT (i.e. Wio Terminal LCD screen)
   tft.setRotation(3); // Set screen rotation
@@ -205,6 +208,7 @@ void loop() {
 
   /* Display header */
   tft.fillRect(0, 0, 320, 50, TFT_LIGHTGREY); // Draw header background rectangle
+  //tft.fillRectHGradient(0, 0, 320, 50, TFT_PURPLE, TFT_NAVY);
   tft.setTextColor(TFT_BLACK); // Set text color to black
   tft.setTextSize(3); // Set text size
   tft.setCursor(90, 15);
@@ -236,15 +240,15 @@ void loop() {
   /* Display humidity */
   tft.setTextColor(TFT_WHITE);
   tft.setTextSize(2);
-  tft.setCursor(130, 100);
+  tft.setCursor(200, 100);
   tft.print("Humidity");
 
   tft.setTextSize(3);
-  tft.setCursor(170, 130);
-  tft.fillRect(35, 125, 100, 30, TFT_BLACK);
-  tft.print(humidity);
   tft.setCursor(210, 130);
-  tft.print("% RH");
+  tft.fillRect(195, 125, 100, 30, TFT_BLACK);
+  tft.print(humidity);
+  tft.setCursor(235, 130);
+  tft.print("%RH");
 
   delay(50); // Delay to stabilize the display
 
