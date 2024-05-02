@@ -1,3 +1,4 @@
+//LED WORKING CODE 
 /*
  - Note: The code for reading the temperature sensor has been adapted from Seeed Studio's User Manual for the Grove Temperature Sensor:
  - Link: https://www.mouser.com/datasheet/2/744/Seeed_101020015-1217523.pdf
@@ -10,12 +11,16 @@
 #include "rpcWiFi.h" // WiFi library for Wio Terminal
 #include <PubSubClient.h> // MQTT client library for Wio Terminal
 
+#ifdef AVR
+  #include <avr/power.h>
+#endif
+
 // #include <ArduinoJson.h> // Include ArduinoJson library
-#define LED_PIN    6
+#define LED_PIN    A2
 #define LED_COUNT  10
 
 Adafruit_NeoPixel pixels(LED_COUNT, LED_PIN, NEO_GRB + NEO_KHZ800);
-
+int delayval = 500;
 /* Constant variables for temperature */
 const int pinTempSensor = A0; // Analog pin A0 connected to Grove - Temperature Sensor
 const int B_VALUE = 4275; // B value of the temperature sensor's thermistor
@@ -167,14 +172,14 @@ void reconnect() {
 */
 void setup() {
   pinMode (pinTempSensor, INPUT); // Set up pinmode for temperature sensor
-  pinMode(13, OUTPUT);
+  pinMode(LED_PIN, OUTPUT);
 
   Serial.begin(9600); // Initialize serial communication at 9600 baud rate; for general logging (initialize communication between microcontroller and computer (serial monitor))
  
   tft.begin(); // Initialize TFT (i.e. Wio Terminal LCD screen)
   tft.setRotation(3); // Set screen rotation
   
-  pixels.setBrightness(255);
+  pixels.setBrightness(40);
   pixels.begin();
   // spr.createSprite(TFT_HEIGHT,TFT_WIDTH); // Create buffer (enabling the composition and manipulation of graphical elements befor rendering them on the TFT screen)
 
@@ -231,7 +236,6 @@ void loop() {
 
   delay(50); // Delay to stabilize the display
   // Determine the color and number of pixels to light up based on temperature
-  float temperature = readTemperature(); // Assuming you have a function to read the temperature
   uint32_t color;
   int numPixels;
 
@@ -249,11 +253,16 @@ void loop() {
   for (int i = 0; i < LED_COUNT; i++) {
     if (i < numPixels) {
       pixels.setPixelColor(i, color);
+       pixels.show();
+        delay(delayval); 
     } else {
       pixels.setPixelColor(i, pixels.Color(0, 0, 0)); // Turn off the remaining pixels
-    }
+     pixels.show();
+      delay(delayval); 
+     } 
+
   }
-  pixels.show(); // Update the LED display
+  // Update the LED display
  
   /* MQTT message publishing*/
   client.publish(temperature_topic, String(temperature).c_str());
