@@ -5,20 +5,18 @@
 
 /* Import header/library files */
 #include <math.h> // Math library for mathematical calculations
-#include "Wire.h" // Wire library for I2C communication
+//#include "Wire.h" // Wire library for I2C communication
 #include "DHT.h" // DHT library 
 #include "TFT_eSPI.h" // TFT LCD library for Wio Terminal
 #include "rpcWiFi.h" // WiFi library for Wio Terminal
 #include <PubSubClient.h> // MQTT client library for Wio Terminal
-
-// #include <ArduinoJson.h> // Include ArduinoJson library
 
 /* Constant variables for temperature */
 const int pinTempSensor = A0; // Analog pin A0 connected to Grove - Temperature Sensor
 const int B_VALUE = 4275; // B value of the temperature sensor's thermistor
 
 /* Definitions for humidity sensor */
-#define DHTPIN PIN_WIRE_SCL //Use I2C port as Digital Port
+#define DHTPIN PIN_WIRE_SCL //Use I2C port as Digital Port for Grove - Temperature and Humidity sensor
 #define DHTTYPE DHT11 //Define DHT sensor type 
 
 /* Constant variables for WiFi */
@@ -27,8 +25,8 @@ const char* password = "yH59!Gum"; // WiFi Password
 
 /* Constant variable for MQTT */
 const char* mqtt_server = "broker.emqx.io"; // MQTT Broker URL
-const char* temperature_topic = "Temperature";
-const char* humidity_topic = "Humidity";
+const char* temperature_topic = "Temperature"; // Topic for temperature
+const char* humidity_topic = "Humidity"; // Topic for humidity
 
 /* Initializations */
 DHT dht(DHTPIN, DHTTYPE); //Initializing DHT sensor
@@ -38,9 +36,7 @@ TFT_eSprite spr = TFT_eSprite(&tft); // Initializing sprite buffer for graphical
 
 WiFiClient wioClient; // WiFi client object for Wio Terminal
 PubSubClient client(wioClient); // MQTT client object for Wio Terminal
-long lastMsg = 0; // Timestamp of the last MQTT message
-char msg[50]; // Buffer for storing MQTT messages
-int value = 0; // Value used in MQTT messages for tracking
+
 
 /**
  * @brief Function to set up and establish a connection to WiFi network.
@@ -103,40 +99,6 @@ void setup_wifi() {
 }
 
 /**
- * @brief Callback function for handling MQTT messages.
- *
- * This function is called whenever a message is recieved from the MQTT broker.
- * Printing the recieved topic and payload to the serial monitor, and displays the payload on the Wio Terminal.
- *
- * @param topic   : The topic of MQTT message
- * @param payload : The payload of MQTT message
- * @param length  : The length of payload
-*/
-void callback(char* topic, byte* payload, unsigned int length){
-  tft.fillScreen(TFT_BLACK);
-  Serial.print("Message arrived [");
-  Serial.print(topic);
-  Serial.print("]");
-
-  char buff_p[length];
-
-  for(int i = 0; i < length; i++) {
-    Serial.print((char)payload[i]);
-    buff_p[i] = (char)payload[i];
-  }
-
-  Serial.println();
-  buff_p[length] = '\0';
-  String msg_p = String(buff_p);
-
-  tft.fillScreen(TFT_BLACK);
-  tft.setCursor((320 - tft.textWidth("MQTT Message: ")) /2, 90);
-  tft.print("MQTT Message: ");
-  tft.setCursor((320 - tft.textWidth(msg_p)) /2, 120);
-  tft.print(msg_p); // Print recieved payload
-}
-
-/**
  * @brief Reconnect function to reconnect to the MQTT broker.
  *
  * This function attempts to establish a connection to the MQTT broker using the MQTT client.
@@ -172,12 +134,12 @@ void reconnect() {
 */
 void setup() {
   pinMode (pinTempSensor, INPUT); // Set up pinmode for temperature sensor
-  pinMode (DHTPIN, INPUT);
+  pinMode (DHTPIN, INPUT); // Set up pinmode for humidity sensor
 
   Serial.begin(9600); // Initialize serial communication at 9600 baud rate; for general logging (initialize communication between microcontroller and computer (serial monitor))
   
   dht.begin(); //Start DHT sensor 
-  Wire.begin();
+  //Wire.begin();
 
   tft.begin(); // Initialize TFT (i.e. Wio Terminal LCD screen)
   tft.setRotation(3); // Set screen rotation
@@ -245,7 +207,7 @@ void loop() {
 
   tft.setTextSize(3);
   tft.setCursor(210, 130);
-  tft.fillRect(195, 125, 100, 30, TFT_BLACK);
+  tft.fillRect(195, 125, 100, 30, TFT_BLACK); // Clear the previously displayed humidity by filling a rectangle over it
   tft.print(humidity);
   tft.setCursor(235, 130);
   tft.print("%RH");
@@ -253,8 +215,8 @@ void loop() {
   delay(50); // Delay to stabilize the display
 
   /* MQTT message publishing*/
-  client.publish(temperature_topic, String(temperature).c_str());
-  client.publish(humidity_topic, String(humidity).c_str());
+  client.publish(temperature_topic, String(temperature).c_str()); // Publish temperature to broker
+  client.publish(humidity_topic, String(humidity).c_str()); // Publish humidity to broker
   Serial.print("Temperature: ");
   Serial.println(temperature);
   Serial.print("Humidity: " );
@@ -265,6 +227,46 @@ void loop() {
 
 /** CODESNIPPETS - CURRENTLY NOT IN USE */
   /*
+
+  // #include <ArduinoJson.h> // Include ArduinoJson library
+
+ * @brief Callback function for handling MQTT messages.
+ *
+ * This function is called whenever a message is recieved from the MQTT broker.
+ * Printing the recieved topic and payload to the serial monitor, and displays the payload on the Wio Terminal.
+ *
+ * @param topic   : The topic of MQTT message
+ * @param payload : The payload of MQTT message
+ * @param length  : The length of payload
+ * 
+void callback(char* topic, byte* payload, unsigned int length){
+  tft.fillScreen(TFT_BLACK);
+  Serial.print("Message arrived [");
+  Serial.print(topic);
+  Serial.print("]");
+
+  char buff_p[length];
+
+  for(int i = 0; i < length; i++) {
+    Serial.print((char)payload[i]);
+    buff_p[i] = (char)payload[i];
+  }
+
+  Serial.println();
+  buff_p[length] = '\0';
+  String msg_p = String(buff_p);
+
+  tft.fillScreen(TFT_BLACK);
+  tft.setCursor((320 - tft.textWidth("MQTT Message: ")) /2, 90);
+  tft.print("MQTT Message: ");
+  tft.setCursor((320 - tft.textWidth(msg_p)) /2, 120);
+  tft.print(msg_p); // Print recieved payload
+}
+
+long lastMsg = 0; // Timestamp of the last MQTT message
+char msg[50]; // Buffer for storing MQTT messages
+int value = 0; // Value used in MQTT messages for tracking
+
   spr.createSprite(TFT_HEIGHT,TFT_WIDTH); // Create buffer (enabling the composition and manipulation of graphical elements befor rendering them on the TFT screen)
 
 
