@@ -61,9 +61,9 @@
 				var topic = message.destinationName;
 				var sensorValue = message.payloadString;
 				if (topic === "Temperature") {
-					document.getElementById("temperatureParagraph").textContent = "Temperature: " + sensorValue;
+					document.getElementById("temperatureParagraph").textContent = "Temperature: " + sensorValue + " C";
 				} else if (topic === "Humidity") {
-					document.getElementById("humidityParagraph").textContent = "Humidity: " + sensorValue;
+					document.getElementById("humidityParagraph").textContent = "Humidity: " + sensorValue + " % RH";
 				}
 			}
 
