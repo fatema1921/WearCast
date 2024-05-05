@@ -1,11 +1,14 @@
 /*
+ - Note: The code for reading the humidity from the temperature and humidity sensor has been adapted from "Smart_Garden.ino" found in the Wio_Terminal_Classroom_Arduino GitHub repository by lakshanthad:
+ - Link: https://github.com/lakshanthad/Wio_Terminal_Classroom_Arduino/blob/main/Classroom%2012/Smart_Garden/Smart_Garden.ino
+
  - Note: The code for reading from the temperature sensor has been adapted from Seeed Studio's User Manual for the Grove Temperature Sensor:
  - Link: https://www.mouser.com/datasheet/2/744/Seeed_101020015-1217523.pdf
  */
 
 /* Import header/library files */
 #include <math.h> // Math library for mathematical calculations
-//#include "Wire.h" // Wire library for I2C communication
+#include "Wire.h" // Wire library for I2C communication
 #include "DHT.h" // DHT library 
 #include "TFT_eSPI.h" // TFT LCD library for Wio Terminal
 #include "rpcWiFi.h" // WiFi library for Wio Terminal
@@ -139,7 +142,7 @@ void setup() {
   Serial.begin(9600); // Initialize serial communication at 9600 baud rate; for general logging (initialize communication between microcontroller and computer (serial monitor))
   
   dht.begin(); //Start DHT sensor 
- //Wire.begin();
+  Wire.begin();
 
   tft.begin(); // Initialize TFT (i.e. Wio Terminal LCD screen)
   tft.setRotation(3); // Set screen rotation
