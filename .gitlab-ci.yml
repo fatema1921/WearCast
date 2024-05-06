@@ -1,0 +1,59 @@
+# test and deploy might get added to stages further on
+
+# List of stages for jobs, and their order of execution
+stages:
+  - build
+  # - test
+  # - deploy
+
+# build for arduino
+build_arduino: 
+    stage: build
+    # Use Docker image to get the latest (stable) version of Ubuntu which is common in CI configuration
+    image: ubuntu:latest 
+    # runs before the main script
+    before_script: 
+        # update package lists for ubunto image, installing wget (utility to download from web) 
+        - apt-get update && apt-get install -y wget 
+        # downoad the Arduino CLI tool
+        - wget https://downloads.arduino.cc/arduino-cli/arduino-cli_latest_Linux_64bit.tar.gz
+        # extract from the archive
+        - tar -xvf arduino-cli latest_Linux_64bit.tar.gz
+        # move to /usr/local/bin to make it available system-wide
+        - mv arduino-cli /usr/local/bin/arduino-cli 
+        # initialize default config for Arduino CLI
+        - arduino-cli config init
+        # update list of available boards and libraries
+        - arduino-cli core update-index
+        # install code for our board
+        - arduino-cli core install Seeeduino:samd
+    script:
+        # print for clarity
+        - echo "Compiling Arduino code for the Wio Terminal..."
+        # compile sketch, specifying board (what config to use) and relative path to the sketch
+        - arduino-cli compile --fqbn Seeeduino:samd:seeed_wio_terminal src/wio/wearcast/wearcast.ino
+
+# build for web - not done
+build_web:
+  stage: build
+  image: node:latest # if we're using node for bunding HTML/CSS/JS
+  script:
+    - echo "Bundling HTML/CSS/JavaScript..."
+    - npm install # install packages needed
+    - npm run build # this needs to be configured to bundle HTML/CSS/JS into 'dist'
+  artifacts:
+    paths:
+      - dist/ # path to 'dist' file
+
+# build for svelte - commented out - not used
+#build_svelte:
+ #   stage: build
+ #   image: node:latest
+ #   script:
+ #       - echo "Installing dependencies for Svelte..."
+ #       - npm install 
+ #       - echo "Building Svelte application..."
+ #       - npm run build
+ #   artifacts:
+ #       paths:
+ #           - "" # update path
