@@ -34,9 +34,48 @@ function onMessageArrived(message) {
     // Extract temperature and humidity value based on topic
     var topic = message.destinationName;
     var sensorValue = message.payloadString;
+    var tempValue;
+    var humidValue;
     if (topic === "Temperature") {
+        tempValue = parseFloat(sensorValue);
         document.getElementById("temperatureParagraph").textContent = "Temperature: " + sensorValue + " C";
     } else if (topic === "Humidity") {
+        humidValue = parseFloat(sensorValue);
         document.getElementById("humidityParagraph").textContent = "Humidity: " + sensorValue + " % RH";
     }
+    var clothingRecom = getRecommendation(tempValue, humidValue);
+    document.getElementById("clothingParagraph").textContent = "Based on the weathere data, " + clothingRecom;
 }
+
+function getRecommendation(temp, humid) {
+    if (temp < 10 && humid < 60) {
+        return "It's quite cold. Wear something warm like a knitted sweater and a winter coat.";
+    } else if (temp<10 && humid>=60) {
+        return "It's very cold. Wear a warm sweater, a winter coat, and don't forget your gloves and scarf"
+    } else if (temp < 20 && humid<60) {
+        return "It's chilly. Consider wearing a jacket or sweater.";
+    } else if (temp < 20 && humid>=60) {
+        return "It's chilly. Consider wearing a jacket or sweater. Wear in layers as it might feel colder than it is.";
+    } else if (temp < 30 && humid<60) {
+        return "It's warm. You might be comfortable in a light jacket or long sleeves.";
+    } else if (temp < 30 && humid>=60) {
+        return "It's pretty warm. You might be comfortable in long sleeves or a shirt.";
+    } else if (humid<60){
+        return "It's hot. Wear light, breathable clothes.";
+    } else if (humid>=60){
+        return "It's very hot outside. Wear light, breathable clothes. It is time for wearing t-shirt, tops, and shorts!";
+    }
+}
+
+// the following lines are for testing recommendations without connecting to wio terminal.
+// to be removed later
+document.addEventListener("DOMContentLoaded", function() {
+    var temperatureValue = 30;
+    var humidityValue = 60;
+    clothingRecom = getRecommendation(temperatureValue, humidityValue);
+    document.getElementById("clothingParagraph").textContent = "Based on the weathere data, " + clothingRecom;
+});
+
+
+
+
