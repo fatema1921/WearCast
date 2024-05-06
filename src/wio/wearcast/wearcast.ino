@@ -1,3 +1,4 @@
+//LED WORKING CODE 
 /*
  - Note: The code for reading the humidity from the temperature and humidity sensor has been adapted from "Smart_Garden.ino" found in the Wio_Terminal_Classroom_Arduino GitHub repository by lakshanthad:
  - Link: https://github.com/lakshanthad/Wio_Terminal_Classroom_Arduino/blob/main/Classroom%2012/Smart_Garden/Smart_Garden.ino
@@ -7,6 +8,7 @@
  */
 
 /* Import header/library files */
+#include <Adafruit_NeoPixel.h>
 #include <math.h> // Math library for mathematical calculations
 #include "Wire.h" // Wire library for I2C communication
 #include "DHT.h" // DHT library 
@@ -14,6 +16,16 @@
 #include "rpcWiFi.h" // WiFi library for Wio Terminal
 #include <PubSubClient.h> // MQTT client library for Wio Terminal
 
+#ifdef AVR
+  #include <avr/power.h>
+#endif
+
+// #include <ArduinoJson.h> // Include ArduinoJson library
+#define LED_PIN    A2
+#define LED_COUNT  10
+
+Adafruit_NeoPixel pixels(LED_COUNT, LED_PIN, NEO_GRB + NEO_KHZ800);
+int delayval = 500;
 /* Constant variables for temperature */
 const int pinTempSensor = A0; // Analog pin A0 connected to Grove - Temperature Sensor
 const int B_VALUE = 4275; // B value of the temperature sensor's thermistor
@@ -137,15 +149,16 @@ void reconnect() {
 */
 void setup() {
   pinMode (pinTempSensor, INPUT); // Set up pinmode for temperature sensor
-  pinMode (DHTPIN, INPUT); // Set up pinmode for humidity sensor
+  pinMode(LED_PIN, OUTPUT);
 
   Serial.begin(9600); // Initialize serial communication at 9600 baud rate; for general logging (initialize communication between microcontroller and computer (serial monitor))
-  
-  dht.begin(); //Start DHT sensor 
-  Wire.begin();
-
+ 
   tft.begin(); // Initialize TFT (i.e. Wio Terminal LCD screen)
   tft.setRotation(3); // Set screen rotation
+  
+  pixels.setBrightness(40);
+  pixels.begin();
+  // spr.createSprite(TFT_HEIGHT,TFT_WIDTH); // Create buffer (enabling the composition and manipulation of graphical elements befor rendering them on the TFT screen)
 
   Serial.println();
   Serial.begin(115200); // Initialize serial communication at 115200 baud rate; for communication with WiFi module
@@ -216,7 +229,35 @@ void loop() {
   tft.print("%RH");
 
   delay(50); // Delay to stabilize the display
+  // Determine the color and number of pixels to light up based on temperature
+  uint32_t color;
+  int numPixels;
 
+  if (temperature >= 0) {
+    color = pixels.Color(255, 0, 0); // Red color
+  } else {
+    color = pixels.Color(0, 0, 255); // Blue color
+  }
+   numPixels = abs(temperature) / 5; // Every 5-degree change lights up one more light
+  if (numPixels > LED_COUNT) {
+    numPixels = LED_COUNT;
+  }
+
+  // Set the color and light up the pixels
+  for (int i = 0; i < LED_COUNT; i++) {
+    if (i < numPixels) {
+      pixels.setPixelColor(i, color);
+       pixels.show();
+        delay(delayval); 
+    } else {
+      pixels.setPixelColor(i, pixels.Color(0, 0, 0)); // Turn off the remaining pixels
+     pixels.show();
+      delay(delayval); 
+     } 
+
+  }
+  // Update the LED display
+ 
   /* MQTT message publishing*/
   client.publish(temperature_topic, String(temperature).c_str()); // Publish temperature to broker
   client.publish(humidity_topic, String(humidity).c_str()); // Publish humidity to broker
