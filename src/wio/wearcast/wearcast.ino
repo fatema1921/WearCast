@@ -1,12 +1,17 @@
 //LED WORKING CODE 
 /*
- - Note: The code for reading the temperature sensor has been adapted from Seeed Studio's User Manual for the Grove Temperature Sensor:
+ - Note: The code for reading the humidity from the temperature and humidity sensor has been adapted from "Smart_Garden.ino" found in the Wio_Terminal_Classroom_Arduino GitHub repository by lakshanthad:
+ - Link: https://github.com/lakshanthad/Wio_Terminal_Classroom_Arduino/blob/main/Classroom%2012/Smart_Garden/Smart_Garden.ino
+
+ - Note: The code for reading from the temperature sensor has been adapted from Seeed Studio's User Manual for the Grove Temperature Sensor:
  - Link: https://www.mouser.com/datasheet/2/744/Seeed_101020015-1217523.pdf
  */
 
 /* Import header/library files */
 #include <Adafruit_NeoPixel.h>
 #include <math.h> // Math library for mathematical calculations
+#include "Wire.h" // Wire library for I2C communication
+#include "DHT.h" // DHT library 
 #include "TFT_eSPI.h" // TFT LCD library for Wio Terminal
 #include "rpcWiFi.h" // WiFi library for Wio Terminal
 #include <PubSubClient.h> // MQTT client library for Wio Terminal
@@ -25,22 +30,28 @@ int delayval = 500;
 const int pinTempSensor = A0; // Analog pin A0 connected to Grove - Temperature Sensor
 const int B_VALUE = 4275; // B value of the temperature sensor's thermistor
 
+/* Definitions for humidity sensor */
+#define DHTPIN PIN_WIRE_SCL //Use I2C port as Digital Port for Grove - Temperature and Humidity sensor
+#define DHTTYPE DHT11 //Define DHT sensor type 
+
 /* Constant variables for WiFi */
 const char* ssid = "Elins iPhone"; // WiFi SSID (Name)
 const char* password = "yH59!Gum"; // WiFi Password
 
 /* Constant variable for MQTT */
 const char* mqtt_server = "broker.emqx.io"; // MQTT Broker URL
-const char* temperature_topic = "Temperature";
+const char* temperature_topic = "Temperature"; // Topic for temperature
+const char* humidity_topic = "Humidity"; // Topic for humidity
+
+/* Initializations */
+DHT dht(DHTPIN, DHTTYPE); //Initializing DHT sensor
 
 TFT_eSPI tft; // TFT_eSPI object for Wio Terminal's TFT screen
 TFT_eSprite spr = TFT_eSprite(&tft); // Initializing sprite buffer for graphical operations
 
 WiFiClient wioClient; // WiFi client object for Wio Terminal
 PubSubClient client(wioClient); // MQTT client object for Wio Terminal
-long lastMsg = 0; // Timestamp of the last MQTT message
-char msg[50]; // Buffer for storing MQTT messages
-int value = 0; // Value used in MQTT messages for tracking
+
 
 /**
  * @brief Function to set up and establish a connection to WiFi network.
@@ -100,40 +111,6 @@ void setup_wifi() {
     tft.setCursor((320 - tft.textWidth("WiFi Connection Failed")) /2, 210);
     tft.print("WiFi Connection Failed");
   }
-}
-
-/**
- * @brief Callback function for handling MQTT messages.
- *
- * This function is called whenever a message is recieved from the MQTT broker.
- * Printing the recieved topic and payload to the serial monitor, and displays the payload on the Wio Terminal.
- *
- * @param topic   : The topic of MQTT message
- * @param payload : The payload of MQTT message
- * @param length  : The length of payload
-*/
-void callback(char* topic, byte* payload, unsigned int length){
-  tft.fillScreen(TFT_BLACK);
-  Serial.print("Message arrived [");
-  Serial.print(topic);
-  Serial.print("]");
-
-  char buff_p[length];
-
-  for(int i = 0; i < length; i++) {
-    Serial.print((char)payload[i]);
-    buff_p[i] = (char)payload[i];
-  }
-
-  Serial.println();
-  buff_p[length] = '\0';
-  String msg_p = String(buff_p);
-
-  tft.fillScreen(TFT_BLACK);
-  tft.setCursor((320 - tft.textWidth("MQTT Message: ")) /2, 90);
-  tft.print("MQTT Message: ");
-  tft.setCursor((320 - tft.textWidth(msg_p)) /2, 120);
-  tft.print(msg_p); // Print recieved payload
 }
 
 /**
@@ -209,6 +186,7 @@ void loop() {
 
   /* Display header */
   tft.fillRect(0, 0, 320, 50, TFT_LIGHTGREY); // Draw header background rectangle
+  //tft.fillRectHGradient(0, 0, 320, 50, TFT_PURPLE, TFT_NAVY);
   tft.setTextColor(TFT_BLACK); // Set text color to black
   tft.setTextSize(3); // Set text size
   tft.setCursor(90, 15);
@@ -220,6 +198,9 @@ void loop() {
   float resistance = 1023.0 / ((float)analogValue) - 1.0;
   resistance = 100000.0 * resistance;
   float temperature = 1.0 / (log(resistance/100000.0) / B_VALUE +1 / 298.15) - 273.15; // Convert to temperature (using datasheet)
+
+  /* Humidity reading */
+  int humidity = dht.readHumidity(); // Read digital value from humidity sensor 
 
   /* Display temperature */
   tft.setTextColor(TFT_WHITE);
@@ -233,6 +214,19 @@ void loop() {
   tft.print((int)temperature);
   tft.setCursor(90, 130);
   tft.print("C");
+
+  /* Display humidity */
+  tft.setTextColor(TFT_WHITE);
+  tft.setTextSize(2);
+  tft.setCursor(200, 100);
+  tft.print("Humidity");
+
+  tft.setTextSize(3);
+  tft.setCursor(210, 130);
+  tft.fillRect(195, 125, 100, 30, TFT_BLACK); // Clear the previously displayed humidity by filling a rectangle over it
+  tft.print(humidity);
+  tft.setCursor(235, 130);
+  tft.print("%RH");
 
   delay(50); // Delay to stabilize the display
   // Determine the color and number of pixels to light up based on temperature
@@ -265,15 +259,58 @@ void loop() {
   // Update the LED display
  
   /* MQTT message publishing*/
-  client.publish(temperature_topic, String(temperature).c_str());
+  client.publish(temperature_topic, String(temperature).c_str()); // Publish temperature to broker
+  client.publish(humidity_topic, String(humidity).c_str()); // Publish humidity to broker
   Serial.print("Temperature: ");
   Serial.println(temperature);
-  delay(5000);
+  Serial.print("Humidity: " );
+  Serial.println(humidity);
+  delay(10000);
 
 }
 
 /** CODESNIPPETS - CURRENTLY NOT IN USE */
   /*
+
+  // #include <ArduinoJson.h> // Include ArduinoJson library
+
+ * @brief Callback function for handling MQTT messages.
+ *
+ * This function is called whenever a message is recieved from the MQTT broker.
+ * Printing the recieved topic and payload to the serial monitor, and displays the payload on the Wio Terminal.
+ *
+ * @param topic   : The topic of MQTT message
+ * @param payload : The payload of MQTT message
+ * @param length  : The length of payload
+ * 
+void callback(char* topic, byte* payload, unsigned int length){
+  tft.fillScreen(TFT_BLACK);
+  Serial.print("Message arrived [");
+  Serial.print(topic);
+  Serial.print("]");
+
+  char buff_p[length];
+
+  for(int i = 0; i < length; i++) {
+    Serial.print((char)payload[i]);
+    buff_p[i] = (char)payload[i];
+  }
+
+  Serial.println();
+  buff_p[length] = '\0';
+  String msg_p = String(buff_p);
+
+  tft.fillScreen(TFT_BLACK);
+  tft.setCursor((320 - tft.textWidth("MQTT Message: ")) /2, 90);
+  tft.print("MQTT Message: ");
+  tft.setCursor((320 - tft.textWidth(msg_p)) /2, 120);
+  tft.print(msg_p); // Print recieved payload
+}
+
+long lastMsg = 0; // Timestamp of the last MQTT message
+char msg[50]; // Buffer for storing MQTT messages
+int value = 0; // Value used in MQTT messages for tracking
+
   spr.createSprite(TFT_HEIGHT,TFT_WIDTH); // Create buffer (enabling the composition and manipulation of graphical elements befor rendering them on the TFT screen)
 
 
