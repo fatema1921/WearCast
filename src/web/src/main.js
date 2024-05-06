@@ -1,5 +1,5 @@
 // Create an MQTT client instance
-var client = new Paho.MQTT.Client("test.mosquitto.org", 1883, "clientId");
+var client = new Paho.MQTT.Client("broker.emqx.io", 8083, "clientId");
 
 // Set callback handlers
 client.onConnectionLost = onConnectionLost;
@@ -16,6 +16,7 @@ function onConnect() {
     console.log("Connected to MQTT broker");
     // Subscribe to a topic
     client.subscribe("Temperature");
+    client.subscribe("Humidity");
 }
 
 // Called when the client loses its connection
@@ -28,10 +29,14 @@ function onConnectionLost(responseObject) {
 // Called when a message arrives
 function onMessageArrived(message) {
     console.log("Message received: " + message.payloadString);
-
-    // Handle the incoming message
-    // Extract temperature value from the message payload
-    var temperatureValue = message.payloadString;
-    document.getElementById("temperatureParagraph").textContent = "Temperature: " + temperatureValue;
-
+    
+    // Handle the incoming messages
+    // Extract temperature and humidity value based on topic
+    var topic = message.destinationName;
+    var sensorValue = message.payloadString;
+    if (topic === "Temperature") {
+        document.getElementById("temperatureParagraph").textContent = "Temperature: " + sensorValue + " C";
+    } else if (topic === "Humidity") {
+        document.getElementById("humidityParagraph").textContent = "Humidity: " + sensorValue + " % RH";
+    }
 }
