@@ -67,15 +67,6 @@ function getRecommendation(temp, humid) {
     }
 }
 
-// the following lines are for testing recommendations without connecting to wio terminal.
-// to be removed later
-document.addEventListener("DOMContentLoaded", function() {
-    var temperatureValue = 30;
-    var humidityValue = 60;
-    clothingRecom = getRecommendation(temperatureValue, humidityValue);
-    document.getElementById("clothingParagraph").textContent = "Based on the weathere data, " + clothingRecom;
-});
-
 
 
 
