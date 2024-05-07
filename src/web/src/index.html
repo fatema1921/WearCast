@@ -133,7 +133,29 @@
             console.log(error);
         }
     };
-    
+    // Function to get the appropriate weather icon based on the weather condition code
+    const getWeatherIcon = (conditionCode) => {
+        if (conditionCode >= 200 && conditionCode < 300) {
+            return '<i class="wi wi-thunderstorm weather-icon"></i>'; // Thunderstorm
+        } else if (conditionCode >= 300 && conditionCode < 400) {
+            return '<i class="wi wi-rain weather-icon"></i>'; // Drizzle
+        } else if (conditionCode >= 500 && conditionCode < 600) {
+            return '<i class="wi wi-day-rain weather-icon"></i>'; // Rain
+        } else if (conditionCode >= 600 && conditionCode < 700) {
+            return '<i class="wi wi-day-snow weather-icon"></i>'; // Snow
+        } else if (conditionCode >= 700 && conditionCode < 800) {
+            return '<i class="wi wi-fog weather-icon"></i>'; // Atmosphere
+        } else if (conditionCode === 800) {
+            return '<i class="wi wi-day-sunny weather-icon"></i>'; // Clear
+        } else if (conditionCode > 800) {
+            return '<i class="wi wi-day-cloudy weather-icon"></i>'; // Clouds
+        } else {
+            return '';
+        }
+    };
+
+    // Call the getWeather function to fetch weather data and display the icon
+    getWeather();
     </script>
 	</body>
 </html>
