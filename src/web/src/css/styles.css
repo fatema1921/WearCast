@@ -1,6 +1,6 @@
 :root {
     --primary-color: #ffffff;
-    --secondary-color: #d4f1f4;
+    --secondary-color: #bae1e6;
     --tertiary-color: #e8b0c1;
     --text-color: #181818;
     --heading-color: #000000;
@@ -20,7 +20,7 @@ body {
 
 /* NAVBAR */
 .navbar {
-	background-color: var(--primary-color);
+	background: linear-gradient(90deg, rgb(50, 43, 187) 0%, rgb(175, 102, 228) 32%, rgba(255,195,72,1) 100%);
 	max-height: 10vh;
     display: flex;
     justify-content: space-between;
@@ -28,6 +28,7 @@ body {
     padding: 0;
     width: 100%;
 }
+
 .navlogo {
     flex: 0 1 auto;
 }
@@ -94,19 +95,14 @@ body {
     justify-content: center;
     align-items: center;
     height: 100%;
-}
-.weather {
-    background-color: var(--secondary-color);
-}
-.recommendation {
-    background-color: var(--tertiary-color);
-}
+    background: linear-gradient(5deg, rgb(142, 128, 210) 0%, rgba(255,255,255,0.1) 100%);
 
+}
 
 /* SHORT ABOUT WEARCAST */
 #info {
     padding-top: 175px;
-    padding-bottom: 30px;
+    padding-bottom: 100px;
     height: 340px;
 }
 .hero {
@@ -123,7 +119,7 @@ body {
 
 /* OUR FEATURES */
 #features {
-    background-color: var(--unspecified-color);
+    background: linear-gradient(180deg, rgb(142, 128, 210) 0%, rgba(255,255,255,0.1) 100%);
     display: grid;
     grid-template-columns: 2fr 3fr;
     gap: 20px;
