@@ -54,7 +54,7 @@
 
             <!-- Container for weather icon -->
             <div id="weather-icon">
-                
+
             </div>
         </section>
 
@@ -118,5 +118,22 @@
 
 		<!-- Include the script file -->
 		<script src="main.js"></script>
+
+        <!-- Weather API script -->
+<script>
+    // Function to call the weather API and update the weather icon
+    const getWeather = async () => {
+        try {
+            const response = await fetch('http://pro.openweathermap.org/data/2.5/weather?q=gothenburg,se&APPID=c95f90301395e8ce1cb18d910cd184cb');
+            const data = await response.json();
+            const weatherCondition = data.weather[0].id;
+            const weatherIcon = getWeatherIcon(weatherCondition);
+            document.getElementById('weather-icon').innerHTML = weatherIcon;
+        } catch (error) {
+            console.log(error);
+        }
+    };
+    
+    </script>
 	</body>
 </html>
