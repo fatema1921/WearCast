@@ -25,15 +25,16 @@ build_arduino:
         - mv arduino-cli /usr/local/bin/arduino-cli 
         # initialize default config for Arduino CLI
         - arduino-cli config init
+        - printf "board_manager:\n  additional_urls:\n    - https://files.seeedstudio.com/arduino/package_seeeduino_boards_index.json\n" > .arduino-cli.yaml
         # update list of available boards and libraries
-        - arduino-cli core update-index
+        - arduino-cli core update-index --config-file .arduino-cli.yaml
         # install code for our board
-        - arduino-cli core install Seeeduino:samd@1.8.5
+        - arduino-cli core install Seeeduino:samd --config-file .arduino-cli.yaml
     script:
         # print for clarity
         - echo "Compiling Arduino code for the Wio Terminal..."
         # compile sketch, specifying board (what config to use) and relative path to the sketch
-        - arduino-cli compile --fqbn Seeeduino:samd@1.8.5:seeed_wio_terminal src/wio/wearcast/wearcast.ino
+        - arduino-cli compile --fqbn Seeeduino:samd:seeed_wio_terminal src/wio/wearcast/wearcast.ino
 
 # build for web - not done
 #build_web:
