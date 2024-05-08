@@ -39,6 +39,10 @@
 
         <section id="current">
             <div class="weather">
+
+                 <!-- Container for weather icon -->
+            <div id="weather-icon"></div>
+
                 <h2><span id="weekday">Day</span></h2>
                 <h2>⚲ <span id="location"> Fetching location... </span></h2>
 
@@ -52,10 +56,7 @@
 				<p id="clothingParagraph"> Based on the weather data, </p>
 			</div>
 
-            <!-- Container for weather icon -->
-            <div id="weather-icon">
-
-            </div>
+           
         </section>
 
 		<section id="info">
@@ -124,7 +125,7 @@
     // Function to call the weather API and update the weather icon
     const getWeather = async () => {
         try {
-            const response = await fetch('http://pro.openweathermap.org/data/2.5/weather?q=gothenburg,se&APPID=c95f90301395e8ce1cb18d910cd184cb');
+            const response = await fetch('https://api.openweathermap.org/data/2.5/weather?q=gothenburg,se&APPID=c95f90301395e8ce1cb18d910cd184cb');
             const data = await response.json();
             const weatherCondition = data.weather[0].id;
             const weatherIcon = getWeatherIcon(weatherCondition);
@@ -134,20 +135,20 @@
         }
     };
     // Function to get the appropriate weather icon based on the weather condition code
-    const getWeatherIcon = (conditionCode) => {
-        if (conditionCode >= 200 && conditionCode < 300) {
+    const getWeatherIcon = (weatherCondition) => {
+        if (weatherCondition >= 200 && weatherCondition < 300) {
             return '<i class="wi wi-thunderstorm weather-icon"></i>'; // Thunderstorm
-        } else if (conditionCode >= 300 && conditionCode < 400) {
+        } else if (weatherCondition >= 300 && weatherCondition < 400) {
             return '<i class="wi wi-rain weather-icon"></i>'; // Drizzle
-        } else if (conditionCode >= 500 && conditionCode < 600) {
+        } else if (weatherCondition >= 500 && weatherCondition < 600) {
             return '<i class="wi wi-day-rain weather-icon"></i>'; // Rain
-        } else if (conditionCode >= 600 && conditionCode < 700) {
+        } else if (weatherCondition >= 600 && weatherCondition < 700) {
             return '<i class="wi wi-day-snow weather-icon"></i>'; // Snow
-        } else if (conditionCode >= 700 && conditionCode < 800) {
+        } else if (weatherCondition >= 700 && weatherCondition < 800) {
             return '<i class="wi wi-fog weather-icon"></i>'; // Atmosphere
-        } else if (conditionCode === 800) {
+        } else if (weatherCondition === 800) {
             return '<i class="wi wi-day-sunny weather-icon"></i>'; // Clear
-        } else if (conditionCode > 800) {
+        } else if (weatherCondition > 800) {
             return '<i class="wi wi-day-cloudy weather-icon"></i>'; // Clouds
         } else {
             return '';
