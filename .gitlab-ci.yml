@@ -20,7 +20,7 @@ build_arduino:
         # downoad the Arduino CLI tool
         - wget https://downloads.arduino.cc/arduino-cli/arduino-cli_latest_Linux_64bit.tar.gz
         # extract from the archive
-        - tar -xvf arduino-cli latest_Linux_64bit.tar.gz
+        - tar -xvf arduino-cli_latest_Linux_64bit.tar.gz
         # move to /usr/local/bin to make it available system-wide
         - mv arduino-cli /usr/local/bin/arduino-cli 
         # initialize default config for Arduino CLI
