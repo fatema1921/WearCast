@@ -1,0 +1,47 @@
+.category-container {
+    display: flex; /* align items horizontally */
+}
+
+.category {
+    width: 33.33%; /* Set each category to take up one-third of the screen width */
+    box-sizing: border-box; /* Include padding and border in the element's total width */
+    text-align: center;
+    padding: 60px 0 0 0; /* Adjust padding as needed */
+    box-sizing: border-box; /* Include padding and border in the element's total width */
+}
+
+.category img {
+    width: 400px; 
+    height: 400px; 
+    object-fit: cover; /* proportionates image to fit the shape and size */
+    border-radius: 50%; /* makes image round */
+}
+
+ a { /* text underneath picture */
+    text-decoration: none; /* Remove underline from link */
+    color: black; /* Set text color to black */
+    font-weight: bold;
+} 
+
+.line-text {
+    text-align: center;
+    padding: 20px;
+    position: relative; /* Sets positioning context, within container, for absolutely positioned child elements */
+}
+
+.line {
+    position: absolute; /* Positions the lines absolutely within their nearest positioned ancestor (.line-text) */
+    top: 50%; /* Positions the top of the line at 50% of the height of its positioned ancestor (.line-text), vertically centering the lines */
+    width: calc(42% - 100px); /* Adjust the width to start and end before and after the text */
+    height: 1px;
+    background-color: rgb(175, 173, 173);
+}
+
+.line:first-child { 
+    left: 0; /* Position the first line at the left */
+}
+
+.line:last-child {
+    right: 0; /* Position the last line at the right */
+}
+
