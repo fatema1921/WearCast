@@ -30,6 +30,13 @@ build_arduino:
         - arduino-cli core update-index --config-file .arduino-cli.yaml
         # install code for our board
         - arduino-cli core install Seeeduino:samd --config-file .arduino-cli.yaml
+        # install libraries
+        - arduino-cli lib install "Adafruit NeoPixel"
+        - arduino-cli lib install "PubSubClient@2.8"
+        - arduino-cli lib install "Seeed Arduino rpcWiFi@1.0.7"
+        - arduino-cli lib install "Grove Temperature And Humidity Sensor"
+        - arduino-cli lib install "TFT_eSPI"
+        - 
     script:
         # print for clarity
         - echo "Compiling Arduino code for the Wio Terminal..."
