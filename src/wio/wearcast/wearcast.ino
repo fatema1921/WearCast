@@ -166,7 +166,7 @@ void setup() {
   setup_wifi(); // Call function to set up WiFi connection
 
   client.setServer(mqtt_server, 1883); // Set MQTT server and port
-  client.setCallback(callback); // Set callback function for MQTT client
+  //client.setCallback(callback); // Set callback function for MQTT client
 }
 
 /**
