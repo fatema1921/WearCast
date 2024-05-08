@@ -20,7 +20,6 @@
  a { /* text underneath picture */
     text-decoration: none; /* Remove underline from link */
     color: black; /* Set text color to black */
-    font-weight: bold;
 } 
 
 .line-text {
@@ -44,4 +43,3 @@
 .line:last-child {
     right: 0; /* Position the last line at the right */
 }
-
