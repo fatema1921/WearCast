@@ -36,18 +36,18 @@ build_arduino:
         - arduino-cli compile --fqbn Seeeduino:samd:seeed_wio_terminal src/wio/wearcast/wearcast.ino
 
 # build for web - not done
-build_web:
-  stage: build
-  tags:
-    - docker
-  image: node:latest # if we're using node for bunding HTML/CSS/JS
-  script:
-    - echo "Bundling HTML/CSS/JavaScript..."
-    - npm install # install packages needed
-    - npm run build # this needs to be configured to bundle HTML/CSS/JS into 'dist'
-  artifacts:
-    paths:
-      - dist/ # path to 'dist' file
+#build_web:
+#  stage: build
+#  tags:
+#    - docker
+#  image: node:latest # if we're using node for bunding HTML/CSS/JS
+#  script:
+#    - echo "Bundling HTML/CSS/JavaScript..."
+#    - npm install # install packages needed
+#    - npm run build # this needs to be configured to bundle HTML/CSS/JS into 'dist'
+#  artifacts:
+#    paths:
+#      - dist/ # path to 'dist' file
 
 # build for svelte - commented out - not used
 #build_svelte:
