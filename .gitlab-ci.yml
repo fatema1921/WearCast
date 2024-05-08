@@ -28,7 +28,7 @@ build_arduino:
         # update list of available boards and libraries
         - arduino-cli core update-index
         # install code for our board
-        - arduino-cli core install Seeeduino:samd:seeed_wio_terminal
+        - arduino-cli core install arduino:samd
     script:
         # print for clarity
         - echo "Compiling Arduino code for the Wio Terminal..."
