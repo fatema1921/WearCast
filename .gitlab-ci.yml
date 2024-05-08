@@ -10,6 +10,8 @@ stages:
 build_arduino: 
     stage: build
     # Use Docker image to get the latest (stable) version of Ubuntu which is common in CI configuration
+    tags:
+    - docker
     image: ubuntu:latest 
     # runs before the main script
     before_script: 
@@ -36,6 +38,8 @@ build_arduino:
 # build for web - not done
 build_web:
   stage: build
+  tags:
+    - docker
   image: node:latest # if we're using node for bunding HTML/CSS/JS
   script:
     - echo "Bundling HTML/CSS/JavaScript..."
