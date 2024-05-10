@@ -30,76 +30,72 @@
             </div>
         </header>
 
+<div class="introduction"> 
+    <h3>Welcome to the HotGirl Summer Gallery!</h3>
+    <p>Dive into a world of vibrant colors, breezy fabrics, and chic ensembles tailored for every summer occasion. Get ready to be inspired & put together the hottest outfits of the season!</p>
+</div>
+
 
 <!-- !PAGE CONTENT! -->
-<div class="main" style="margin-left:300px">
+<div class="main">
 
     <!-- Push down content on small screens --> 
     <div class="hide-large" style="margin-top:83px"></div>
-    
+
+
+<!-- Modal for full size images on click-->
+<div id="modal" class="w3-modal w3-black" onclick="hideModal()">
+    <span class="w3-button w3-large w3-black w3-display-topright" title="Close Modal Image"><i class="fa fa-remove"></i></span>
+    <div class="w3-modal-content w3-animate-zoom w3-center w3-transparent w3-padding-64">
+      <img id="img" class="w3-image">
+      <!-- Display arbitrary text here -->
+      <div id="imageText" class="w3-opacity w3-large"></div>
+    </div>
+</div>
+  
+
     <!-- Photo grid -->
     <div class="row">
-      <div class="third">
-        <img src="/src/web/src/summerInspiration/images/image copy 2.png" style="width:100%" onclick="onClick(this)" alt="A boy surrounded by beautiful nature">
-        <img src="/src/web/src/summerInspiration/images/image copy 3.png" style="width:100%" onclick="onClick(this)" alt="What a beautiful scenery this sunset">
-        <img src="/src/web/src/summerInspiration/images/image copy 4.png" style="width:100%" onclick="onClick(this)" alt="The Beach. Me. Alone. Beautiful">
-      </div>
-  
-      <div class="third">
-        <img src="/src/web/src/summerInspiration/images/image copy 5.png" style="width:100%" onclick="onClick(this)" alt="Quiet day at the beach. Cold, but beautiful">
-        <img src="/src/web/src/summerInspiration/images/image copy 6.png" style="width:100%" onclick="onClick(this)" alt="Waiting for the bus in the desert">
-        <img src="/src/web/src/summerInspiration/images/image copy 7.png" style="width:100%" onclick="onClick(this)" alt="Nature again.. At its finest!">
+      <div class="column">
+        <img src="/src/web/src/summerInspiration/images/image copy 2.png" style="width:100%" onclick="onClick(this)" alt="Green sleveless blazerdress">
+        <img src="/src/web/src/summerInspiration/images/image copy 5.png" style="width:100%" onclick="onClick(this)" alt="Beige pants, beige longsleeved shirt and a big pearlneacklace">
+        <img src="/src/web/src/summerInspiration/images/image copy 7.png" style="width:100%" onclick="onClick(this)" alt="Green shirt, black/orange plaid skirt, sunglasses and different scarves">
+        <img src="/src/web/src/summerInspiration/images/image copy 8.png" style="width:100%" onclick="onClick(this)" alt="Black shirt and grey shorts">
+        <img src="/src/web/src/summerInspiration/images/image copy.png" style="width:100%" onclick="onClick(this)" alt="White bandeu with cream blazer">
+        <img src="/src/web/src/summerInspiration/images/image.png" style="width:100%" onclick="onClick(this)" alt="Black indian traditional outfit">
       </div>
       
-      <div class="third">
-        <img src="/src/web/src/summerInspiration/images/image copy 8.png" style="width:100%" onclick="onClick(this)" alt="Canoeing again">
-        <img src="/src/web/src/summerInspiration/images/image copy 9.png" style="width:100%" onclick="onClick(this)" alt="A girl, and a train passing">
-        <img src="/src/web/src/summerInspiration/images/image copy.png" style="width:100%" onclick="onClick(this)" alt="What a beautiful day!">
+      <div class="column">
+        <img src="/src/web/src/summerInspiration/images/images.png" style="width:100%" onclick="onClick(this)" alt="Patterned shirt with white shorts/pants">
+        <img src="/src/web/src/summerInspiration/images/s-2.jpg" style="width:100%" onclick="onClick(this)" alt="White blouse, blues jeans & beige ballerina shoes">
+        <img src="/src/web/src/summerInspiration/images/s-3.webp" style="width:100%" onclick="onClick(this)" alt="Outfit in different shades of blue. Blue tie-top, pants, hat and sunglasses">
+        <img src="/src/web/src/summerInspiration/images/s-4.jpg" style="width:100%" onclick="onClick(this)" alt="White t-shirt, red pants, yellow hat, orange bag, necklace">
+        <img src="/src/web/src/summerInspiration/images/s-12.webp" style="width:100%" onclick="onClick(this)" alt="Pink pants, white/pink top, beige blazer, white belt, white shoes/black heels">
+        <img src="/src/web/src/summerInspiration/images/s-5.jpg" style="width:100%" onclick="onClick(this)" alt="Blue suitpants, blue blazer, lightblue top in silk, brown/black belt">
       </div>
 
-      <div class="third">
-        <img src="/src/web/src/summerInspiration/images/image.png" style="width:100%" onclick="onClick(this)" alt="Canoeing again">
-        <img src="/src/web/src/summerInspiration/images/imagee.png" style="width:100%" onclick="onClick(this)" alt="A girl, and a train passing">
-        <img src="/src/web/src/summerInspiration/images/s.webp" style="width:100%" onclick="onClick(this)" alt="What a beautiful day!">
+      <div class="column">
+        <img src="/src/web/src/summerInspiration/images/s-6.jpg" style="width:100%" onclick="onClick(this)" alt="Printed shirt, brown suit-pants, high white socks, brown formal shoes, black watch, white necklace">
+        <img src="/src/web/src/summerInspiration/images/s-6.webp" style="width:100%" onclick="onClick(this)" alt="White blazer, beige skirt, cream trench with pattern and buttons, flowery hat">
+        <img src="/src/web/src/summerInspiration/images/s-7.jpg" style="width:100%" onclick="onClick(this)" alt="Plaid jacket in bright colors">
+        <img src="/src/web/src/summerInspiration/images/s-7.webp" style="width:100%" onclick="onClick(this)" alt="Grey suitpants, white t-shirt, beige trenchcoat and brown belt">
+        <img src="/src/web/src/summerInspiration/images/s-8.jpg" style="width:100%" onclick="onClick(this)" alt="White shorts, cute darkgreen t-shirt, earrings">
+        <img src="/src/web/src/summerInspiration/images/s-8.webp" style="width:100%" onclick="onClick(this)" alt="White top, lightgrey shirtjacket, grey jumper over shoulders, lightblue jeans, black tote, hat, gold bracelet">
       </div>
+
+      <div class="column">
+        <img src="/src/web/src/summerInspiration/images/s-14.webp" style="width:100%" onclick="onClick(this)" alt="Orange set of suitpants and cropped blazer, blue/white patterned blouse, long earrings, catshaped sunglasses">
+        <img src="/src/web/src/summerInspiration/images/s-15.webp" style="width:100%" onclick="onClick(this)" alt="White tshirt, light jeans-vest, blue jeans, blue shoes, necklace">
+        <img src="/src/web/src/summerInspiration/images/s-16.webp" style="width:100%" onclick="onClick(this)" alt="White/blue swimwear-bottom, orange bandeu, white loosly knitted cardigan, striped crossbody bag, orange heels, sunglasses">
+        <img src="/src/web/src/summerInspiration/images/s-10.webp" style="width:100%" onclick="onClick(this)" alt="White jeans, white top, beige blazer, brown bag, earrings">
+        <img src="/src/web/src/summerInspiration/images/s-18.webp" style="width:100%" onclick="onClick(this)" alt="Rosepink jumper, beige patterned skirt, white heels, blue sunglasses, earrings">
+        <img src="/src/web/src/summerInspiration/images/s.jpg" style="width:100%" onclick="onClick(this)" alt="Creame/olive patterned maxidress, creame heels, beach hat, beach bag">
+      </div>
+
     </div>
 
 
-    
-      <!-- Pagination 
-  <div class="w3-center w3-padding-32">
-    <div class="w3-bar">
-      <a href="#" class="w3-bar-item w3-button w3-hover-black">«</a>
-      <a href="#" class="w3-bar-item w3-black w3-button">1</a>
-      <a href="#" class="w3-bar-item w3-button w3-hover-black">2</a>
-      <a href="#" class="w3-bar-item w3-button w3-hover-black">3</a>
-      <a href="#" class="w3-bar-item w3-button w3-hover-black">4</a>
-      <a href="#" class="w3-bar-item w3-button w3-hover-black">»</a>
-    </div>
-  </div>
-  -->
-
-    
-<!-- Modal for full size images on click
-    <div id="modal01" class="w3-modal w3-black" style="padding-top:0" onclick="this.style.display='none'">
-        <span class="w3-button w3-black w3-xlarge w3-display-topright">×</span>
-        <div class="w3-modal-content w3-animate-zoom w3-center w3-transparent w3-padding-64">
-          <img id="img01" class="w3-image">
-          <p id="caption"></p>
-        </div>
-      </div>
-
-      <script>
-      function onClick(element) {
-        document.getElementById("img01").src = element.src;
-        document.getElementById("modal01").style.display = "block";
-        var captionText = document.getElementById("caption");
-        captionText.innerHTML = element.alt;
-      }
-      </script>
--->
-
+<script src="/src/web/src/summerInspiration/summerInspiration.js"></script>
 
 </body>
 </html>
-
