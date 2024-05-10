@@ -1,3 +1,35 @@
+window.onload=function() {
+    updateCurrentDay();
+    fetchLocation();
+}
+
+function updateCurrentDay() {
+    const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+    const date = new Date();
+    const currentDay = days[date.getDay()];
+
+    document.getElementById('weekday').textContent = currentDay;
+}
+
+function fetchLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(position) {
+            const lat = position.coords.latitude;
+            const lon = position.coords.longitude;
+            /* EDIT FOR LATER: API KEY SHOULD BE SECURE NOT PUT HERE! EITHER SERVER SIDE WITH ENVIRONMENT VARIABLES OR IN GITIGNORE? */
+            fetch(`https://api.opencagedata.com/geocode/v1/json?q=${lat}+${lon}&key=3661a45eca484dfdb9eda5299d447535`)
+                .then(response => response.json())
+                .then(data => {
+                    const city = data.results[0].components.city;
+                    document.getElementById('location').textContent = city;
+                })
+                .catch(error => console.log('Error fetching location:', error));
+        });
+    } else {
+        document.getElementById('location').textContent = 'Geolocation is not supported by this browser.';
+    }
+}
+
 // Create an MQTT client instance
 var client = new Paho.MQTT.Client("broker.emqx.io", 8083, "clientId");
 
