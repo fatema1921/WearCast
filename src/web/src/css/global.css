@@ -62,3 +62,35 @@ body {
 .navbar ul li a:hover, .navbar ul li a:focus {
 	color: var(--hover-color);
 }
+
+/* RESPONSIVE DESIGN */
+/* Media query for screens smaller than 768px */
+@media screen and (max-width: 768px) {
+
+    /* NAVBAR */
+    .navbar {
+        flex-direction: column;
+        align-items: center;
+        border-bottom: none;
+        padding-bottom: 85px; /* Increase padding to increase the height */
+    }
+
+    .navlogo {
+        margin-bottom: 10px; /* Add space between logo and menu */
+    }
+
+    .navbar ul {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .navbar ul li a {
+        margin-right: 0; /* Remove right margin for menu items */
+        padding: 10px; /* Padding for menu items */
+    }
+
+    /* HEADER */
+    header {
+        padding: 20px; 
+    }
+}
