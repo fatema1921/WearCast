@@ -1,69 +1,4 @@
-:root {
-    --primary-color: #ffffff;
-    --secondary-color: #bae1e6;
-    --tertiary-color: #e8b0c1;
-    --text-color: #181818;
-    --heading-color: #000000;
-    --hover-color: #FEBBCC;
-    --unspecified-color: #f4e88a;
-    --unspecified-color-1: #67e0c4;
-}
-
-body {
-    position: relative;
-    min-height: 100%;
-    margin: 0;
-    padding: 0;
-    font-family: 'Montserrat';
-}
-
-/* NAVBAR */
-.navbar {
-	background: var(--primary-color);
-	max-height: 10vh;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0;
-    width: 100%;
-    border-bottom: 2px solid #FEBBCC; /* Set border width, style, and color */
-}
-
-.navlogo {
-    flex: 0 1 auto;
-}
-
-.logo img {
-	margin-left: 20px;
-	height: 4vh; /* vh = viewport height - here 3% */
-	width: auto;
-}
-
-.navbar ul {
-	display: flex;
-	flex-direction: row;
-	align-items: flex-end;
-    list-style-type: none; /* remove bullets */
-    margin: 0;
-    padding: 0;
-}
-
-.navbar ul li {
-	position: relative;
-}
-
-.navbar ul li a {
-    margin-right: 20px;
-	display: block;
-	padding: 100px 14px;
-    font-size: 23px;
-    color: var(--text-color);
-    text-decoration: none; /* remove underline */
-}
-
-.navbar ul li a:hover, .navbar ul li a:focus {
-	color: var(--hover-color);
-}
+/* css for the navigation bar is placed in global.css */
 
 /* BUTTON */
 .btn {
@@ -71,7 +6,7 @@ body {
     padding: 10px 30px;
     cursor: pointer;
     background-color: #FEBBCC;
-    color: var(--text-color);
+    color: var(--primary-color);
     font-weight: 600;
     text-transform: lowercase;
     letter-spacing: .2em;
@@ -191,6 +126,12 @@ body {
 
 .footer-links a {
     margin-right: 10px; /* Add margin between links */
+    color: #bc0936;
+    text-decoration: none;
+}
+
+.footer-links a:hover {
+    color: #15070a;
 }
 
 /* RESPONSIVE DESIGN */
