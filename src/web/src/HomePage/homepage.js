@@ -38,10 +38,10 @@ function onMessageArrived(message) {
     var humidValue;
     if (topic === "Temperature") {
         tempValue = parseFloat(sensorValue);
-        document.getElementById("temperatureParagraph").textContent = "Temperature: " + sensorValue + " C";
+        document.getElementById("temperatureParagraph").textContent = sensorValue + " C";
     } else if (topic === "Humidity") {
         humidValue = parseFloat(sensorValue);
-        document.getElementById("humidityParagraph").textContent = "Humidity: " + sensorValue + " % RH";
+        document.getElementById("humidityParagraph").textContent = sensorValue + " % RH";
     }
     var clothingRecom = getRecommendation(tempValue, humidValue);
     document.getElementById("clothingParagraph").textContent = "Based on the weathere data, " + clothingRecom;
