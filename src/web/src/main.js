@@ -29,7 +29,7 @@ function onConnectionLost(responseObject) {
 // Called when a message arrives
 function onMessageArrived(message) {
     console.log("Message received: " + message.payloadString);
-    
+
     // Handle the incoming messages
     // Extract temperature and humidity value based on topic
     var topic = message.destinationName;
@@ -43,11 +43,12 @@ function onMessageArrived(message) {
         humidValue = parseFloat(sensorValue);
         document.getElementById("humidityParagraph").textContent = "Humidity: " + sensorValue + " % RH";
     }
-    var clothingRecom = getRecommendation(tempValue, humidValue);
-    document.getElementById("clothingParagraph").textContent = "Based on the weathere data, " + clothingRecom;
+
+    var motivationalRecommendation = getMotivationalRecommendation(tempValue, humidValue);
+    document.getElementById("motivationalRecommendation").textContent = motivationalRecommendation;
 }
 
-function getRecommendation(temp, humid) {
+/* function getRecommendation(temp, humid) {
     if (temp < 10 && humid < 60) {
         return "It's quite cold. Wear something warm like a knitted sweater and a winter coat.";
     } else if (temp<10 && humid>=60) {
@@ -65,8 +66,66 @@ function getRecommendation(temp, humid) {
     } else if (humid>=60){
         return "It's very hot outside. Wear light, breathable clothes. It is time for wearing t-shirt, tops, and shorts!";
     }
+} */
+
+
+/**
+ * getMotivationalRecommendation function to return tailored messages for each temperature and humidity range.
+ * Providing useful outfit recommendations delivered in inspiring messages; connecting the weather conditions with personal growth as well as emotional well-being.
+ *
+ * @param {*} tempValue current temperature in degrees Celsius
+ * @param {*} humidValue current humidity level in percentage
+ * @returns {string} recommendation combining clothing advice with a motivational message, all tailored to the current weather condition
+ */
+function getMotivationalRecommendation(tempValue, humidValue) {
+    // Array of temperature ranges with corresponding advice for low and high humidity levels
+    const tempRanges = [
+        {max: -Infinity,    lowHumidityMessage: "Even the coldest days can't dampen your heat. Bundle up in ---clothing recommendation---, and let your inner fire shine through!",
+                            highHumidityMessage: "Maybe cold and humid days like this is a reminder to embrace yoursel just as ---clothing recommendation--- embraces your body?"},
+        {max: -10,  lowHumidityMessage: "Cold days like these are an perfect invitation to wrap yourself in warmth - inside and out! Consider wearing ---clothing recommendation---.",
+                    highHumidityMessage: "It's cold and humid today, so it might snow. Remember that each snowflake is unique, just like you. Stand out in the winter wonderland with ---clothing recommendation---!"},
+        {max: -5,   lowHumidityMessage: "Stay as warm and sweet as a freshly baked cookie in ---clothing recommendation---!",
+                    highHumidityMessage: "Just because the weather is chilly and damp doesn't mean you have to be! Wrap your amazing-self in ---clothing recommendation--- and heat up your surroundings!"},
+        {max: 0,    lowHumidityMessage: "Today is a perfect day to embrace yourself, layer by layer! Consider wearing ---clothing recommendation---.",
+                    highHumidityMessage: "Chilly and damp days like these calls for a celebration of layers. We suggest that you wear ---clothing recommendation--- to keep your confidence as high as your classy style!"},
+        {max: 5,    lowHumidityMessage: "This chilly weather is a perfect canvas for a fashion statement! Layer up by wearing ---clothing recommendation---.",
+                    highHumidityMessage: "Cool and moist, just the right weather for ---clothing recommendation---. It's certainly a great day to reflect on your inner brightness, even under grey skies."},
+        {max: 10,   lowHumidityMessage: "Todays mild weather is perfect for you to be as chic as you are beautiful, wearing ---clothing recommendation---.",
+                    highHumidityMessage: "It might rain today, see every raindrop as a reminder that even the skies cleanse themselves. Let today wash away your doubts with ---clothing recommendation---."},
+        {max: 15,   lowHumidityMessage: "Embrace the crisp air with style, consider wearing ---clothing recommendation--- to keep you warm and fashionable throughout the day.",
+                    highHumidityMessage: "Today brings pleasant temperatures where ---clothing recommendation--- would be a great outfit option. Even though a light raincoat is optional, your glowing presence is essential!"},
+        {max: 20,   lowHumidityMessage: "Today is a beautiful day for you to shine as bright as the sun in ---clothing recommendation---!",
+                    highHumidityMessage: "Pleasant yet humid, the perfect setting for breathable fabrics such as ---clothing recommendation---, offering both comfort and style."},
+        {max: 25,   lowHumidityMessage: "Warm days like these offer a perfect moment to glow and grow! Consider wearing ---clothing recommendation--- as you shine in the sun!",
+                    highHumidityMessage: "Warm and sticky, but every moment is a chance to shine in every light which you'll certainly do in ---clothing recommendation---!"},
+        {max: 30,   lowHumidityMessage: "Let your outfit reflect the hot temperature outside, wearing ---clothing recommendation---!",
+                    highHumidityMessage: "Stay cool in the heat with a outfit like ---clothing recommendation---, managing the heat while maintaining your style!"},
+        {max: Infinity,     lowHumidityMessage: "So HOT! Not only the weather but you in ---clothing recommendation---!",
+                            highHumidityMessage: "Extremely hot and humid, consider wearing ---clothing recommendation--- and let today amplify your radiance!"}
+    ]
+
+    // Find temperature range based on current temperature
+    let adviceMessage = tempRanges.find(range => tempValue <= range.max);
+    // Select coresponding advice based on the humidity level
+    adviceMessage = (humidValue >= 60) ? adviceMessage.highHumidityMessage : adviceMessage.lowHumidityMessage;
+
+    return adviceMessage;
 }
 
-
-
-
+/**
+ * Function to test the motivational recommendations
+ * @param {*} tempValue current temperature in degrees Celsius
+ * @param {*} humidValue current humidity level in percentage
+ */
+/* function testMotivationalRecommendation(tempValue, humidValue) {
+    document.getElementById("temperatureParagraph").textContent = "Temperature: " + tempValue + " C";
+    document.getElementById("humidityParagraph").textContent = "Humidity: " + humidValue + " % RH";
+    var motivationalRecommendation = getMotivationalRecommendation(tempValue, humidValue);
+    document.getElementById("motivationalRecommendation").textContent = motivationalRecommendation;
+}
+// testcases
+testMotivationalRecommendation(-17, 3);
+testMotivationalRecommendation(5, 75);
+testMotivationalRecommendation(29, 60);
+testMotivationalRecommendation(10, 15);
+ */
