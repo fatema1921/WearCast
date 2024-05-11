@@ -1,5 +1,6 @@
 .category-container {
     display: flex; /* align items horizontally */
+    flex-wrap: wrap;
 }
 
 .category {
@@ -15,6 +16,7 @@
     height: 400px; 
     object-fit: cover; /* proportionates image to fit the shape and size */
     border-radius: 50%; /* makes image round */
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.4);
 }
 
  a { /* text underneath picture */
@@ -28,18 +30,12 @@
     position: relative; /* Sets positioning context, within container, for absolutely positioned child elements */
 }
 
-.line {
-    position: absolute; /* Positions the lines absolutely within their nearest positioned ancestor (.line-text) */
-    top: 50%; /* Positions the top of the line at 50% of the height of its positioned ancestor (.line-text), vertically centering the lines */
-    width: calc(42% - 100px); /* Adjust the width to start and end before and after the text */
-    height: 1px;
-    background-color: rgb(175, 173, 173);
-}
 
-.line:first-child { 
-    left: 0; /* Position the first line at the left */
-}
+@media screen and (max-width: 1200px) {
 
-.line:last-child {
-    right: 0; /* Position the last line at the right */
+    .category-container {
+        flex-direction: column; /* Stack images vertically */
+        gap: 20px; /* Add space between images */
+        align-items: center;
+    }
 }
