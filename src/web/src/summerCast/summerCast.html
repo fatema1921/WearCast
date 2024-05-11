@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<!--Ensures that the browser interprets the characters in the
+			document correctly and displays them as intended.-->
+		<meta charset="UTF-8">
+		<!-- ensures that the content is scaled properly to fit the
+			screen size and is at its original size without any zooming. -->
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+        <link rel="stylesheet" href="/src/web/src/css/global.css">
+        <link rel="stylesheet" href="/src/web/src/summerCast/summerCast.css">
+        <!-- <link rel="utilities" href="/WebDev/utilities.css"> -->
+		<title> WearCast</title>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.1/mqttws31.js" type="text/javascript"></script>
+	</head>
+	<body>
+		 <header>
+            <div class="navbar">
+                <div class="navlogo">
+                    <a href="index.html" class="logo"><img src="/src/web/assets/img/black_wearcast_logo.png" alt="WearCast logo"></a>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="/src/web/src/index.html">Home</a></li>
+                        <li><a href="/src/web/src/styleCast/styleCast.html">StyleCast</a></li>
+                        <li><a href="about.html">About us</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+
+<div class="introduction"> 
+    <h3>Welcome to the HotGirl Summer Gallery!</h3>
+    <p>Dive into a world of vibrant colors, breezy fabrics, and chic ensembles tailored for every summer occasion. Get ready to be inspired & put together the hottest outfits of the season!</p>
+</div>
+
+
+<!-- !PAGE CONTENT! -->
+<div class="main">
+
+    <!-- Push down content on small screens --> 
+    <div class="hide-large" style="margin-top:83px"></div>
+
+
+<!-- Modal for full size images on click-->
+<div id="modal" class="w3-modal w3-black" onclick="hideModal()">
+    <span class="w3-button w3-large w3-black w3-display-topright" title="Close Modal Image"><i class="fa fa-remove"></i></span>
+    <div class="w3-modal-content w3-animate-zoom w3-center w3-transparent w3-padding-64">
+      <img id="img" class="w3-image">
+      <!-- Display arbitrary text here -->
+      <div id="imageText" class="w3-opacity w3-large"></div>
+    </div>
+</div>
+  
+
+    <!-- Photo grid -->
+    <div class="row">
+      <div class="column">
+        <img src="/src/web/src/summerCast/images/image copy 2.png" style="width:100%" onclick="onClick(this)" alt="Green sleveless blazerdress">
+        <img src="/src/web/src/summerCast/images/image copy 5.png" style="width:100%" onclick="onClick(this)" alt="Beige pants, beige longsleeved shirt and a big pearlneacklace">
+        <img src="/src/web/src/summerCast/images/image copy 7.png" style="width:100%" onclick="onClick(this)" alt="Green shirt, black/orange plaid skirt, sunglasses and different scarves">
+        <img src="/src/web/src/summerCast/images/image copy 8.png" style="width:100%" onclick="onClick(this)" alt="Black shirt and grey shorts">
+        <img src="/src/web/src/summerCast/images/image copy.png" style="width:100%" onclick="onClick(this)" alt="White bandeu with cream blazer">
+        <img src="/src/web/src/summerCast/images/image.png" style="width:100%" onclick="onClick(this)" alt="Black indian traditional outfit">
+      </div>
+      
+      <div class="column">
+        <img src="/src/web/src/summerCast/images/images.png" style="width:100%" onclick="onClick(this)" alt="Patterned shirt with white shorts/pants">
+        <img src="/src/web/src/summerCast/images/s-2.jpg" style="width:100%" onclick="onClick(this)" alt="White blouse, blues jeans & beige ballerina shoes">
+        <img src="/src/web/src/summerCast/images/s-3.webp" style="width:100%" onclick="onClick(this)" alt="Outfit in different shades of blue. Blue tie-top, pants, hat and sunglasses">
+        <img src="/src/web/src/summerCast/images/s-4.jpg" style="width:100%" onclick="onClick(this)" alt="White t-shirt, red pants, yellow hat, orange bag, necklace">
+        <img src="/src/web/src/summerCast/images/s-12.webp" style="width:100%" onclick="onClick(this)" alt="Pink pants, white/pink top, beige blazer, white belt, white shoes/black heels">
+        <img src="/src/web/src/summerCast/images/s-5.jpg" style="width:100%" onclick="onClick(this)" alt="Blue suitpants, blue blazer, lightblue top in silk, brown/black belt">
+      </div>
+
+      <div class="column">
+        <img src="/src/web/src/summerCast/images/s-6.jpg" style="width:100%" onclick="onClick(this)" alt="Printed shirt, brown suit-pants, high white socks, brown formal shoes, black watch, white necklace">
+        <img src="/src/web/src/summerCast/images/s-6.webp" style="width:100%" onclick="onClick(this)" alt="White blazer, beige skirt, cream trench with pattern and buttons, flowery hat">
+        <img src="/src/web/src/summerCast/images/s-7.jpg" style="width:100%" onclick="onClick(this)" alt="Plaid jacket in bright colors">
+        <img src="/src/web/src/summerCast/images/s-7.webp" style="width:100%" onclick="onClick(this)" alt="Grey suitpants, white t-shirt, beige trenchcoat and brown belt">
+        <img src="/src/web/src/summerCast/images/s-8.jpg" style="width:100%" onclick="onClick(this)" alt="White shorts, cute darkgreen t-shirt, earrings">
+        <img src="/src/web/src/summerCast/images/s-8.webp" style="width:100%" onclick="onClick(this)" alt="White top, lightgrey shirtjacket, grey jumper over shoulders, lightblue jeans, black tote, hat, gold bracelet">
+      </div>
+
+      <div class="column">
+        <img src="/src/web/src/summerCast/images/s-14.webp" style="width:100%" onclick="onClick(this)" alt="Orange set of suitpants and cropped blazer, blue/white patterned blouse, long earrings, catshaped sunglasses">
+        <img src="/src/web/src/summerCast/images/s-15.webp" style="width:100%" onclick="onClick(this)" alt="White tshirt, light jeans-vest, blue jeans, blue shoes, necklace">
+        <img src="/src/web/src/summerCast/images/s-16.webp" style="width:100%" onclick="onClick(this)" alt="White/blue swimwear-bottom, orange bandeu, white loosly knitted cardigan, striped crossbody bag, orange heels, sunglasses">
+        <img src="/src/web/src/summerCast/images/s-10.webp" style="width:100%" onclick="onClick(this)" alt="White jeans, white top, beige blazer, brown bag, earrings">
+        <img src="/src/web/src/summerCast/images/s-18.webp" style="width:100%" onclick="onClick(this)" alt="Rosepink jumper, beige patterned skirt, white heels, blue sunglasses, earrings">
+        <img src="/src/web/src/summerCast/images/s.jpg" style="width:100%" onclick="onClick(this)" alt="Creame/olive patterned maxidress, creame heels, beach hat, beach bag">
+      </div>
+
+    </div>
+
+
+<script src="/src/web/src/summerCast/summerCast.js"></script>
+
+</body>
+</html>

@@ -17,8 +17,13 @@
     padding: 20px 0; /* Adds space between each row (top/bottom) */
 }
 
+:root { /* Define a CSS variable, to set the backround color of elemnts */
+  --background-color: linear-gradient(5deg, #FFDDCC 40%, #FFEECC 100%);
+}
+
 .main {
-    background-color: rgb(255, 202, 192);
+  background: var(--background-color); /* Apply CSS variable */
+  border-bottom: 2px solid #FEBBCC;
 }
 
 
@@ -33,7 +38,7 @@
     top: 0; /* Modal begins at top of page */
     width: 100%; /* Modal cover 100% of screen */
     height: 100%;
-    background-color: rgba(247, 226, 222, 0.9);
+    background: var(--background-color);
     padding: 50px 0 0 0; /* Add padding at the top */
     box-sizing: border-box; /* Include padding and border in the element's total width and height (even for smaller screens) */
   }
@@ -56,6 +61,7 @@
     left: 0; /* Align the image to the left */
     right: 0; /* Align the image to the right */
     bottom: 0; /* Align the image to the bottom */
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.4);
   }
 
   /* Responsive image inside modal */
