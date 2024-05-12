@@ -1,7 +1,56 @@
-window.onload=function() {
+window.onload=function() { 
+    fetchWeather();
     updateCurrentDay();
     fetchLocation();
+   
 }
+
+function fetchWeather() {
+    const apiKey = 'c95f90301395e8ce1cb18d910cd184cb';
+    const city = 'gothenburg'; // Replace 'CityName' with your desired city
+
+    const getWeatherIcon = document.getElementById('weather-icon');
+
+    // Fetch weather data from openWeatherMap API
+    fetch(`http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`)
+      .then(response => response.json())
+      .then(data => {
+        const weatherCondition = data.weather[0].id;
+        getWeatherIcon(weatherCondition);
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+}
+
+    // Function to call the weather API and update the weather icon
+    
+    
+    
+    // Function to get the appropriate weather icon based on the weather condition code
+    const getWeatherIcon = (weatherCondition) => {
+        if (weatherCondition >= 200 && weatherCondition < 300) {
+            return '<i class="wi wi-thunderstorm weather-icon"></i>'; // Thunderstorm
+        } else if (weatherCondition >= 300 && weatherCondition < 400) {
+            return '<i class="wi wi-rain weather-icon"></i>'; // Drizzle
+        } else if (weatherCondition >= 500 && weatherCondition < 600) {
+            return '<i class="wi wi-day-rain weather-icon"></i>'; // Rain
+        } else if (weatherCondition >= 600 && weatherCondition < 700) {
+            return '<i class="wi wi-day-snow weather-icon"></i>'; // Snow
+        } else if (weatherCondition >= 700 && weatherCondition < 800) {
+            return '<i class="wi wi-fog weather-icon"></i>'; // Atmosphere
+        } else if (weatherCondition === 800) {
+            return '<i class="wi wi-day-sunny weather-icon"></i>'; // Clear
+        } else if (weatherCondition > 800) {
+            return '<i class="wi wi-day-cloudy weather-icon"></i>'; // Clouds
+        } else {
+            return '';
+        }
+    };
+
+    // Call the getWeather function to fetch weather data and display the icon
+
+
 
 function updateCurrentDay() {
     const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
