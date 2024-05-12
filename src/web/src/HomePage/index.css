@@ -42,16 +42,11 @@
 .recommendation p {
     font-size: x-large;
 }
-#weather-icon {
-    width: 100px;
-    height: 100px;
-    background-size: contain;
-  }
+
 .weather p1 {
     font-size: x-large;
     margin-bottom: 30px;
 }
-
 
 /* SHORT ABOUT WEARCAST */
 #info {
