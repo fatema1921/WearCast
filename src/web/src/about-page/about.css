@@ -1,43 +1,48 @@
+
 /* About Us Page */
+/* Styling for the main content area */
 main {
-    padding: 30px;
-    box-sizing: border-box;
+    padding: 30px; /* Adds padding around the main content */
+    box-sizing: border-box; /* Ensures padding is included in element's total width and height */
 }
 
 .container {
-    display: flex;
+    display: flex; /* Displays sections in a row by default */
     gap: 20px; /* Add gap between sections */
-    box-sizing: border-box;
-    flex-direction: column;
-    border-radius: 20%;
+    box-sizing: border-box; 
+    flex-direction: column; /* Stacks sections vertically */
+    border-radius: 20%; /* Rounds the corners of the container */
+    margin-bottom: 30px;
 }
 
 
 #intro{
     border-radius: 20px;
-    flex: 4;
+    flex: 4; /* Takes up 4/10 of the available space */
     display: flex;
-    align-items: center;
+    align-items: center; /* Centers content vertically */
     box-sizing: border-box;
-    margin-bottom: 0px;
+    margin-bottom: 0px; /* Sets bottom margin to 0 pixels */
 }
 
 .motto{
-    flex: 1;
+    flex: 1; /* Takes up 1/10 of the available space */
     padding: 20px;
-    margin-left: 30;
-    padding-left: 30px;;
-    text-align: center;
-    background-color: var(--primary-color);
+    margin-left: 50px; /* Adds left margin */
+    padding-left: 30px; /* Adds left padding */
+    text-align: center; /* Centers text horizontally */
+    background-color: var(--primary-color); /* Sets background color */
+    width: 10%;
+    height: auto;
 }
 .motto-img{
     flex:1;
     padding: 20px;
     margin-top: 30px;
-    margin-right: 100px;
+    margin-right: 40px;
     margin-bottom: 30px;
-	max-height: 700px; 
-    max-width: 700px;
+    width: 40%;
+    height: auto;
     border-radius: 20%;
     align-content: center;
     align-items: center;
@@ -45,15 +50,15 @@ main {
 
 
 
-#about-project {
+#about-project , #about-mission, #about-developers, #cotact {
     border-radius: 20px;
     flex: 4;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-between; /* Aligns the flex items along the main axis with equal spacing between them */
     align-items: center;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
     margin-right: 10px;
-    margin-top: 0px;
+    margin-top: 30px;
     height: 100%;
     width: 100%;
     padding-left: 30px;
@@ -66,17 +71,23 @@ main {
     flex: 1;
     padding: 20px;
     border-radius: 20%;
-    margin-left: 30px;
-}
-.mission h2{
-    
+    margin-left: 10px;
+    margin-right: 40px;
+    width: 40%;
+    height: auto;
 }
 .mission-img{
     flex: 1;
     padding: 20px;
-    border-radius: 50%;
-    height: 300px;
-	max-width: 300px;
+    border-radius: 20%;
+    height: auto;
+    width: 30%;
+    margin-right: 10px;
+    margin-left: 30px;
+    /*
+    max-width: 100%;
+    max-height: 100%;
+    */
 }
 
 
@@ -85,19 +96,26 @@ main {
     padding: 20px;
     align-items: center;
     background-color: var(--lighter-gradient-color);
-    margin-top: 200px;
+    margin-top: 10px;
+    margin-left: 30px;
     border-radius: 10%;
+    width: 60%;
+    height: auto;
 }
 .wio-img {
     flex: 1;
     padding: 20px;
-    border-radius: 50%;
-	margin-right: 20px;
-	max-height: 300px;
-	max-width: 380px;
+    border-radius: 10%;
+    margin-right: 20px;
+    width: 20%;
+    height: 30%;
+    /*
+    max-height: 100%;
+    max-width: 100%;
+    */
 }
 
-
+/*
 #about-developers{
     border-radius: 20px;
     flex: 4;
@@ -113,6 +131,8 @@ main {
     padding-bottom: 20px;
     box-sizing: border-box;
 }
+*/
+
 .members-names{
     background-color: var(--lighter-pink);
     flex: 1;
@@ -120,19 +140,24 @@ main {
     border-radius: 20%;
     text-align: center;
     padding-right: 30px;
+    padding-left: 10px;
     margin-left: 10px;
-    padding-left: 1opx;
+    margin-right: 30px;
+    width: 30%;
+    height: auto;
 }
 
 .members-img {
     flex: 1;
     padding: 20px;
-	margin-right: 10px;
+    margin-right: 10px;
     margin-bottom: 10px;
     margin-left: 30px;
-	height: 300px; 
-    width: 250px;
-    border-radius: 50%;
+    width: 30%;
+    /*
+    max-width: 100%;
+    */
+    border-radius: 20%;
 }
 
 
@@ -162,16 +187,43 @@ main {
 .contact-info{
     flex: 1;
     padding: 20px;
-    padding-right: 40px;
+    padding-right: 0px;
     background-color:var(--lighter-gradient-color);
-    margin-right: 40px;
+    border-radius: 20%;
+    margin-right: 0px;
+    margin-left: 80px;
+    width: 30%;
+    height: auto;
+    align-items: center;
 }
 .contact-img{
     flex: 1;
-    padding: 20px;
-    padding-left: 30px;
-	max-height: 300px;
-    max-width: 450px;
+    /*padding: 20px;*/
+    width: 30%;
+    height: 30%;
+    /*
+    max-height: 300px;
+    max-width: 100%;
+    */
+    margin-top: 0px;
     margin-right: 20px;
-    border-radius: 50%;
+    margin-left: 600px;
+    margin-bottom: 30px;
+    border-radius: 20%;
+}
+
+@media only screen and (max-width: 768px) {
+    .motto,
+    .mission,
+    .wio,
+    .members-names,
+    .contact-info,
+    .motto-img,
+    .mission-img,
+    .wio-img,
+    .members-img,
+    .contact-img {
+        width: 100%; /* Ensure images are responsive */
+        height: auto;
+    }
 }
