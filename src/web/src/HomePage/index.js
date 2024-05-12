@@ -1,7 +1,24 @@
 window.onload=function() {
     updateCurrentDay();
     fetchLocation();
+    getWeather();
 }
+
+/* Function to call the weather API and update the weather icon */
+const getWeather = async () => {
+    try {
+        const response = await  fetch('https://api.openweathermap.org/data/2.5/weather?q=gothenburg,se&APPID=c95f90301395e8ce1cb18d910cd184cb');
+        const data = await response.json();
+        const weatherIconID = data.weather[0].icon;
+
+        const weatherIconURL = "https://openweathermap.org/img/wn/" + weatherIconID + "@2x.png";
+        document.getElementById('weatherIcon').src = weatherIconURL;
+           
+    } catch (error) {
+        console.log('Error fetching weather data:',error);
+        document.getElementById('weatherIcon').src = "../../assets/img/no-icon-found";
+    }
+};
 
 function updateCurrentDay() {
     const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
