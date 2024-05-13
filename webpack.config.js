@@ -38,6 +38,9 @@ const config = {
         }),
         new webpack.DefinePlugin({
             'process.env.OPENCAGE_API_KEY': JSON.stringify(process.env.OPENCAGE_API_KEY),
+        }),
+        new webpack.DefinePlugin({
+            'process.env.OPENCAGE_API_KEY': JSON.stringify(process.env.WEATHER_API_KEY),
         })
     ],
     module: {
@@ -151,6 +154,12 @@ const config = {
             filename: 'winterCast.html',
             chunks: ['winterCast']
         }),
+        new webpack.DefinePlugin({
+            'process.env.OPENCAGE_API_KEY': JSON.stringify(process.env.OPENCAGE_API_KEY),
+        }),
+        new webpack.DefinePlugin({
+            'process.env.OPENCAGE_API_KEY': JSON.stringify(process.env.WEATHER_API_KEY),
+        }),
         // Additional plugins can be added here
     ],
     module: {
@@ -189,11 +198,21 @@ module.exports = () => {
                 'process.env.OPENCAGE_API_KEY' : JSON.stringify(process.env.OPENCAGE_API_KEY),
             })
         );
+        config.plugins.push(
+            new webpack.DefinePlugin({
+                'process.env.OPENCAGE_API_KEY' : JSON.stringify(process.env.WEATHER_API_KEY),
+            })
+        );
     } else {
         config.mode = 'development';
         config.plugins.push(
             new webpack.DefinePlugin({
                 'process.env.OPENCAGE_API_KEY' : JSON.stringify(process.env.OPENCAGE_API_KEY),
+            })
+        );
+        config.plugins.push(
+            new webpack.DefinePlugin({
+                'process.env.OPENCAGE_API_KEY' : JSON.stringify(process.env.WEATHER_API_KEY),
             })
         );
     }

@@ -10,7 +10,7 @@ window.onload=function() {
 /* Function to call the weather API and update the weather icon */
 const getWeather = async () => {
     try {
-        const response = await  fetch('https://api.openweathermap.org/data/2.5/weather?q=gothenburg,se&APPID=c95f90301395e8ce1cb18d910cd184cb');
+        const response = await  fetch('https://api.openweathermap.org/data/2.5/weather?q=gothenburg,se&APPID=§{process.env.WEATHER_API_KEY}');
         const data = await response.json();
         const weatherIconID = data.weather[0].icon;
 
