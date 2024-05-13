@@ -160,7 +160,7 @@
     .weather, .recommendation {
         padding: 50px; /* Adjust padding for smaller screens */
         height: auto; /* Set height to auto for content to expand */
-        overflow: scroll;
+        
     }
 
     /* SHORT ABOUT WEARCAST */
