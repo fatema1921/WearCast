@@ -1,20 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-	<head>
-		<!--Ensures that the browser interprets the characters in the
-			document correctly and displays them as intended.-->
-		<meta charset="UTF-8">
-		<!-- ensures that the content is scaled properly to fit the
-			screen size and is at its original size without any zooming. -->
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
-        <link rel="stylesheet" href="/src/web/src/css/styles.css" >
+
+<!DOCTYPE html><html lang="en">
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+        <link rel="stylesheet" href="/src/web/src/css/global.css" >
         <!-- <link rel="utilities" href="/WebDev/utilities.css"> -->
-		<title> WearCast</title>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.1/mqttws31.js" type="text/javascript"></script>
-	</head>
-	<body>
-		 <header>
+        <title>WearCast</title>
+
+        <!-- Include script file -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.1/mqttws31.js" type="text/javascript"></script>
+    </head>
+
+    <body>
+        <header>
             <div class="navbar">
                 <div class="navlogo">
                     <a href="index.html" class="logo"><img src="/src/web/assets/img/black_wearcast_logo.png" alt="WearCast logo"></a>
@@ -23,7 +23,7 @@
                     <ul>
                         <li><a href="index.html">Home</a></li>
                         <li><a href="stylecast.html">StyleCast</a></li>
-                        <li><a href="about.html">About us</a></li>
+                        <li><a href="about-page/about.html">About</a></li>
                     </ul>
                 </nav>
             </div>
@@ -32,13 +32,12 @@
         <section id="current">
             <div class="weather">
                 <h2><span id="weekday">Day</span></h2>
-                <h2>⚲ <span id="location"> Fetching location... </span></h2>
+                <h2>⚲ <span id="location">⋘ Fetching location... ⋙</span></h2>
 
                 <div class="weather-data">
-                    <p>Temperature: <span id="temperatureParagraph"> Fetching temperature data... </span></p>
-                    <p>Humidity: <span id="humidityParagraph"> Fetching humidity data... </span></p>
+                    <p>Temperature: <span id="temperatureParagraph">⋘ Fetching temperature data... ⋙</span></p>
+                    <p>Humidity: <span id="humidityParagraph">⋘ Fetching humidity data... ⋙</span></p>
                 </div>
-			</div>
 
 			<div class="recommendation">
 				<p id="motivationalRecommendation">Tailoring recommendation based on your local weather conditions...</p>
@@ -48,17 +47,26 @@
 		<section id="info">
             <div class="hero">
                 <h2>Feel Fabulous with WearCast!</h2>
-                <p>We've all been there: staring at the closet, trying to figure out what to wear as the weather changes outside. It is a struggle to know if we will be too hot, too cold or just right. Throw in factors like humidity and rain, and it is even trickier...</p>
-                <p>That's where WearCast comes in - guiding you to get dressed for (<em>weather</em>) success!</p>
-                <h3>Ready to rock any weather twist with style?</h3>
-                <p>Let's dive in and slay! With our tool <a href="stylecast.html"><strong>StyleCast</strong></a> you can browse through different styles based on different weather conditions to plan your styles in advance.</p>
-                <button class="btn" onclick="location.href='#stylecast'"><span style="text-transform: capitalize;">Explore Styles</span></button>
+                <p><em>example text</em><br>It's rainy today, we suggest that you wear something long-sleeved combined with full-length pants.</p>
+                <h3>- Don't forget your umbrella! ☂</h3>
             </div>
         </section>
 
-		<section id="features">
+        <section id="info">
+            <div class="hero">
+                <h2>Feel Fabulous with WearCast!</h2>
+                <p>We've all been there: staring at the closet, trying to figure out what to wear as the weather changes outside. It is a struggle to know if we will be too hot, too cold or just right. Throw in factors like humidity and rain, and it is even trickier...</p>
+                <p>That's where WearCast comes in - guiding you to get dressed for (<em>weather</em>)success!</p>
+                <h3>Ready to rock any weather twist with style?</h3>
+                <p>Let's dive in and slay! With our tool <a href="stylecast.html"><strong>StyleCast</strong></a> you can browse through different styles based on different weather conditions to plan your styles in advance.</p>
+                <button class="btn" onclick="location.href='#stylecast'">Explore   Styles</button>
+            </div>
+        </section>
+
+        <section id="features">
             <div class="feature-description">
                 <h2>Innovative Features of WearCast</h2>
+
             </div>
             <div class="feature-cards">
                 <div class="card">
@@ -76,7 +84,7 @@
             </div>
         </section>
 
-		<section id="contact">
+        <section id="contact">
             <div id="contact-info">
                 <h2>Get in touch with the team behind WearCast</h2>
                 <p>info@wearcast.com</p>
@@ -91,10 +99,10 @@
             </div>
         </section>
 
-		<footer>
+        <footer>
             <div id="footerbar">
                 <div class="footer-content">
-                    <p>@ 2024 <strong>WearCast</strong> | <em>Guiding you how to dress confident in weatherproof outfits</em></p>
+                    <p>@ 2024 <strong>WearCast</strong> | <em>guiding you how to dress confident in weatherproof outfits</em></p>
                     <div class="footer-links">
                         <a href="http://instagram.com/wearcast">instagram</a>
                         <a href="https://git.chalmers.se/courses/dit113/2024/group-17/WearCast">GitLab</a>
@@ -103,7 +111,6 @@
             </div>
         </footer>
 
-		<!-- Include the script file -->
-		<script src="main.js"></script>
-	</body>
+        <script src="script.js"></script>
+    </body>
 </html>

@@ -1,0 +1,81 @@
+/* About Us Page */
+/* Styling for the main content area */
+main {
+    padding: 30px; /* Adds padding around the main content */
+    box-sizing: border-box; /* Ensures padding is included in element's total width and height */
+}
+
+.about-section {
+    display: flex;
+    flex-wrap: wrap; /* Allows sections to wrap on smaller screens */
+    margin-bottom: 30px;
+}
+
+.intro {
+    flex: 1 1 50%; /* Takes up 50% width on larger screens, shrinks on smaller ones */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 0;
+}
+
+.motto {
+    padding: 20px;
+    text-align: center;
+}
+
+.motto-img {
+    width: 100%;  /* Image takes full width of its container */
+    height: auto;
+    border-radius: 20%;
+}
+
+.about-content {
+    flex: 1 1 100%; /* Takes up full width on smaller screens */
+    display: flex;
+    flex-wrap: wrap; /* Allows sections within .about-content to wrap on smaller screens */
+    justify-content: space-between; /* Evenly distributes sections horizontally */
+}
+
+.mission, .members-names {
+    background-color: var(--lighter-pink);
+}
+.wio, .contact-info {
+    background-color: var(--lighter-gradient-color);
+}
+
+.mission,
+.wio,
+.members-names,
+.contact-info {
+    border-radius: 20%;
+    flex: 1 1 33%;  /* Takes up 1/3 width on larger screens, adjusts on smaller ones */
+    padding: 20px;
+    text-align: center;
+    margin: 10px; /* Adjusts margins for better spacing on smaller screens */
+}
+
+.mission-img,
+.wio-img,
+.members-img,
+.contact-img {
+    border-radius: 20%;
+    width: 100%;  /* Images take full width of their containers */
+    height: auto;
+    margin: 10px auto; /* Centers images on smaller screens */
+}
+
+/* Media queries for additional adjustments on smaller screens */
+@media only screen and (max-width: 768px) {
+    .about-section {
+        flex-direction: column; /* Stacks sections vertically on smaller screens */
+    }
+
+    .intro,
+    .mission,
+    .wio,
+    .members-names,
+    .contact-info {
+        margin: 15px 0; /* Adjusts margins for better spacing on smaller screens */
+    }
+}
