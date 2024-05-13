@@ -41,7 +41,7 @@ main {
     background-color: var(--lighter-pink);
 }
 .wio, .contact-info {
-    background-color: var(--darker-gradient-color);
+    background-color: var(--lighter-gradient-color);
 }
 
 .mission,
