@@ -9,6 +9,7 @@
  *
  * @returns {Object} the complete Webpack configuration object
  */
+const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
@@ -35,6 +36,9 @@ const config = {
         new HtmlWebpackPlugin({
             template: './src/web/src/index.html',
         }),
+        new webpack.DefinePlugin({
+            'process.env.OPENCAGE_API_KEY': JSON.stringify(process.env.OPENCAGE_API_KEY),
+        })
     ],
     module: {
         rules: [
