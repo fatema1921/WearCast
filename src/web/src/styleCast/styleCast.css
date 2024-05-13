@@ -19,12 +19,12 @@
     box-shadow: 0 3px 10px rgba(0, 0, 0, 0.4);
 }
 
- a { /* text underneath picture */
+ a { /* textlink underneath picture */
     text-decoration: none; /* Remove underline from link */
     color: black; /* Set text color to black */
 } 
 
-.line-text {
+.heading {
     text-align: center;
     padding: 20px;
     position: relative; /* Sets positioning context, within container, for absolutely positioned child elements */
