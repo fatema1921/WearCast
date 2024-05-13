@@ -100,7 +100,7 @@ function onMessageArrived(message) {
     document.getElementById("motivationalRecommendation").textContent = motivationalRecommendation;
 }
 
-function getRecommendation(temp, humid) {
+/*function getRecommendation(temp, humid) {
 /* function getRecommendation(temp, humid) {
     if (temp < 10 && humid < 60) {
         return "It's quite cold. Wear something warm like a knitted sweater and a winter coat.";
