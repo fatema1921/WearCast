@@ -1,5 +1,5 @@
 // Load environment variables
-require('dotenv').config();
+// require('dotenv').config();
 
 window.onload=function() {
     updateCurrentDay();
@@ -37,7 +37,7 @@ function fetchLocation() {
             const lat = position.coords.latitude;
             const lon = position.coords.longitude;
             /* EDIT FOR LATER: API KEY SHOULD BE SECURE NOT PUT HERE! EITHER SERVER SIDE WITH ENVIRONMENT VARIABLES OR IN GITIGNORE? */
-            fetch(`https://api.opencagedata.com/geocode/v1/json?q=${lat}+${lon}&key=3661a45eca484dfdb9eda5299d447535`)
+            fetch(`https://api.opencagedata.com/geocode/v1/json?q=${lat}+${lon}&key=§{process.env.OPENCAGE_API_KEY}`)
                 .then(response => response.json())
                 .then(data => {
                     const city = data.results[0].components.city;
