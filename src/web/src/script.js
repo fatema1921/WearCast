@@ -1,3 +1,6 @@
+// Load environment variables
+require('dotenv').config();
+
 // Create an MQTT client instance
 var client = new Paho.MQTT.Client("test.mosquitto.org", 1883, "clientId");
 
