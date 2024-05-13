@@ -43,6 +43,9 @@ const char* mqtt_server = "broker.emqx.io"; // MQTT Broker URL
 const char* temperature_topic = "Temperature"; // Topic for temperature
 const char* humidity_topic = "Humidity"; // Topic for humidity
 
+/* Boolean for connecting to broker the first time*/
+bool firstConnect = true;
+
 /* Initializations */
 DHT dht(DHTPIN, DHTTYPE); //Initializing DHT sensor
 
@@ -122,19 +125,22 @@ void setup_wifi() {
 */
 void reconnect() {
   while(!client.connected()) {
-    Serial.println("Attempting MQTT connection...");
+    if (firstConnect) {
+      Serial.println("Attempting MQTT connection...");
+    }
 
     /* Create randomized client ID */
     String clientId = "WioTerminal-" + String(random(0xffff), HEX);
 
-    /* Attempt to connect, publish, subscribe */
+    /* Attempt to connect to broker*/
     if(client.connect(clientId.c_str())) {
-      Serial.println("Connection established!");
-      client.publish("Temperature", "Connection established!"); // Publish announcement
-      // client.subscribe("WTin"); // Resubscribe
+      if (firstConnect) {
+        Serial.println("Connection established!");
+        firstConnect = false; // Set to false after the first connection is established
+    }
     } else {
-      Serial.print("Attempt to connect failed, rc=");
-      Serial.print(client.state()); // log/print generated return code (i.e. result of connection attempt)
+      Serial.print("Attempt to connect failed");
+      Serial.print(client.state()); // Print generated return code (i.e. result of connection attempt)
       Serial.println(". Try again in 5 seconds.");
       delay(5000);
     }
@@ -160,13 +166,10 @@ void setup() {
   pixels.begin();
   // spr.createSprite(TFT_HEIGHT,TFT_WIDTH); // Create buffer (enabling the composition and manipulation of graphical elements befor rendering them on the TFT screen)
 
-  Serial.println();
   Serial.begin(115200); // Initialize serial communication at 115200 baud rate; for communication with WiFi module
-
   setup_wifi(); // Call function to set up WiFi connection
 
   client.setServer(mqtt_server, 1883); // Set MQTT server and port
-  client.setCallback(callback); // Set callback function for MQTT client
 }
 
 /**
@@ -271,6 +274,7 @@ void loop() {
 
 /** CODESNIPPETS - CURRENTLY NOT IN USE */
   /*
+    client.setCallback(callback); // Set callback function for MQTT client
 
   // #include <ArduinoJson.h> // Include ArduinoJson library
 
