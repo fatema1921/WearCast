@@ -162,6 +162,9 @@
         height: auto; /* Set height to auto for content to expand */
         
     }
+    .recommendation {
+        overflow: auto;
+    }
 
     /* SHORT ABOUT WEARCAST */
     #info .hero {
