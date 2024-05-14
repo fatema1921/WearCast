@@ -28,6 +28,11 @@
     text-align: center;
     padding: 20px;
     position: relative; /* Sets positioning context, within container, for absolutely positioned child elements */
+    margin: 0 15%;
+}
+
+p {
+    font-size: 15px;
 }
 
 
