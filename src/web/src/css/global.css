@@ -17,7 +17,7 @@ body {
 
 /* NAVBAR */
 .navbar {
-	background: var(--primary-color);
+    background: var(--primary-color);
 	max-height: 10vh;
     display: flex;
     justify-content: space-between;
@@ -32,7 +32,7 @@ body {
 }
 
 .logo img {
-	margin-left: 20px;
+    margin-left: 20px;
 	height: 4vh; /* vh = viewport height - here 3% */
 	width: auto;
 }
@@ -47,12 +47,12 @@ body {
 }
 
 .navbar ul li {
-	position: relative;
+    position: relative;
 }
 
 .navbar ul li a {
     margin-right: 20px;
-	display: block;
+    display: block;
 	padding: 100px 14px;
     font-size: 23px;
     color: var(--text-color);
@@ -60,8 +60,9 @@ body {
 }
 
 .navbar ul li a:hover, .navbar ul li a:focus {
-	color: var(--hover-color);
+    color: var(--hover-color);
 }/* RESPONSIVE DESIGN */
+
 /* Media query for screens smaller than 768px */
 @media screen and (max-width: 768px) {
 

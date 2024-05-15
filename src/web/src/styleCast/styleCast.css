@@ -1,0 +1,46 @@
+.category-container {
+    display: flex; /* align items horizontally */
+    flex-wrap: wrap;
+}
+
+.category {
+    width: 33.33%; /* Set each category to take up one-third of the screen width */
+    box-sizing: border-box; /* Include padding and border in the element's total width */
+    text-align: center;
+    padding: 60px 0 0 0; /* Adjust padding as needed */
+    box-sizing: border-box; /* Include padding and border in the element's total width */
+}
+
+.category img {
+    width: 400px; 
+    height: 400px; 
+    object-fit: cover; /* proportionates image to fit the shape and size */
+    border-radius: 50%; /* makes image round */
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.4);
+}
+
+ a { /* textlink underneath picture */
+    text-decoration: none; /* Remove underline from link */
+    color: black; /* Set text color to black */
+} 
+
+.heading {
+    text-align: center;
+    padding: 20px;
+    position: relative; /* Sets positioning context, within container, for absolutely positioned child elements */
+    margin: 0 15%;
+}
+
+p {
+    font-size: 15px;
+}
+
+
+@media screen and (max-width: 1200px) {
+
+    .category-container {
+        flex-direction: column; /* Stack images vertically */
+        gap: 20px; /* Add space between images */
+        align-items: center;
+    }
+}
