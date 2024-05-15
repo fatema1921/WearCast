@@ -61,7 +61,7 @@ const config = {
     entry: {
         home: './src/web/src/home/index.js',
         // about: './src/web/src/about/about.js',
-        styleCast: './src/web/src/styleCast/styleCast.js',
+        // styleCast: './src/web/src/styleCast/styleCast.js',
         weatherCast: './src/web/src/styleCast/weatherCast/weatherCast.js',
 
     },
