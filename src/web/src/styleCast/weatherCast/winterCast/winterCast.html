@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<!--Ensures that the browser interprets the characters in the
+			document correctly and displays them as intended.-->
+		<meta charset="UTF-8">
+		<!-- ensures that the content is scaled properly to fit the
+			screen size and is at its original size without any zooming. -->
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+        <link rel="stylesheet" href="/src/web/src/css/global.css">
+        <link rel="stylesheet" href="/src/web/src/styleCast/weatherCast/weatherCast.css">
+        <!-- <link rel="utilities" href="/WebDev/utilities.css"> -->
+		<title> WearCast</title>
+	</head>
+	<body>
+		 <header>
+            <div class="navbar">
+                <div class="navlogo">
+                    <a href="index.html" class="logo"><img src="/src/web/assets/img/black_wearcast_logo.png" alt="WearCast logo"></a>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="/src/web/src/HomePage/index.html">Home</a></li>
+                        <li><a href="/src/web/src/styleCast/styleCast.html">StyleCast</a></li>
+                        <li><a href="/src/web/src/about-page/about.html">About us</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+
+<div class="introduction"> 
+    <h3>Welcome to the Sweater Weather Gallery!</h3>
+    <p>The warmth of knits, the richness of textures & the subtle beauty of seasonal hues - feels like a loving embrace in the cold. This is the perfect time to discover the endless achivements of layering and accessoring!</p>
+</div>
+
+
+<!-- !PAGE CONTENT! 
+Override CSS variable to change backround color -->
+<div class="main" style="--background-color: linear-gradient(5deg, #dce4fe 40%, #d2f7ff 100%);">
+
+      <!-- Push down gallery on small screens --> 
+      <div class="hide-large" style="margin-top:83px"></div>
+
+
+      <!-- Modal for full size images on click-->
+      <div id="modal" class="modal" onclick="hideModal()">
+          <div class="modal-content">
+            <img id="img">
+            <!-- Display arbitrary text here -->
+            <div id="imageText"></div>
+          </div>
+      </div>
+        
+  
+
+    <!-- Photo grid -->
+    <div class="gallery">
+      <div class="column">
+        <img src="/src/web/src/styleCast/weatherCast/winterCast/img/s-45.webp" style="width:100%" onclick="onClick(this)" alt="Hoodie and sweatpants, pufferjacket, hat, boots">
+        <img src="/src/web/src/styleCast/weatherCast/winterCast/img/s-34.webp" style="width:100%" onclick="onClick(this)" alt="Brown coat, blck jumper, pants, boots, bag and hat">
+        <img src="/src/web/src/styleCast/weatherCast/winterCast/img/pexels-yankrukov-6615667.jpg" style="width:100%" onclick="onClick(this)" alt="White fleece-coat, beige turtleneck and sweatpants, pink boots, grey hat and gloves">
+        <img src="/src/web/src/styleCast/weatherCast/winterCast/img/pexels-victoria-strelka_ph-128225472-11428507.jpg" style="width:100%" onclick="onClick(this)" alt="Brown coat, beige scarf, white sweater, black boots">
+        <img src="/src/web/src/styleCast/weatherCast/winterCast/img/pexels-victoria-strelka_ph-128225472-10978984.jpg" style="width:100%" onclick="onClick(this)" alt="Brown coat, pants, boots, beige hat">
+        <img src="/src/web/src/styleCast/weatherCast/winterCast/img/pexels-tatyana-mazepova-157990891-10779994.jpg" style="width:100%" onclick="onClick(this)" alt="Beige fleececoat, red scarf, white gloves">
+      </div>
+      
+      <div class="column">
+        <img src="/src/web/src/styleCast/weatherCast/winterCast/img/pexels-tatyana-mazepova-157990891-10779991.jpg" style="width:100%" onclick="onClick(this)" alt="White jumper, green skirt, brown heels, beige coat">
+        <img src="/src/web/src/styleCast/weatherCast/winterCast/img/pexels-shvets-production-6984657.jpg" style="width:100%" onclick="onClick(this)" alt="Beige furjacket, red jumper, white jeans, glasses">
+        <img src="/src/web/src/styleCast/weatherCast/winterCast/img/pexels-pnw-prod-7062173.jpg" style="width:100%" onclick="onClick(this)" alt="White and black plaid coat, beige hoodies, black leather heels">
+        <img src="/src/web/src/styleCast/weatherCast/winterCast/img/pexels-phototribbiani-9385117.jpg" style="width:100%" onclick="onClick(this)" alt="Purple sweatpants and hoodie, white sneakers, beige wintercoat, white hat">
+        <img src="/src/web/src/styleCast/weatherCast/winterCast/img/pexels-pavel-danilyuk-6667714.jpg" style="width:100%" onclick="onClick(this)" alt="Carmel coat, white hoodies, spriped gloves, black hat">
+        <img src="/src/web/src/styleCast/weatherCast/winterCast/img/pexels-orlovamaria-4947747.jpg" style="width:100%" onclick="onClick(this)" alt="Grey coat, blue scarf and blue jeans">
+      </div>
+
+      <div class="column">
+        <img src="/src/web/src/styleCast/weatherCast/winterCast/img/pexels-majesticaljasmin-10414192.jpg" style="width:100%" onclick="onClick(this)" alt="Multicolored plaid coat, jeans, striped multicolored scarf, orange hat, red lipstick">
+        <img src="/src/web/src/styleCast/weatherCast/winterCast/img/pexels-majesticaljasmin-6598971.jpg" style="width:100%" onclick="onClick(this)" alt="Lightgrey jumper, grey miniskirt, brown overknee heels in leather">
+        <img src="/src/web/src/styleCast/weatherCast/winterCast/img/pexels-kristina-kozlova-110223342-14553356.jpg" style="width:100%" onclick="onClick(this)" alt="White jumper, creme coat, beige pants, white gloves and hat, white bag">
+        <img src="/src/web/src/styleCast/weatherCast/winterCast/img/pexels-kowalievska-1381565.jpg" style="width:100%" onclick="onClick(this)" alt="White jumper, brown skirt, grey coat, black high boots, red hat, red bag">
+        <img src="/src/web/src/styleCast/weatherCast/winterCast/img/pexels-kamay-2821105.jpg" style="width:100%" onclick="onClick(this)" alt="White turtleneck, orange coat, red hat, gold hoop earrings">
+        <img src="/src/web/src/styleCast/weatherCast/winterCast/img/pexels-cristianemotafotografia-7434336.jpg" style="width:100%" onclick="onClick(this)" alt="Beige turtleneck, beuge skirt, green plaid shirt">
+      </div>
+
+      <div class="column">
+        <img src="/src/web/src/styleCast/weatherCast/winterCast/img/pexels-cottonbro-7364477.jpg" style="width:100%" onclick="onClick(this)" alt="White/pink ski suit with matching gloves and hat">
+        <img src="/src/web/src/styleCast/weatherCast/winterCast/img/pexels-23515909-6665442.jpg" style="width:100%" onclick="onClick(this)" alt="Brown coat, beige fluffy scarf, black gloves, brown hat">
+        <img src="/src/web/src/styleCast/weatherCast/winterCast/img/pexels-123877718-9965452.jpg" style="width:100%" onclick="onClick(this)" alt="Beige jumper, wintercoat, scarf, gloves and hat">
+        <img src="/src/web/src/styleCast/weatherCast/winterCast/img/pexels-172634301-11034171.jpg" style="width:100%" onclick="onClick(this)" alt="Beige sweatpants and jumper in fleece, grey hat">
+        <img src="/src/web/src/styleCast/weatherCast/winterCast/img/pexels-ata-daftarifard-1052963579-20476773.jpg" style="width:100%" onclick="onClick(this)" alt="White shirt, grey jumper, green underjacker, green/white coat, black skirt with belt, red lipstick">
+        <img src="/src/web/src/styleCast/weatherCast/winterCast/img/s-63.webp" style="width:100%" onclick="onClick(this)" alt="Carmel coat and scarf">
+      </div>
+
+    </div>
+
+
+<script src="/src/web/src/styleCast/weatherCast/weatherCast.js"></script>
+
+</body>
+</html>

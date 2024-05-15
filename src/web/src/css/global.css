@@ -1,0 +1,123 @@
+:root {
+    --primary-color: #ffffff;
+    --lighter-gradient-color: #FFEECC; /* Color 1 */
+    --darker-gradient-color: #FFDDCC; /* Color 2 */
+    --text-color: #181818;
+    --lighter-pink: #FFCCCC; /* Color 3 */
+    --hover-color: #FEBBCC; /* Color 4 */
+}
+
+body {
+    position: relative;
+    min-height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat';
+}
+
+/* NAVBAR */
+.navbar {
+    background: var(--primary-color);
+	max-height: 10vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0;
+    width: 100%;
+    border-bottom: 2px solid #FEBBCC; /* Set border width, style, and color */
+}
+
+.navlogo {
+    flex: 0 1 auto;
+}
+
+.logo img {
+    margin-left: 20px;
+	height: 4vh; /* vh = viewport height - here 3% */
+	width: auto;
+}
+
+.navbar ul {
+	display: flex;
+	flex-direction: row;
+	align-items: flex-end;
+    list-style-type: none; /* remove bullets */
+    margin: 0;
+    padding: 0;
+}
+
+.navbar ul li {
+    position: relative;
+}
+
+.navbar ul li a {
+    margin-right: 20px;
+    display: block;
+	padding: 100px 14px;
+    font-size: 23px;
+    color: var(--text-color);
+    text-decoration: none; /* remove underline */
+}
+
+.navbar ul li a:hover, .navbar ul li a:focus {
+    color: var(--hover-color);
+}/* RESPONSIVE DESIGN */
+
+/* Media query for screens smaller than 768px */
+@media screen and (max-width: 768px) {
+
+    /* NAVBAR */
+    .navbar {
+        flex-direction: column;
+        align-items: center;
+        border-bottom: none;
+        padding-bottom: 85px; /* Increase padding to increase the height */
+    }
+
+    .navlogo {
+        margin-bottom: 10px; /* Add space between logo and menu */
+        margin-right: 20px;
+    }
+
+    .navbar ul {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .navbar ul li a {
+        margin-right: 0; /* Remove right margin for menu items */
+        padding: 10px; /* Padding for menu items */
+    }
+
+    /* HEADER */
+    header {
+        padding: 20px; 
+    }
+}
+
+
+/* FOOTER */
+#footerbar {
+    background-color: var(--primary-color);
+	max-height: 30vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 35px;
+    width: 100%;
+    margin-bottom: 30px;
+    margin-left: 30px;
+}
+
+.email-icon{
+    width: 45px;
+    height: 35px;
+}
+.instagram-icon {
+    width: 70spx;
+    height: 40px;
+}
+.gitlab-icon{
+    width: 40px;
+    height: 40px;
+}
