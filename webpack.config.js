@@ -21,47 +21,6 @@ const isProduction = process.env.NODE_ENV == 'production';
 // Determine how styles should be handled based on the build mode
 const stylesHandler = isProduction ? MiniCssExtractPlugin.loader : 'style-loader';
 
-// This config is only used for #22, when merged into `main` use the config that is commented out
-/* const config = {
-    entry: './src/web/src/script.js',
-    output: {
-        path: path.resolve(__dirname, 'dist'),
-        filename: '[name].js',
-    },
-    devServer: {
-        open: true,
-        host: 'localhost',
-    },
-    plugins: [
-        new HtmlWebpackPlugin({
-            template: './src/web/src/index.html',
-        }),
-        new webpack.DefinePlugin({
-            'process.env.OPENCAGE_API_KEY': JSON.stringify(process.env.OPENCAGE_API_KEY),
-        }),
-        new webpack.DefinePlugin({
-            'process.env.OPENCAGE_API_KEY': JSON.stringify(process.env.WEATHER_API_KEY),
-        })
-    ],
-    module: {
-        rules: [
-            {
-                test: /\.(js|jsx)$/i,
-                loader: 'babel-loader',
-            },
-            {
-                test: /\.css$/i,
-                use: [stylesHandler, 'css-loader', 'postcss-loader'],
-            },
-            {
-                test: /\.(eot|svg|ttf|woff|woff2|png|jpg|gif)$/i,
-                type: 'asset',
-            },
-        ],
-    },
-}; */
-//
-
 // When merged to main use this config instead:
 // Make sure that all paths are correct, I recommend that we use this standard instead of the mixed directory names we have now
 /**
@@ -103,21 +62,12 @@ const config = {
         home: './src/web/src/home/index.js',
         about: './src/web/src/about/about.js',
         styleCast: './src/web/src/styleCast/styleCast.js',
-        chillyCast: './src/web/src/chillyCast/chillyCast.js',
-        summerCast: './src/web/src/summerCast/summerCast.js',
-        winterCast: './src/web/src/winterCast/winterCast.js'
+        weatherCast: './src/web/src/styleCast/weatherCast/weatherCast.js',
 
     },
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: '[name].js', // automatically use keys from the `entry` object
-        // Instead of doing it like this:
-        // filename: 'home.js',
-        // filename: 'about.js',
-        // filename: 'styleCast.js',
-        // filename: 'chillyCast.js',
-        // filename: 'summerCast.js',
-        // filename: 'winterCast.js',
     },
     devServer: {
         open: true,
