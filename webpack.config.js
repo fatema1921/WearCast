@@ -22,7 +22,7 @@ const isProduction = process.env.NODE_ENV == 'production';
 const stylesHandler = isProduction ? MiniCssExtractPlugin.loader : 'style-loader';
 
 // This config is only used for #22, when merged into `main` use the config that is commented out
-const config = {
+/* const config = {
     entry: './src/web/src/script.js',
     output: {
         path: path.resolve(__dirname, 'dist'),
@@ -59,7 +59,7 @@ const config = {
             },
         ],
     },
-};
+}; */
 //
 
 // When merged to main use this config instead:
@@ -98,7 +98,7 @@ const config = {
  *      - Asset files (images, fonts) are handled by specifying the type as 'asset', allowing Webpack to decide whether to
  *        inline or emit it as a separate file
  */
-/* const config = {
+const config = {
     entry: {
         home: './src/web/src/home/index.js',
         about: './src/web/src/about/about.js',
@@ -140,17 +140,17 @@ const config = {
             chunks: ['styleCast']
         }),
         new HtmlWebpackPlugin({
-            template: './src/web/src/chillyCast/chillyCast.html',
+            template: './src/web/src/styleCast/weatherCast/chillyCast/chillyCast.html',
             filename: 'chillyCast.html',
             chunks: ['chillyCast']
         }),
         new HtmlWebpackPlugin({
-            template: './src/web/src/summerCast/summerCast.html',
+            template: './src/web/src/styleCast/weatherCast/summerCast/summerCast.html',
             filename: 'summerCast.html',
             chunks: ['summerCast']
         }),
         new HtmlWebpackPlugin({
-            template: './src/web/src/winterCast/winterCast.html',
+            template: './src/web/src/styleCast/weatherCast/winterCast/winterCast.html',
             filename: 'winterCast.html',
             chunks: ['winterCast']
         }),
@@ -178,7 +178,7 @@ const config = {
             },
         ],
     },
-} */
+}
 
 /**
  * Export the configuration as a function to dynamically choose the mode based on the environment (configures and returns the Webpack configuration)
