@@ -1,0 +1,66 @@
+# test and deploy might get added to stages further on
+
+# List of stages for jobs, and their order of execution
+stages:
+  - build
+  # - test
+  # - deploy
+
+# build for arduino
+build_arduino:
+    stage: build
+    # Use Docker image to get the latest (stable) version of Ubuntu which is common in CI configuration
+    tags:
+    - docker
+    image: ubuntu:latest
+    # runs before the main script
+    before_script:
+        # update package lists for ubunto image, installing wget (utility to download from web)
+        - apt-get update && apt-get install -y wget
+        # downoad the Arduino CLI tool
+        - wget https://downloads.arduino.cc/arduino-cli/arduino-cli_latest_Linux_64bit.tar.gz
+        # extract from the archive
+        - tar -xvf arduino-cli_latest_Linux_64bit.tar.gz
+        # move to /usr/local/bin to make it available system-wide
+        - mv arduino-cli /usr/local/bin/arduino-cli
+        # initialize default config for Arduino CLI
+        - arduino-cli config init
+        - printf "board_manager:\n  additional_urls:\n    - https://files.seeedstudio.com/arduino/package_seeeduino_boards_index.json\n" > .arduino-cli.yaml
+        # update list of available boards and libraries
+        - arduino-cli core update-index --config-file .arduino-cli.yaml
+        # install code for our board
+        - arduino-cli core install Seeeduino:samd --config-file .arduino-cli.yaml
+        # install libraries
+        - arduino-cli lib install "Adafruit NeoPixel"
+        - arduino-cli lib install "PubSubClient@2.8"
+        - arduino-cli lib install "Seeed Arduino rpcWiFi@1.0.7"
+        - arduino-cli lib install "Grove Temperature And Humidity Sensor"
+        - arduino-cli lib install "TFT_eSPI"
+    script:
+        # print for clarity
+        - echo "Compiling Arduino code for the Wio Terminal..."
+        # compile sketch, specifying board (what config to use) and relative path to the sketch
+        - arduino-cli compile --fqbn Seeeduino:samd:seeed_wio_terminal src/wio/wearcast/wearcast.ino
+
+# build for web
+build_web:
+    stage: build
+    # use Docker to get the latest Node.js
+    tags:
+        - docker
+    image: node:latest
+    script:
+        # print for clarity
+        - echo "Installing project dependencies..."
+        # install all dependencies specified in `package.json`
+        - npm install
+        # print for clarity
+        - echo "Running Webpack build..."
+        # runs the production build script from `package.json` using Webpack to bundle the application
+        # configured to use the `production` mode
+        - npm run build:prod
+    # artifacts will be saved and can be used in deployment stage
+    artifacts:
+        paths:
+            # point to directory which will contain all files needed for deployment
+            - dist/
