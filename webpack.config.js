@@ -150,7 +150,7 @@ module.exports = () => {
         );
         config.plugins.push(
             new webpack.DefinePlugin({
-                'process.env.OPENCAGE_API_KEY' : JSON.stringify(process.env.WEATHER_API_KEY),
+                'process.env.WEATHER_API_KEY' : JSON.stringify(process.env.WEATHER_API_KEY),
             })
         );
     } else {
@@ -162,7 +162,7 @@ module.exports = () => {
         );
         config.plugins.push(
             new webpack.DefinePlugin({
-                'process.env.OPENCAGE_API_KEY' : JSON.stringify(process.env.WEATHER_API_KEY),
+                'process.env.WEATHER_API_KEY' : JSON.stringify(process.env.WEATHER_API_KEY),
             })
         );
     }
