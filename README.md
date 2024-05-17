@@ -43,17 +43,23 @@ By undertaking this project as a part of the System Development course at Univer
     * [Temperature & Humidity Sensor | Seeed Studio Wiki](https://www.seeedstudio.com/Grove-Temperature-Humidity-Sensor-DHT11.html) (only used to measure humidity)
     * [Temperature Sensor | Seeed Studio Wiki](https://www.seeedstudio.com/Grove-Temperature-Sensor.html)
     * [RGB LED Stick | Seeed Studio Wiki](https://www.seeedstudio.com/Grove-RGB-LED-Stick-10-WS2813-Mini.html)
+3. Cables to connect sensors to Wio Terminal
+    * [Universal 4 Pin Buckled 20cm Cable](https://www.seeedstudio.com/Grove-Universal-4-Pin-Buckled-20cm-Cable-5-PCs-pack.html)
+    * [4 pin Male Jumper to Grove 4 pin Conversion Cable](https://www.seeedstudio.com/Grove-4-pin-Male-Jumper-to-Grove-4-pin-Conversion-Cable-5-PCs-per-Pack.html)
 
 ### Required Software Components:
 (Should be installed prior to the installation process.)
-1. [Arduino IDE](https://www.arduino.cc/en/software)
-2. Wio Terminal [Board Library](https://files.seeedstudio.com/arduino/package_seeeduino_boards_index.json)
-3. Collection of Arduino libraries:
-    * rpcWiFi | seeed-studio/Seeed Arduino rpcWiFi@^1.0.7
+
+1. [Git](https://git-scm.com/downloads) (to clone the repository)
+2. [Node.js](https://nodejs.org/en) + [npm](https://www.w3schools.com/nodejs/nodejs_npm.asp) (to install dependencies for the web-based application)
+3. [Arduino IDE](https://www.arduino.cc/en/software)
+4. Wio Terminal [Board Library](https://files.seeedstudio.com/arduino/package_seeeduino_boards_index.json)
+5. Collection of Arduino libraries:
+    * [rpcWiFi](https://github.com/Seeed-Studio/Seeed_Arduino_rpcWiFi) | seeed-studio/Seeed Arduino rpcWiFi@^1.0.7
     * [PubSubClient](https://github.com/knolleary/pubsubclient) | knolleary/PubSubClient@^2.8
 	* [TFT_eSPI](https://github.com/Bodmer/TFT_eSPI) | bodmer/TFT_eSPI@^2.5.43
-    * .
-    * -- this list will be added to/updated further during Sprint 2 v1.5, v2.0
+    * [Grove Temperature and Humidity sensor](https://github.com/Seeed-Studio/Grove_Temperature_And_Humidity_Sensor) | seeed-studio/Grove_Temperature_And_Humidity_Sensor@^2.0.2
+    * [Adafruit NeoPixel](https://github.com/adafruit/Adafruit_NeoPixel) | adafruit/Adafruit_NeoPixel@^1.12.2
 
 ## Installation
 
