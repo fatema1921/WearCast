@@ -17,7 +17,7 @@
     "webpack-dev-server": "^5.0.4"
   },
   "version": "1.0.0",
-  "description": "WearCast project",
+  "description": "WearCast project using Webpack for build management",
   "name": "wearcast-project",
   "scripts": {
     "build": "webpack --mode=production --node-env=production",
