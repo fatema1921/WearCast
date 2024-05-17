@@ -143,28 +143,16 @@ module.exports = () => {
     if (isProduction) {
         config.mode = 'production';
         config.plugins.push(new MiniCssExtractPlugin());
-        config.plugins.push(
-            new webpack.DefinePlugin({
-                'process.env.OPENCAGE_API_KEY' : JSON.stringify(process.env.OPENCAGE_API_KEY),
-            })
-        );
-        config.plugins.push(
-            new webpack.DefinePlugin({
-                'process.env.WEATHER_API_KEY' : JSON.stringify(process.env.WEATHER_API_KEY),
-            })
-        );
     } else {
         config.mode = 'development';
-        config.plugins.push(
-            new webpack.DefinePlugin({
-                'process.env.OPENCAGE_API_KEY' : JSON.stringify(process.env.OPENCAGE_API_KEY),
-            })
-        );
-        config.plugins.push(
-            new webpack.DefinePlugin({
-                'process.env.WEATHER_API_KEY' : JSON.stringify(process.env.WEATHER_API_KEY),
-            })
-        );
     }
+
+    config.plugins.push(
+        new webpack.DefinePlugin({
+            'process.env.OPENCAGE_API_KEY' : JSON.stringify(process.env.OPENCAGE_API_KEY),
+            'process.env.WEATHER_API_KEY' : JSON.stringify(process.env.WEATHER_API_KEY),
+        })
+    );
+
     return config;
 };
