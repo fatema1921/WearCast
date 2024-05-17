@@ -146,18 +146,18 @@ function getMotivationalRecommendation(tempValue, humidValue) {
                     highHumidityMessage: "Chilly and damp days like these calls for a celebration of layers. We suggest that you wear a dark water-resistant jacket with a wool sweater in color of your choice and jeans."},
         {max: 5,    lowHumidityMessage: "This chilly weather is a perfect canvas for a fashion statement! Layer up by wearing a light-weight jacket in a neutral color with a light sweater and jeans.",
                     highHumidityMessage: "Cool and moist, just the right weather for a light-color windbreaker over a thermal base layer and chinos. It's certainly a great day to reflect on your inner brightness, even under grey skies."},
-        {max: 10,   lowHumidityMessage: "Todays mild weather is perfect for you to be as chic as you are beautiful, wearing a windbreaker or a bomber in a bright color with a long-sleeved shirt and jeans.",
+        {max: 10,   lowHumidityMessage: "Todays mild weather is perfect for you to be as chic as you are beautiful, wearing a windbreaker or a bomber in a bright color with a flannel/light wool shirt and jeans.",
                     highHumidityMessage: "It might rain today, see every raindrop as a reminder that even the skies cleanse themselves. Let today wash away your doubts with a light and bright rain jacket over a t-shirt and chinos."},
         {max: 15,   lowHumidityMessage: "Embrace the crisp air with style, consider wearing a light-color thin sweater over a t-shirt and chinos to keep you warm and fashionable throughout the day.",
-                    highHumidityMessage: "Today brings pleasant temperatures where a breathable long-sleeved shirt and cotton-blend pants would be a great outfit option. Even though a light raincoat is optional, your glowing presence is essential!"},
+                    highHumidityMessage: "Today brings pleasant temperatures where a breathable long-sleeved flannel shirt and cotton-blend pants would be a great outfit option. Even though a light raincoat is optional, your glowing presence is essential!"},
         {max: 20,   lowHumidityMessage: "Today is a beautiful day for you to shine as bright as the sun in a light and bright long-sleeved shirt and jeans!",
-                    highHumidityMessage: "Pleasant yet humid, the perfect setting for breathable fabrics such as cotton t-shirt and linen pants, offering both comfort and style."},
-        {max: 25,   lowHumidityMessage: "Warm days like these offer a perfect moment to glow and grow! Consider wearing a light t-shirt and chinos as you shine in the sun!",
-                    highHumidityMessage: "Warm and sticky, but every moment is a chance to shine in every light which you'll certainly do in a loose-fitting, breathable clothing like a linen shirt and shorts!"},
+                    highHumidityMessage: "Pleasant yet humid, the perfect setting for breathable fabrics such as chambray shirt and linen pants, offering both comfort and style."},
+        {max: 25,   lowHumidityMessage: "Warm days like these offer a perfect moment to glow and grow! Consider wearing a light chambray/seersucker t-shirt and chinos as you shine in the sun!",
+                    highHumidityMessage: "Warm and sticky, but every moment is a chance to shine in every light which you'll certainly do in a loose-fitting, breathable clothing like a cotton t-shirt and linen shorts!"},
         {max: 30,   lowHumidityMessage: "Let your outfit reflect the hot temperature outside, wearing a light loose-fitting summer dress or cotton t-shirt and shorts!",
-                    highHumidityMessage: "Stay cool in the heat with a outfit like a breathable top and linen shorts, managing the heat while maintaining your style!"},
-        {max: Infinity,     lowHumidityMessage: "So HOT! Not only the weather but you in a light, airy dress or skirt!",
-                            highHumidityMessage: "Extremely hot and humid, consider wearing a very light tank top and shorts and let today amplify your radiance!"}
+                    highHumidityMessage: "Stay cool in the heat with a outfit like a breathable chambray/cotton top and linen shorts, managing the heat while maintaining your style!"},
+        {max: Infinity,     lowHumidityMessage: "So HOT! Not only the weather but you in a light-color cotton dress or rayon skirt!",
+                            highHumidityMessage: "Extremely hot and humid, consider wearing a very light cotton/rayon tank top and linen shorts. Let today amplify your radiance!"}
     ]
 
     // Find temperature range based on current temperature
