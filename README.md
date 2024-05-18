@@ -6,6 +6,7 @@
        - [Table of Contents](#table-of-contents)
    - [Background & Description](#background--description)
        - [Features](#features)
+    - [Purpose and Benefits](#purpose--benefits)
    - [Dependencies & Requirements](#dependencies--requirements)
         - [Required Hardware Components](#required-hardware-components)
         - [Required Software Components](#required-software-components)
@@ -16,6 +17,7 @@
    - [Usage](#usage)
         - [Wio Terminal | Usage](#wio-terminal--usage)
         - [Web-based Application | Local Usage](#web-based-application--local-usage)
+    - [System Design](#system-design)
    - [Authors and acknowledgment](#authors-and-acknowledgment)
    - [License](#license)
 
@@ -28,12 +30,22 @@ By undertaking this project as a part of the System Development course at Univer
 
 ### Features
 * **Real-time Weather Data Integration:** WearCast gathers continuous updates on temperature and humidity to provide users with accurate weather information.
+
 * **Visual Temperature Representation:** The system is connected to a LED sensor that changes color to visually represent the temperature - red for warmth and blue for coolness.
+
 * **Tailored Clothing Recommendations:** WearCast generates outfit suggestions, tailored to the gathered weather data.
+
 * **Empowering Messages:** WearCast motivates users with empowering messages, encouraging them to embrace any weather with confidence and style.
+
 * **Interactive Web Interface:** Featuring a user-friendly interface, WearCast serves as a centralized hub for accessing weather data and outfit recommendations. 
+
 * **Inspirational Fashion Galleries:** WearCast offers climate-based galleries, allowing the user to explore styles. 
 
+## Purpose & Benefits
+
+The primary purpose of WearCast is to simplify the daily decision of what to wear by providing precise clothing recommendations based on real-time weather data. As weather conditions can change rapidly, WearCast ensures you are always dressed appropriately, enhancing comfort and convenience. By leveraging sensors and a web interface, WearCast transforms raw weather data into actionable advice, promoting not only practicality but also confidence and style in your daily attire.
+
+The benefits of WearCast include personalized clothing recommendations based on real-time weather data, enhanced comfort and convenience, visual temperature indicators, motivational messages, and a user-friendly web interface that integrates practical and educational elements.
 
 ## Dependencies & Requirements
 ### Required Hardware Components:
@@ -95,6 +107,8 @@ By undertaking this project as a part of the System Development course at Univer
 
 
 ### Web-based Application | Local Usage
+
+## System Design
 
 
 ## Authors and acknowledgment
