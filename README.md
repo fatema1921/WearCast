@@ -12,7 +12,6 @@
         - [Required Software Components](#required-software-components)
    - [Installation](#installation)
        - [Wio Terminal | Installation Process](#wio-terminal--installation-process)
-            - [Update the Wireless Core Firmware](#update-the-wireless-core-firmware)
        - [Web-based Application | Local Installation](#web-based-application--local-installation)
    - [Usage](#usage)
         - [Wio Terminal | Usage](#wio-terminal--usage)
@@ -76,13 +75,55 @@ The benefits of WearCast include personalized clothing recommendations based on 
 ## Installation
 
 ### Wio Terminal | Installation Process
-**1. Install the Required Board Library:**
+
+**1. Update the Wireless Core Firmware:**
+
+To enable wireless connectivity on the Wio Terminal, you need to update the firmware for the Realtek RTL8720 wireless core. Following the steps below will help you perform these updates.
+
+- **Step 1: Erase the Initial Factory Firmware**
+
+    NOTE: You only need to erase the factory firmware for the very first time. Afterwards, you can flash new firmware to overwrite the existing firmware
+
+    Before using the Wio Terminal for the first time, you need to erase the initial RTL8720 firmware and flash the latest version. This requires using the `ambd_flash_tool`.
+
+    1. Download the Flashing Tool:
+    
+        - Open Terminal and execute the following commands:
+
+                git clone https://github.com/Seeed-Studio/ambd_flash_tool
+            
+                cd ambd_flash_tool
+        
+    2. Connect Wio Terminal:
+
+        - Connect your Wio Terminal to your computer and turn it on.
+
+    3. Erase the Initial Firmware:
+
+        - Run the following command to erase the existing firmware:
+
+                python3 ambd_flash_tool.py erase
+
+            NOTE: Ensure you have Python 3 installed. The initial erase process may take a while, so please be patient.
+
+- **Step 2: Flash the Latest Firmware**
+
+    1. Flash the Firmware:
+
+        - While inside the ambd_flash_tool directory, execute the following command to flash the latest firmware:
+
+                python3 ambd_flash_tool.py flash
+
+By following these steps, you will successfully update the wireless core firmware on your Wio Terminal, enabling wireless connectivity with the latest features and stability improvements.
+
+**2. Install the Required Board Library:**
+
 * Manually install the required [board library [4]](#required-software-components) via the  `Arduino IDE`.
 More information and the steps nessecary to install the library can be found in the [Getting Started](https://wiki.seeedstudio.com/Wio-Terminal-Getting-Started/#getting-started) guide from Seeed Studio.
 
     - NOTE THAT: If you are not able to find the `Additional Boards Manager URLs` in `File > Preferences` as described in the guide try to access it through the menu bar `Arduino IDE > Settings` then you should be able to see `Additional Boards Manager URLs`. Paste the link and click on `OK` (it might take a while before the `Seeeduino Wio Terminal` shows up in your list of boards).
 
-**2. Install the Required Libraries:**
+**3. Install the Required Libraries:**
 
 - Manually install the required [libraries [5]](#required-software-components) via the `Arduino IDE` by following the steps below:
 
@@ -91,15 +132,11 @@ More information and the steps nessecary to install the library can be found in 
         2. Install the [required libraries](#required-software-components) by searching for the library name in the search bar, select the latest version and click `install`.
 
     - For libraries that require additional source
-        1. Download the library as a `.ZIP` file from the GitHub repository. You can typically find the download option under the "Code" button on the library's GitHub page.
+        1. Download the library as a `.ZIP` file from the GitHub repository. You can typically find the download option under the  `Code ` button on the library's GitHub page.
         2. Open `Arduino IDE` and navigate to `Sketch > Include Libraries > Add .ZIP Library...`
         3. Select `.ZIP > Open`
 
             - NOTE THAT: it is required to be a __.ZIP__ file, if your folder is unzipped you have to compress it first.
-
-
-### Update the Wireless Core Firmware
-
 
 ### Web-based Application | Local Installation
 
