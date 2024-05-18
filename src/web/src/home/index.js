@@ -4,7 +4,7 @@ window.onload=function() {
     getWeather();
 }
 
-const { TEMPERATURE_TOPIC, HUMIDITY_TOPIC } = require('./mqtt_config'); // Import MQTT topic names for temperature and humidity from the configuration file.
+import { TEMPERATURE_TOPIC, HUMIDITY_TOPIC } from './mqtt_config.js'; // Import MQTT topic names for temperature and humidity from the configuration file.
 
 
 /* Function to call the weather API and update the weather icon */
