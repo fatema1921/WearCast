@@ -175,6 +175,11 @@ These commands will prepare your local environment to run the WearCast web appli
 
 ## System Design
 
+Below is the system architecture diagram for WearCast, which illustrates the overall structure and interaction of the components within the system. WearCast comprises two main subsystems: the Wio Terminal and the User Interface. 
+
+The Wio Terminal subsystem includes sensors for temperature and humidity, a microcontroller, and an LED indicator. These components work together to gather and display weather data, which is then published to the MQTT Broker. The User Interface subsystem subscribes to this data, utilizing components like the WeatherDataAnalyzer, WeatherDataDisplayer, ClothingRecommender, and AdditionalRecommender to process and present weather information and clothing recommendations to the user. 
+
+![System Architecture Diagram](docs/img/Software%20Architecture%20Diagram-SystemDesign.jpg)
 
 ## Authors and acknowledgment
 * Elin Forssell (@elifor)
