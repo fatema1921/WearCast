@@ -156,10 +156,10 @@ WearCast uses Node.js and npm (the Node Package Manager) to install the necessar
 
 4. Configure API Keys:
 
-    - Create a `.env` file in the repository. Add the following contents to the `.env` file, replacing <API_KEY> with your actual API key values:
+    - Create a `.env` file in the repository. Add the following contents to the `.env` file, replacing "<API_KEY>" with your actual API key values:
 
-            OPENCAGE_API_KEY= "<API_KEY>"
-            WEATHER_API_KEY= "<API_KEY>"
+            OPENCAGE_API_KEY="<API_KEY>"
+            WEATHER_API_KEY="<API_KEY>"
 
     - You can obtain these API keys from the respective developer portals. For example, OpenWeatherMap API keys can be obtained from the [OpenWeatherMap website](https://openweathermap.org/appid), and OpenCage API keys can be obtained from the [OpenCage Geocoding API website](https://opencagedata.com/api).
 
@@ -186,7 +186,6 @@ These commands will prepare your local environment to run the WearCast web appli
 
 ## License
 
-
-
+WearCast is licensed under the MIT License. Refer to the [LICENSE](https://git.chalmers.se/courses/dit113/2024/group-17/WearCast/-/blob/main/LICENSE?ref_type=heads) file for more information.
 
 
