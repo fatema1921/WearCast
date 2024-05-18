@@ -22,7 +22,7 @@
    - [License](#license)
 
 ## Background & Description
-We've all been there: staring at the closet, struggling to figure out what to wear as the weather changes outside. WearCast is the answer to your problem! 
+We've all been there: staring at the closet, struggling to figure out what to wear as the weather changes outside. **WearCast** is the answer to your problem! 
 
 WearCast is a revolutionary two-tier solution designed to provide tailored clothing recommendations based on real-time weather data. Utilizing sensors integrated with a Wio Terminal, WearCast continuously gathers raw data on key weather parameters, including temperature and humidity. This data is processed and transmitted to a web interface, where it is analysed and displayed alongside with tailored clothing suggestions and empowering messages.
 
@@ -76,23 +76,27 @@ The benefits of WearCast include personalized clothing recommendations based on 
 ## Installation
 
 ### Wio Terminal | Installation Process
-- Manually install the required [board library [2]](#required-software-components) via the  `Arduino IDE`.
-    More information and the steps nessecary to install the library can be found in the [Getting Started](https://wiki.seeedstudio.com/Wio-Terminal-Getting-Started/#getting-started) guide from Seeed Studio.
+**1. Install the Required Board Library:**
+* Manually install the required [board library [4]](#required-software-components) via the  `Arduino IDE`.
+More information and the steps nessecary to install the library can be found in the [Getting Started](https://wiki.seeedstudio.com/Wio-Terminal-Getting-Started/#getting-started) guide from Seeed Studio.
 
-    NOTE THAT: If you are not able to find the `Additional Boards Manager URLs` in `File > Preferences` as described in the guide try to access it through the menu bar `Arduino IDE > Settings` then you should be able to see `Additional Boards Manager URLs`. Paste the link and click on `OK` (it might take a while before the `Seeeduino Wio Terminal` shows up in your list of boards).
+    - NOTE THAT: If you are not able to find the `Additional Boards Manager URLs` in `File > Preferences` as described in the guide try to access it through the menu bar `Arduino IDE > Settings` then you should be able to see `Additional Boards Manager URLs`. Paste the link and click on `OK` (it might take a while before the `Seeeduino Wio Terminal` shows up in your list of boards).
 
+**2. Install the Required Libraries:**
 
-- Manually install the required [libraries [3]](#required-software-components) via the `Arduino IDE` by following the steps below
+- Manually install the required [libraries [5]](#required-software-components) via the `Arduino IDE` by following the steps below:
 
     - For libraries that can be installed directly through the `Arduino IDE`:
         1. Open and navigate to `Tools > Manage Libraries...`
         2. Install the [required libraries](#required-software-components) by searching for the library name in the search bar, select the latest version and click `install`.
 
     - For libraries that require additional source
-        1. Open `Arduino IDE` and navigate to `Sketch > Include Libraries > Add .ZIP Library...`
-        2. Select `.ZIP > Open`
+        1. Download the library as a `.ZIP` file from the GitHub repository. You can typically find the download option under the "Code" button on the library's GitHub page.
+        2. Open `Arduino IDE` and navigate to `Sketch > Include Libraries > Add .ZIP Library...`
+        3. Select `.ZIP > Open`
 
-        NOTE THAT: it is required to be a __.ZIP__ file, if your folder is unzipped you have to compress it first.
+            - NOTE THAT: it is required to be a __.ZIP__ file, if your folder is unzipped you have to compress it first.
+
 
 ### Update the Wireless Core Firmware
 
