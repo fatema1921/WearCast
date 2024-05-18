@@ -1,10 +1,9 @@
-//LED WORKING CODE 
 /*
- - Note: The code for reading the humidity from the temperature and humidity sensor has been adapted from "Smart_Garden.ino" found in the Wio_Terminal_Classroom_Arduino GitHub repository by lakshanthad:
- - Link: https://github.com/lakshanthad/Wio_Terminal_Classroom_Arduino/blob/main/Classroom%2012/Smart_Garden/Smart_Garden.ino
+ - NOTE: The code for reading the humidity from the temperature and humidity sensor has been adapted from "Smart_Garden.ino" found in the Wio_Terminal_Classroom_Arduino GitHub repository by lakshanthad:
+ - LINK: https://github.com/lakshanthad/Wio_Terminal_Classroom_Arduino/blob/main/Classroom%2012/Smart_Garden/Smart_Garden.ino
 
- - Note: The code for reading from the temperature sensor has been adapted from Seeed Studio's User Manual for the Grove Temperature Sensor:
- - Link: https://www.mouser.com/datasheet/2/744/Seeed_101020015-1217523.pdf
+ - NOTE: The code for reading from the temperature sensor has been adapted from Seeed Studio's User Manual for the Grove Temperature Sensor:
+ - LINK: https://www.mouser.com/datasheet/2/744/Seeed_101020015-1217523.pdf
  */
 
 /* Import header/library files */
@@ -15,46 +14,37 @@
 #include "TFT_eSPI.h" // TFT LCD library for Wio Terminal
 #include "rpcWiFi.h" // WiFi library for Wio Terminal
 #include <PubSubClient.h> // MQTT client library for Wio Terminal
+#include "network_info.h"
+#include "mqtt_info.h"
 
 #ifdef AVR
   #include <avr/power.h>
 #endif
 
-// #include <ArduinoJson.h> // Include ArduinoJson library
+/* Pin and number of lights on LED stick */
 #define LED_PIN    A2
 #define LED_COUNT  10
 
-Adafruit_NeoPixel pixels(LED_COUNT, LED_PIN, NEO_GRB + NEO_KHZ800);
+/* Delay value */
 int delayval = 500;
+
 /* Constant variables for temperature */
-const int pinTempSensor = A0; // Analog pin A0 connected to Grove - Temperature Sensor
+const int pinTempSensor = A0; // Analog pin A0 connected to the sensor
 const int B_VALUE = 4275; // B value of the temperature sensor's thermistor
 
 /* Definitions for humidity sensor */
 #define DHTPIN PIN_WIRE_SCL //Use I2C port as Digital Port for Grove - Temperature and Humidity sensor
 #define DHTTYPE DHT11 //Define DHT sensor type 
 
-/* Constant variables for WiFi */
-const char* ssid = "Elins iPhone"; // WiFi SSID (Name)
-const char* password = "yH59!Gum"; // WiFi Password
-
-/* Constant variable for MQTT */
-const char* mqtt_server = "broker.emqx.io"; // MQTT Broker URL
-const char* temperature_topic = "Temperature"; // Topic for temperature
-const char* humidity_topic = "Humidity"; // Topic for humidity
-
 /* Boolean for connecting to broker the first time*/
 bool firstConnect = true;
 
 /* Initializations */
+Adafruit_NeoPixel pixels(LED_COUNT, LED_PIN, NEO_GRB + NEO_KHZ800);
 DHT dht(DHTPIN, DHTTYPE); //Initializing DHT sensor
-
 TFT_eSPI tft; // TFT_eSPI object for Wio Terminal's TFT screen
-TFT_eSprite spr = TFT_eSprite(&tft); // Initializing sprite buffer for graphical operations
-
 WiFiClient wioClient; // WiFi client object for Wio Terminal
 PubSubClient client(wioClient); // MQTT client object for Wio Terminal
-
 
 /**
  * @brief Function to set up and establish a connection to WiFi network.
@@ -164,7 +154,6 @@ void setup() {
   
   pixels.setBrightness(40);
   pixels.begin();
-  // spr.createSprite(TFT_HEIGHT,TFT_WIDTH); // Create buffer (enabling the composition and manipulation of graphical elements befor rendering them on the TFT screen)
 
   Serial.begin(115200); // Initialize serial communication at 115200 baud rate; for communication with WiFi module
   setup_wifi(); // Call function to set up WiFi connection
