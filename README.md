@@ -146,9 +146,9 @@ WearCast uses Node.js and npm (the Node Package Manager) to install the necessar
 
         git clone <repository-url>
 
-2. Navigate to the Web Application Source:
+2. Navigate to the Web Application:
 
-        cd src/web/src
+        cd WearCast
 
 3. Install Required Dependencies:
 
