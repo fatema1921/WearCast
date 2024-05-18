@@ -6,3 +6,5 @@
 node_modules/
 /dist
 .env
+mqtt_config.js
+

@@ -4,6 +4,9 @@ window.onload=function() {
     getWeather();
 }
 
+const { TEMPERATURE_TOPIC, HUMIDITY_TOPIC } = require('./mqtt_config'); // Import MQTT topic names for temperature and humidity from the configuration file.
+
+
 /* Function to call the weather API and update the weather icon */
 const getWeather = async () => {
     try {
@@ -65,8 +68,8 @@ client.connect({
 function onConnect() {
     console.log("Connected to MQTT broker");
     // Subscribe to a topic
-    client.subscribe("Temperature");
-    client.subscribe("Humidity");
+    client.subscribe(TEMPERATURE_TOPIC);
+    client.subscribe(HUMIDITY_TOPIC);
 }
 
 // Called when the client loses its connection
@@ -87,10 +90,10 @@ function onMessageArrived(message) {
     var sensorValue = message.payloadString;
     var tempValue;
     var humidValue;
-    if (topic === "Temperature") {
+    if (topic === TEMPERATURE_TOPIC) {
         tempValue = parseFloat(sensorValue);
         document.getElementById("temperatureParagraph").textContent = sensorValue + " C";
-    } else if (topic === "Humidity") {
+    } else if (topic === HUMIDITY_TOPIC) {
         humidValue = parseFloat(sensorValue);
         document.getElementById("humidityParagraph").textContent = sensorValue + " % RH";
     }
