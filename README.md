@@ -140,6 +140,21 @@ More information and the steps nessecary to install the library can be found in 
 
 ### Web-based Application | Local Installation
 
+WearCast uses Node.js and npm (the Node Package Manager) to install the necessary dependencies for the web-based application. Follow these steps to set up the dependencies:
+
+1. Clone the Repository:
+
+        git clone <repository-url>
+
+2. Navigate to the Web Application Source:
+
+        cd src/web
+
+3. Install Required Dependencies:
+
+        npm install
+
+These commands will prepare your local environment to run the WearCast web application. Make sure you have Node.js and npm installed on your system before proceeding.
 
 ## Usage
 
