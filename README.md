@@ -148,11 +148,20 @@ WearCast uses Node.js and npm (the Node Package Manager) to install the necessar
 
 2. Navigate to the Web Application Source:
 
-        cd src/web
+        cd src/web/src
 
 3. Install Required Dependencies:
 
         npm install
+
+4. Configure API Keys:
+
+    - Create a `.env` file in the repository. Add the following contents to the `.env` file, replacing <API_KEY> with your actual API key values:
+
+            OPENCAGE_API_KEY= "<API_KEY>"
+            WEATHER_API_KEY= "<API_KEY>"
+
+    - You can obtain these API keys from the respective developer portals. For example, OpenWeatherMap API keys can be obtained from the [OpenWeatherMap website](https://openweathermap.org/appid), and OpenCage API keys can be obtained from the [OpenCage Geocoding API website](https://opencagedata.com/api).
 
 These commands will prepare your local environment to run the WearCast web application. Make sure you have Node.js and npm installed on your system before proceeding.
 
