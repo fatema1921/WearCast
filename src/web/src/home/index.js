@@ -7,8 +7,8 @@ window.onload=function() {
 /* Function to call the weather API and update the weather icon */
 const getWeather = async () => {
     try {
-        //const response = await  fetch(`https://api.openweathermap.org/data/2.5/weather?q=gothenburg,se&APPID=${process.env.WEATHER_API_KEY}`);
-        const response = await  fetch(`https://api.openweathermap.org/data/2.5/weather?q=gothenburg,se&APPID=c95f90301395e8ce1cb18d910cd184cb`);
+        const response = await  fetch(`https://api.openweathermap.org/data/2.5/weather?q=gothenburg,se&APPID=${process.env.WEATHER_API_KEY}`);
+        //const response = await  fetch(`https://api.openweathermap.org/data/2.5/weather?q=gothenburg,se&APPID=c95f90301395e8ce1cb18d910cd184cb`);
         const data = await response.json();
         const weatherIconID = data.weather[0].icon;
 
@@ -34,8 +34,8 @@ function fetchLocation() {
         navigator.geolocation.getCurrentPosition(function(position) {
             const lat = position.coords.latitude;
             const lon = position.coords.longitude;
-            //fetch(`https://api.opencagedata.com/geocode/v1/json?q=${lat}+${lon}&key=${process.env.OPENCAGE_API_KEY}`)
-            fetch(`https://api.opencagedata.com/geocode/v1/json?q=${lat}+${lon}&key=3661a45eca484dfdb9eda5299d447535`)
+            fetch(`https://api.opencagedata.com/geocode/v1/json?q=${lat}+${lon}&key=${process.env.OPENCAGE_API_KEY}`)
+            //fetch(`https://api.opencagedata.com/geocode/v1/json?q=${lat}+${lon}&key=3661a45eca484dfdb9eda5299d447535`)
                 .then(response => response.json())
                 .then(data => {
                     const city = data.results[0].components.city;
@@ -146,7 +146,7 @@ function getMotivationalRecommendation(tempValue, humidValue) {
  * @param {*} tempValue current temperature in degrees Celsius
  * @param {*} humidValue current humidity level in percentage
  */
-function testMotivationalRecommendation(tempValue, humidValue) {
+/* function testMotivationalRecommendation(tempValue, humidValue) {
     document.getElementById("temperatureParagraph").textContent = "Temperature: " + tempValue + " C";
     document.getElementById("humidityParagraph").textContent = "Humidity: " + humidValue + " % RH";
     var motivationalRecommendation = getMotivationalRecommendation(tempValue, humidValue);
@@ -156,4 +156,4 @@ function testMotivationalRecommendation(tempValue, humidValue) {
 testMotivationalRecommendation(-17, 3);
 testMotivationalRecommendation(5, 75);
 testMotivationalRecommendation(29, 60);
-testMotivationalRecommendation(10, 15);
+testMotivationalRecommendation(10, 15); */
