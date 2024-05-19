@@ -11,7 +11,7 @@
 #define NETWORK_INFO_H
 
 // WiFi credentials
-const char* ssid = "Rawan iphone"; // WiFi SSID (Name)
-const char* password = "1!R2003n"; // WiFi Password
+const char* ssid = "your-wifi-name"; // WiFi SSID (Name)
+const char* password = "your-wifi-password"; // WiFi Password
 
 #endif // end of include guard

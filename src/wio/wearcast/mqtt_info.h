@@ -10,8 +10,8 @@
 #define MQTT_INFO_H
 
 // MQTT server information
-const char* mqtt_server = "broker.emqx.io"; // MQTT Broker URL
-const char* temperature_topic = "/WearCast/sensor/temperature"; // Topic for temperature
-const char* humidity_topic = "/WearCast/sensor/humidity"; // Topic for humidity
+const char* mqtt_server = "server"; // MQTT Broker URL
+const char* temperature_topic = "your-temperature-topic"; // Topic for temperature
+const char* humidity_topic = "your-humidity-topic"; // Topic for humidity
 
 #endif // end of include guard
