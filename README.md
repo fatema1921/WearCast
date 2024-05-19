@@ -17,7 +17,7 @@
         - [Wio Terminal | Usage](#wio-terminal--usage)
         - [Web-based Application | Local Usage](#web-based-application--local-usage)
     - [System Design](#system-design)
-   - [Authors and acknowledgment](#authors-and-acknowledgment)
+   - [Team & Contributions](#Team-&-Contributions)
    - [License](#license)
 
 ## Background & Description
@@ -181,13 +181,39 @@ The Wio Terminal subsystem includes sensors for temperature and humidity, a micr
 
 ![System Architecture Diagram](docs/img/Software%20Architecture%20Diagram-SystemDesign.jpg)
 
-## Authors and acknowledgment
-* Elin Forssell (@elifor)
-* Fatemeh Akbarifar (@fatakb)
-* Rawan Ahsan Abid (@rawanah)
-* Caszandra Alirani (@cazandra)
-* Reihaneh Abbasi (@abbasir)
+## Team & Contributions
 
+**Abbasi, Reihaneh** (@abbasir) <br>
+Backend development of the Wio terminal.<br>
+Interface development of the Homepage.<br>
+Creation of demo-video.<br>
+Finalization of Wiki.<br>
+
+**Ahsan Abid, Rawan** (@rawanah) <br>
+Backend and frontend development of the Wio terminal.<br>
+Interface development of the Homepage.<br>
+Implementation of automated build process.<br>
+Refactorization of code.<br>
+Finalization of README.<br>
+
+**Akbarifar, Fatemeh** (@fatakb) <br>
+Interface development of the About page.<br>
+Backend development of the Homepage.<br>
+Finalization of Wiki.<br>
+
+**Alirani, Cazandra** (@cazandra) <br>
+Frontend development of the Wio terminal. <br>
+Interface development of the StyleCast, SummerCast, ChillyCast and Wintercast pages.<br>
+Creation of demo-video.<br>
+Finalization of README.<br>
+
+**Forssell, Elin** (@elifor) <br>
+Backend and frontend development of the Wio terminal. <br>
+Creation of Wireframes. <br>
+Initialization of README and Wiki. <br>
+Interface development of the Homepage. <br>
+Implementation of automated build process and CI. <br>
+Refactorization of code. <br>
 
 ## License
 
