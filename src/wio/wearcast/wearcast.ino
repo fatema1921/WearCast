@@ -178,7 +178,6 @@ void loop() {
 
   /* Display header */
   tft.fillRect(0, 0, 320, 50, TFT_LIGHTGREY); // Draw header background rectangle
-  //tft.fillRectHGradient(0, 0, 320, 50, TFT_PURPLE, TFT_NAVY);
   tft.setTextColor(TFT_BLACK); // Set text color to black
   tft.setTextSize(3); // Set text size
   tft.setCursor(90, 15);
@@ -221,6 +220,7 @@ void loop() {
   tft.print("%RH");
 
   delay(50); // Delay to stabilize the display
+
   // Determine the color and number of pixels to light up based on temperature
   uint32_t color;
   int numPixels;
@@ -246,9 +246,7 @@ void loop() {
      pixels.show();
       delay(delayval);
      }
-
   }
-  // Update the LED display
 
   /* MQTT message publishing*/
   client.publish(temperature_topic, String(temperature).c_str()); // Publish temperature to broker
@@ -260,78 +258,3 @@ void loop() {
   delay(10000);
 
 }
-
-/** CODESNIPPETS - CURRENTLY NOT IN USE */
-  /*
-    client.setCallback(callback); // Set callback function for MQTT client
-
-  // #include <ArduinoJson.h> // Include ArduinoJson library
-
- * @brief Callback function for handling MQTT messages.
- *
- * This function is called whenever a message is recieved from the MQTT broker.
- * Printing the recieved topic and payload to the serial monitor, and displays the payload on the Wio Terminal.
- *
- * @param topic   : The topic of MQTT message
- * @param payload : The payload of MQTT message
- * @param length  : The length of payload
- *
-void callback(char* topic, byte* payload, unsigned int length){
-  tft.fillScreen(TFT_BLACK);
-  Serial.print("Message arrived [");
-  Serial.print(topic);
-  Serial.print("]");
-
-  char buff_p[length];
-
-  for(int i = 0; i < length; i++) {
-    Serial.print((char)payload[i]);
-    buff_p[i] = (char)payload[i];
-  }
-
-  Serial.println();
-  buff_p[length] = '\0';
-  String msg_p = String(buff_p);
-
-  tft.fillScreen(TFT_BLACK);
-  tft.setCursor((320 - tft.textWidth("MQTT Message: ")) /2, 90);
-  tft.print("MQTT Message: ");
-  tft.setCursor((320 - tft.textWidth(msg_p)) /2, 120);
-  tft.print(msg_p); // Print recieved payload
-}
-
-long lastMsg = 0; // Timestamp of the last MQTT message
-char msg[50]; // Buffer for storing MQTT messages
-int value = 0; // Value used in MQTT messages for tracking
-
-  spr.createSprite(TFT_HEIGHT,TFT_WIDTH); // Create buffer (enabling the composition and manipulation of graphical elements befor rendering them on the TFT screen)
-
-
-  long now = millis(); // Get current time
-  if(now - lastMsg > 2000) { // Check if 2 sec have elapsed since last message
-    lastMsg = now; // Update time for last message
-    ++ value; // Increment message value
-
-  snprintf(msg, 50, "%d", (int)temperature); // Format message, cast temperature to int
-  Serial.print("Publish message: ");
-  Serial.println(msg);
-  client.publish("Temperature", msg); // Publish message to MQTT broker
-
-  // Format message as JSON
-  StaticJsonDocument<100> jsonDocument;
-  jsonDocument["value"] = (int)temperature;
-
-  // Serialize JSON document to the char array
-  serializeJson(jsonDocument, msg);
-  Serial.print("Publish message: ");
-  Serial.println(msg);
-  client.publish("Temperature", msg);
-
-  String jsonString;
-  serializeJson(jsonDocument, jsonString);
-
-  Serial.print("Publish message: ");
-  Serial.println(jsonString);
-  client.publish("Temperature", jsonString.c_str());
-
-  */

@@ -63,7 +63,7 @@
 }
 
 .hero p {
-    font-size: 16px; /* Set the font size of the paragraph */
+    font-size: 16px; 
     line-height: 1.5; /* Set the line height for better readability */
     margin-bottom: 20px; /* Add some space below each paragraph */
 }
@@ -110,7 +110,7 @@
     box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
     padding: 20px;
     margin: 10px;
-    text-align: center; /* Align text left within cards */
+    text-align: center; /* Align text center within cards */
     max-width: 300px; /* Set max width for better responsiveness */
 }
 
@@ -130,17 +130,17 @@
 }
 
 .footer-content {
-    padding: 20px; /* Add padding for spacing */
+    padding: 20px; 
 }
 
 .footer-links {
-    margin-top: 10px; /* Add margin to separate links */
+    margin-top: 10px; 
 }
 
 .footer-links a {
     margin-right: 10px; /* Add margin between links */
     color: #bc0936;
-    text-decoration: none;
+    text-decoration: none; /* Remove line under link */
 }
 
 .footer-links a:hover {
