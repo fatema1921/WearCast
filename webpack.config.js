@@ -9,11 +9,11 @@
  *
  * @returns {Object} the complete Webpack configuration object
  */
-const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const e = require('express');
+const webpack = require('webpack');
+//const e = require('express');
 
 // Check if build is in production mode (set via environment variables)
 const isProduction = process.env.NODE_ENV == 'production';
@@ -21,8 +21,6 @@ const isProduction = process.env.NODE_ENV == 'production';
 // Determine how styles should be handled based on the build mode
 const stylesHandler = isProduction ? MiniCssExtractPlugin.loader : 'style-loader';
 
-// When merged to main use this config instead:
-// Make sure that all paths are correct, I recommend that we use this standard instead of the mixed directory names we have now
 /**
  *  `config` Configuration object definition
  *
@@ -60,9 +58,8 @@ const stylesHandler = isProduction ? MiniCssExtractPlugin.loader : 'style-loader
 const config = {
     entry: {
         home: './src/web/src/home/index.js',
-        // about: './src/web/src/about/about.js',
-        // styleCast: './src/web/src/styleCast/styleCast.js',
         weatherCast: './src/web/src/styleCast/weatherCast/weatherCast.js',
+        //mqtt: './src/web/src/home/mqtt_config.js',
 
     },
     output: {
@@ -110,7 +107,6 @@ const config = {
         new webpack.DefinePlugin({
             'process.env.WEATHER_API_KEY': JSON.stringify(process.env.WEATHER_API_KEY),
         }),
-        // Additional plugins can be added here
     ],
     module: {
         rules: [
