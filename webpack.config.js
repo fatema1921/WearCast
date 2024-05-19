@@ -16,12 +16,13 @@ const webpack = require('webpack');
 //const e = require('express');
 
 // Check if build is in production mode (set via environment variables)
-const isProduction = process.env.NODE_ENV == 'production';
+const isProduction = process.env.NODE_ENV === 'production';
 
 // Determine how styles should be handled based on the build mode
 const stylesHandler = isProduction ? MiniCssExtractPlugin.loader : 'style-loader';
 
 /**
+ * Webpack Configuration
  *  `config` Configuration object definition
  *
  * 1. `entry`
@@ -59,8 +60,6 @@ const config = {
     entry: {
         home: './src/web/src/home/index.js',
         weatherCast: './src/web/src/styleCast/weatherCast/weatherCast.js',
-        //mqtt: './src/web/src/home/mqtt_config.js',
-
     },
     output: {
         path: path.resolve(__dirname, 'dist'),
@@ -103,8 +102,6 @@ const config = {
         }),
         new webpack.DefinePlugin({
             'process.env.OPENCAGE_API_KEY': JSON.stringify(process.env.OPENCAGE_API_KEY),
-        }),
-        new webpack.DefinePlugin({
             'process.env.WEATHER_API_KEY': JSON.stringify(process.env.WEATHER_API_KEY),
         }),
     ],
@@ -143,12 +140,12 @@ module.exports = () => {
         config.mode = 'development';
     }
 
-    config.plugins.push(
+/*     config.plugins.push(
         new webpack.DefinePlugin({
             'process.env.OPENCAGE_API_KEY' : JSON.stringify(process.env.OPENCAGE_API_KEY),
             'process.env.WEATHER_API_KEY' : JSON.stringify(process.env.WEATHER_API_KEY),
         })
-    );
+    ); */
 
     return config;
 };
