@@ -43,4 +43,11 @@ p {
         gap: 20px; /* Add space between images */
         align-items: center;
     }
+
+    .category {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+    }
 }
