@@ -11,7 +11,7 @@ const getWeather = async () => {
     try {
         // Fetch weather data using the API key injected by Webpack
         //const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=gothenburg,se&APPID=${process.env.WEATHER_API_KEY}`);
-        const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=gothenburg,se&APPID=c95f90301395e8ce1cb18d910cd184cb`);
+        const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=gothenburg,se&APPID="INSERT_YOUR_API_KEY_HERE"`);
         const data = await response.json();
         const weatherIconID = data.weather[0].icon;
 
@@ -39,7 +39,7 @@ function fetchLocation() {
             const lon = position.coords.longitude;
             // Fetch location data using the API key injected by Webpack
             //fetch(`https://api.opencagedata.com/geocode/v1/json?q=${lat}+${lon}&key=${process.env.OPENCAGE_API_KEY}`)
-            fetch(`https://api.opencagedata.com/geocode/v1/json?q=${lat}+${lon}&key=3661a45eca484dfdb9eda5299d447535`)
+            fetch(`https://api.opencagedata.com/geocode/v1/json?q=${lat}+${lon}&key="INSERT_YOUR_API_KEY_HERE"`)
                 .then(response => response.json())
                 .then(data => {
                     const city = data.results[0].components.city;
