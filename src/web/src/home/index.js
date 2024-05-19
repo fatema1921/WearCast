@@ -1,13 +1,17 @@
-window.onload=function() { 
+window.onload=function() {
     updateCurrentDay();
     fetchLocation();
     getWeather();
 }
 
+import { TEMPERATURE_TOPIC, HUMIDITY_TOPIC, SERVER } from './mqtt_config.js'; // Import MQTT topic names for temperature and humidity from the configuration file.
+
 /* Function to call the weather API and update the weather icon */
 const getWeather = async () => {
     try {
-        const response = await  fetch('https://api.openweathermap.org/data/2.5/weather?q=gothenburg,se&APPID=§{process.env.WEATHER_API_KEY}');
+        // Fetch weather data using the API key injected by Webpack
+        //const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=gothenburg,se&APPID=${process.env.WEATHER_API_KEY}`);
+        const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=gothenburg,se&APPID="INSERT_YOUR_API_KEY_HERE"`);
         const data = await response.json();
         const weatherIconID = data.weather[0].icon;
 
@@ -33,7 +37,9 @@ function fetchLocation() {
         navigator.geolocation.getCurrentPosition(function(position) {
             const lat = position.coords.latitude;
             const lon = position.coords.longitude;
-            fetch(`https://api.opencagedata.com/geocode/v1/json?q=${lat}+${lon}&key=§{process.env.OPENCAGE_API_KEY}`)
+            // Fetch location data using the API key injected by Webpack
+            //fetch(`https://api.opencagedata.com/geocode/v1/json?q=${lat}+${lon}&key=${process.env.OPENCAGE_API_KEY}`)
+            fetch(`https://api.opencagedata.com/geocode/v1/json?q=${lat}+${lon}&key="INSERT_YOUR_API_KEY_HERE"`)
                 .then(response => response.json())
                 .then(data => {
                     const city = data.results[0].components.city;
@@ -47,7 +53,7 @@ function fetchLocation() {
 }
 
 // Create an MQTT client instance
-var client = new Paho.MQTT.Client("broker.emqx.io", 8083, "clientId");
+var client = new Paho.MQTT.Client(SERVER, 8083, "clientId");
 
 // Set callback handlers
 client.onConnectionLost = onConnectionLost;
@@ -56,15 +62,14 @@ client.onMessageArrived = onMessageArrived;
 // Connect to MQTT broker
 client.connect({
     onSuccess: onConnect,
-    // Other connection options if needed
 });
 
 // Called when the client connects
 function onConnect() {
     console.log("Connected to MQTT broker");
     // Subscribe to a topic
-    client.subscribe("Temperature");
-    client.subscribe("Humidity");
+    client.subscribe(TEMPERATURE_TOPIC);
+    client.subscribe(HUMIDITY_TOPIC);
 }
 
 // Called when the client loses its connection
@@ -85,16 +90,13 @@ function onMessageArrived(message) {
     var sensorValue = message.payloadString;
     var tempValue;
     var humidValue;
-    if (topic === "Temperature") {
+    if (topic === TEMPERATURE_TOPIC) {
         tempValue = parseFloat(sensorValue);
         document.getElementById("temperatureParagraph").textContent = sensorValue + " C";
-    } else if (topic === "Humidity") {
+    } else if (topic === HUMIDITY_TOPIC) {
         humidValue = parseFloat(sensorValue);
         document.getElementById("humidityParagraph").textContent = sensorValue + " % RH";
     }
-    var clothingRecom = getRecommendation(tempValue, humidValue);
-    document.getElementById("clothingParagraph").textContent = "Based on the weathere data, " + clothingRecom;
-
     var motivationalRecommendation = getMotivationalRecommendation(tempValue, humidValue);
     document.getElementById("motivationalRecommendation").textContent = motivationalRecommendation;
 }
@@ -148,14 +150,13 @@ function getMotivationalRecommendation(tempValue, humidValue) {
  * @param {*} humidValue current humidity level in percentage
  */
 /* function testMotivationalRecommendation(tempValue, humidValue) {
-    document.getElementById("temperatureParagraph").textContent = "Temperature: " + tempValue + " C";
-    document.getElementById("humidityParagraph").textContent = "Humidity: " + humidValue + " % RH";
+    document.getElementById("temperatureParagraph").textContent = tempValue + " C";
+    document.getElementById("humidityParagraph").textContent = humidValue + " % RH";
     var motivationalRecommendation = getMotivationalRecommendation(tempValue, humidValue);
     document.getElementById("motivationalRecommendation").textContent = motivationalRecommendation;
 }
 // testcases
-testMotivationalRecommendation(-17, 3);
 testMotivationalRecommendation(5, 75);
-testMotivationalRecommendation(29, 60);
 testMotivationalRecommendation(10, 15);
- */
+testMotivationalRecommendation(-17, 3);
+testMotivationalRecommendation(29, 60); */

@@ -39,8 +39,8 @@ build_arduino:
     script:
         # print for clarity
         - echo "Compiling Arduino code for the Wio Terminal..."
-        # compile sketch, specifying board (what config to use) and relative path to the sketch
-        - arduino-cli compile --fqbn Seeeduino:samd:seeed_wio_terminal src/wio/wearcast/wearcast.ino
+        # compile sketch, specifying board (what config to use) and relative path to the sketch and header files
+        - arduino-cli compile --fqbn Seeeduino:samd:seeed_wio_terminal src/wio/wearcast
 
 # build for web
 build_web:

@@ -8,7 +8,7 @@
 			screen size and is at its original size without any zooming. -->
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
-        <link rel="stylesheet" href="/src/web/src/css/global.css">
+        <link rel="stylesheet" href="/src/web/src/global.css">
         <link rel="stylesheet" href="/src/web/src/styleCast/weatherCast/weatherCast.css">
         <!-- <link rel="utilities" href="/WebDev/utilities.css"> -->
 		<title> WearCast</title>
@@ -17,41 +17,41 @@
 		 <header>
             <div class="navbar">
                 <div class="navlogo">
-                    <a href="index.html" class="logo"><img src="/src/web/assets/img/black_wearcast_logo.png" alt="WearCast logo"></a>
+                    <a href="src/web/src/home/index.html" title="WearCast logo" class="logo"><img src="/src/web/assets/img/black_wearcast_logo.png" alt="WearCast logo shown in black text"></a>
                 </div>
                 <nav>
                     <ul>
-                        <li><a href="/src/web/src/HomePage/index.html">Home</a></li>
+                        <li><a href="/src/web/src/home/index.html">Home</a></li>
                         <li><a href="/src/web/src/styleCast/styleCast.html">StyleCast</a></li>
-                        <li><a href="/src/web/src/about-page/about.html">About us</a></li>
+                        <li><a href="/src/web/src/about/about.html">About us</a></li>
                     </ul>
                 </nav>
             </div>
         </header>
 
-<div class="introduction"> 
+<div class="introduction">
     <h3>Welcome to the Chilly Weather Gallery!</h3>
     <p>Along with the beauty of nature's transition, get inspired to embrace change. This collection is curated to make you feel elegant & comfortable at the same time, enjoying the essence of chilly weather sophistication.</p>
 </div>
 
 
-<!-- !PAGE CONTENT! 
+<!-- !PAGE CONTENT!
 Override CSS variable to change backround color -->
 <div class="main" style="--background-color: linear-gradient(5deg, #e3ddff 40%, #f9e1fe 100%);">
 
-    <!-- Push down gallery on small screens --> 
+    <!-- Push down gallery on small screens -->
     <div class="hide-large" style="margin-top:83px"></div>
 
 
 <!-- Modal for full size images on click-->
 <div id="modal" class="modal" onclick="hideModal()">
     <div class="modal-content">
-      <img id="img">
-      <!-- Display arbitrary text here -->
+      <img id="img" alt="">
+      <!-- Display arbitrary text under with image -->
       <div id="imageText"></div>
     </div>
 </div>
-  
+
 
     <!-- Photo grid -->
     <div class="gallery">
@@ -93,7 +93,16 @@ Override CSS variable to change backround color -->
 
     </div>
 
-
+  <footer>
+      <div id="footerbar">
+          <div class="footer-content">
+              <p>&copy; 2024 <strong>WearCast</strong> | All rights reserved.</p>
+              <a href="mailto:wearcast.dev@gmail.com"><img src="../../../../assets/img/email-icon.png" alt="Email" class="email-icon"></a>
+              <a href="http://instagram.com/wearcast"><img src="../../../../assets/img/instagram-icon.png" alt="Instagram" class="instagram-icon"></a>
+              <a href="https://git.chalmers.se/courses/dit113/2024/group-17/WearCast"><img src="../../../../assets/img/gitlab-icon.png" alt="GitLab" class="gitlab-icon"></a>
+          </div>
+      </div>
+  </footer>
 <script src="/src/web/src/styleCast/weatherCast/weatherCast.js"></script>
 
 </body>

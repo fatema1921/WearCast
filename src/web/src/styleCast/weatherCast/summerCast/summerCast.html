@@ -8,7 +8,7 @@
 			screen size and is at its original size without any zooming. -->
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
-        <link rel="stylesheet" href="/src/web/src/css/global.css">
+        <link rel="stylesheet" href="/src/web/src/global.css">
         <link rel="stylesheet" href="/src/web/src/styleCast/weatherCast/weatherCast.css">
         <!-- <link rel="utilities" href="/WebDev/utilities.css"> -->
 		<title> WearCast</title>
@@ -21,15 +21,15 @@
                 </div>
                 <nav>
                     <ul>
-                        <li><a href="/src/web/src/HomePage/index.html">Home</a></li>
+                        <li><a href="/src/web/src/home/index.html">Home</a></li>
                         <li><a href="/src/web/src/styleCast/styleCast.html">StyleCast</a></li>
-                        <li><a href="/src/web/src/about-page/about.html">About us</a></li>
+                        <li><a href="/src/web/src/about/about.html">About us</a></li>
                     </ul>
                 </nav>
             </div>
         </header>
 
-<div class="introduction"> 
+<div class="introduction">
     <h3>Welcome to the HotGirl Summer Gallery!</h3>
     <p>Dive into a world of vibrant colors, breezy fabrics, and chic ensembles tailored for every summer occasion. Get ready to be inspired & put together the hottest outfits of the season!</p>
 </div>
@@ -38,7 +38,7 @@
 <!-- !PAGE CONTENT! -->
 <div class="main">
 
-    <!-- Push down gallery on small screens --> 
+    <!-- Push down gallery on small screens -->
     <div class="hide-large" style="margin-top:83px"></div>
 
 
@@ -46,11 +46,11 @@
 <div id="modal" class="modal" onclick="hideModal()">
     <div class="modal-content">
       <img id="img">
-      <!-- Display arbitrary text here -->
+      <!-- Display arbitrary text under with image -->
       <div id="imageText"></div>
     </div>
 </div>
-  
+
 
     <!-- Photo grid -->
     <div class="gallery">
@@ -62,7 +62,7 @@
         <img src="/src/web/src/styleCast/weatherCast/summerCast/img/s-57.webp" style="width:100%" onclick="onClick(this)" alt="White bandeu with cream blazer">
         <img src="/src/web/src/styleCast/weatherCast/summerCast/img/s-56.webp" style="width:100%" onclick="onClick(this)" alt="Black indian traditional outfit">
       </div>
-      
+
       <div class="column">
         <img src="/src/web/src/styleCast/weatherCast/summerCast/img/s-58.webp" style="width:100%" onclick="onClick(this)" alt="Patterned shirt with white shorts/pants">
         <img src="/src/web/src/styleCast/weatherCast/summerCast/img/s-2.jpg" style="width:100%" onclick="onClick(this)" alt="White blouse, blues jeans & beige ballerina shoes">
@@ -92,7 +92,16 @@
 
     </div>
 
-
+  <footer>
+      <div id="footerbar">
+          <div class="footer-content">
+              <p>&copy; 2024 <strong>WearCast</strong> | All rights reserved.</p>
+              <a href="mailto:wearcast.dev@gmail.com"><img src="../../../../assets/img/email-icon.png" alt="Email" class="email-icon"></a>
+              <a href="http://instagram.com/wearcast"><img src="../../../../assets/img/instagram-icon.png" alt="Instagram" class="instagram-icon"></a>
+              <a href="https://git.chalmers.se/courses/dit113/2024/group-17/WearCast"><img src="../../../../assets/img/gitlab-icon.png" alt="GitLab" class="gitlab-icon"></a>
+          </div>
+      </div>
+  </footer>
 <script src="/src/web/src/styleCast/weatherCast/weatherCast.js"></script>
 
 </body>

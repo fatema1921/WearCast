@@ -1,60 +1,50 @@
-//LED WORKING CODE 
 /*
- - Note: The code for reading the humidity from the temperature and humidity sensor has been adapted from "Smart_Garden.ino" found in the Wio_Terminal_Classroom_Arduino GitHub repository by lakshanthad:
- - Link: https://github.com/lakshanthad/Wio_Terminal_Classroom_Arduino/blob/main/Classroom%2012/Smart_Garden/Smart_Garden.ino
+ - NOTE: The code for reading the humidity from the temperature and humidity sensor has been adapted from "Smart_Garden.ino" found in the Wio_Terminal_Classroom_Arduino GitHub repository by lakshanthad:
+ - LINK: https://github.com/lakshanthad/Wio_Terminal_Classroom_Arduino/blob/main/Classroom%2012/Smart_Garden/Smart_Garden.ino
 
- - Note: The code for reading from the temperature sensor has been adapted from Seeed Studio's User Manual for the Grove Temperature Sensor:
- - Link: https://www.mouser.com/datasheet/2/744/Seeed_101020015-1217523.pdf
+ - NOTE: The code for reading from the temperature sensor has been adapted from Seeed Studio's User Manual for the Grove Temperature Sensor:
+ - LINK: https://www.mouser.com/datasheet/2/744/Seeed_101020015-1217523.pdf
  */
 
 /* Import header/library files */
 #include <Adafruit_NeoPixel.h>
 #include <math.h> // Math library for mathematical calculations
 #include "Wire.h" // Wire library for I2C communication
-#include "DHT.h" // DHT library 
+#include "DHT.h" // DHT library
 #include "TFT_eSPI.h" // TFT LCD library for Wio Terminal
 #include "rpcWiFi.h" // WiFi library for Wio Terminal
 #include <PubSubClient.h> // MQTT client library for Wio Terminal
+#include "network_info.h"
+#include "mqtt_info.h"
 
 #ifdef AVR
   #include <avr/power.h>
 #endif
 
-// #include <ArduinoJson.h> // Include ArduinoJson library
+/* Pin and number of lights on LED stick */
 #define LED_PIN    A2
 #define LED_COUNT  10
 
-Adafruit_NeoPixel pixels(LED_COUNT, LED_PIN, NEO_GRB + NEO_KHZ800);
+/* Delay value */
 int delayval = 500;
+
 /* Constant variables for temperature */
-const int pinTempSensor = A0; // Analog pin A0 connected to Grove - Temperature Sensor
+const int pinTempSensor = A0; // Analog pin A0 connected to the sensor
 const int B_VALUE = 4275; // B value of the temperature sensor's thermistor
 
 /* Definitions for humidity sensor */
 #define DHTPIN PIN_WIRE_SCL //Use I2C port as Digital Port for Grove - Temperature and Humidity sensor
-#define DHTTYPE DHT11 //Define DHT sensor type 
-
-/* Constant variables for WiFi */
-const char* ssid = "Elins iPhone"; // WiFi SSID (Name)
-const char* password = "yH59!Gum"; // WiFi Password
-
-/* Constant variable for MQTT */
-const char* mqtt_server = "broker.emqx.io"; // MQTT Broker URL
-const char* temperature_topic = "Temperature"; // Topic for temperature
-const char* humidity_topic = "Humidity"; // Topic for humidity
+#define DHTTYPE DHT11 //Define DHT sensor type
 
 /* Boolean for connecting to broker the first time*/
 bool firstConnect = true;
 
 /* Initializations */
+Adafruit_NeoPixel pixels(LED_COUNT, LED_PIN, NEO_GRB + NEO_KHZ800);
 DHT dht(DHTPIN, DHTTYPE); //Initializing DHT sensor
-
 TFT_eSPI tft; // TFT_eSPI object for Wio Terminal's TFT screen
-TFT_eSprite spr = TFT_eSprite(&tft); // Initializing sprite buffer for graphical operations
-
 WiFiClient wioClient; // WiFi client object for Wio Terminal
 PubSubClient client(wioClient); // MQTT client object for Wio Terminal
-
 
 /**
  * @brief Function to set up and establish a connection to WiFi network.
@@ -158,13 +148,12 @@ void setup() {
   pinMode(LED_PIN, OUTPUT);
 
   Serial.begin(9600); // Initialize serial communication at 9600 baud rate; for general logging (initialize communication between microcontroller and computer (serial monitor))
- 
+
   tft.begin(); // Initialize TFT (i.e. Wio Terminal LCD screen)
   tft.setRotation(3); // Set screen rotation
-  
+
   pixels.setBrightness(40);
   pixels.begin();
-  // spr.createSprite(TFT_HEIGHT,TFT_WIDTH); // Create buffer (enabling the composition and manipulation of graphical elements befor rendering them on the TFT screen)
 
   Serial.begin(115200); // Initialize serial communication at 115200 baud rate; for communication with WiFi module
   setup_wifi(); // Call function to set up WiFi connection
@@ -189,7 +178,6 @@ void loop() {
 
   /* Display header */
   tft.fillRect(0, 0, 320, 50, TFT_LIGHTGREY); // Draw header background rectangle
-  //tft.fillRectHGradient(0, 0, 320, 50, TFT_PURPLE, TFT_NAVY);
   tft.setTextColor(TFT_BLACK); // Set text color to black
   tft.setTextSize(3); // Set text size
   tft.setCursor(90, 15);
@@ -203,7 +191,7 @@ void loop() {
   float temperature = 1.0 / (log(resistance/100000.0) / B_VALUE +1 / 298.15) - 273.15; // Convert to temperature (using datasheet)
 
   /* Humidity reading */
-  int humidity = dht.readHumidity(); // Read digital value from humidity sensor 
+  int humidity = dht.readHumidity(); // Read digital value from humidity sensor
 
   /* Display temperature */
   tft.setTextColor(TFT_WHITE);
@@ -232,6 +220,7 @@ void loop() {
   tft.print("%RH");
 
   delay(50); // Delay to stabilize the display
+
   // Determine the color and number of pixels to light up based on temperature
   uint32_t color;
   int numPixels;
@@ -251,16 +240,14 @@ void loop() {
     if (i < numPixels) {
       pixels.setPixelColor(i, color);
        pixels.show();
-        delay(delayval); 
+        delay(delayval);
     } else {
       pixels.setPixelColor(i, pixels.Color(0, 0, 0)); // Turn off the remaining pixels
      pixels.show();
-      delay(delayval); 
-     } 
-
+      delay(delayval);
+     }
   }
-  // Update the LED display
- 
+
   /* MQTT message publishing*/
   client.publish(temperature_topic, String(temperature).c_str()); // Publish temperature to broker
   client.publish(humidity_topic, String(humidity).c_str()); // Publish humidity to broker
@@ -271,78 +258,3 @@ void loop() {
   delay(10000);
 
 }
-
-/** CODESNIPPETS - CURRENTLY NOT IN USE */
-  /*
-    client.setCallback(callback); // Set callback function for MQTT client
-
-  // #include <ArduinoJson.h> // Include ArduinoJson library
-
- * @brief Callback function for handling MQTT messages.
- *
- * This function is called whenever a message is recieved from the MQTT broker.
- * Printing the recieved topic and payload to the serial monitor, and displays the payload on the Wio Terminal.
- *
- * @param topic   : The topic of MQTT message
- * @param payload : The payload of MQTT message
- * @param length  : The length of payload
- * 
-void callback(char* topic, byte* payload, unsigned int length){
-  tft.fillScreen(TFT_BLACK);
-  Serial.print("Message arrived [");
-  Serial.print(topic);
-  Serial.print("]");
-
-  char buff_p[length];
-
-  for(int i = 0; i < length; i++) {
-    Serial.print((char)payload[i]);
-    buff_p[i] = (char)payload[i];
-  }
-
-  Serial.println();
-  buff_p[length] = '\0';
-  String msg_p = String(buff_p);
-
-  tft.fillScreen(TFT_BLACK);
-  tft.setCursor((320 - tft.textWidth("MQTT Message: ")) /2, 90);
-  tft.print("MQTT Message: ");
-  tft.setCursor((320 - tft.textWidth(msg_p)) /2, 120);
-  tft.print(msg_p); // Print recieved payload
-}
-
-long lastMsg = 0; // Timestamp of the last MQTT message
-char msg[50]; // Buffer for storing MQTT messages
-int value = 0; // Value used in MQTT messages for tracking
-
-  spr.createSprite(TFT_HEIGHT,TFT_WIDTH); // Create buffer (enabling the composition and manipulation of graphical elements befor rendering them on the TFT screen)
-
-
-  long now = millis(); // Get current time
-  if(now - lastMsg > 2000) { // Check if 2 sec have elapsed since last message
-    lastMsg = now; // Update time for last message
-    ++ value; // Increment message value
-
-  snprintf(msg, 50, "%d", (int)temperature); // Format message, cast temperature to int
-  Serial.print("Publish message: ");
-  Serial.println(msg);
-  client.publish("Temperature", msg); // Publish message to MQTT broker
-
-  // Format message as JSON
-  StaticJsonDocument<100> jsonDocument;
-  jsonDocument["value"] = (int)temperature;
-
-  // Serialize JSON document to the char array
-  serializeJson(jsonDocument, msg);
-  Serial.print("Publish message: ");
-  Serial.println(msg);
-  client.publish("Temperature", msg);
-
-  String jsonString;
-  serializeJson(jsonDocument, jsonString);
-
-  Serial.print("Publish message: ");
-  Serial.println(jsonString);
-  client.publish("Temperature", jsonString.c_str());
-
-  */

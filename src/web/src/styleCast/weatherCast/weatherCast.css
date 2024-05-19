@@ -1,15 +1,15 @@
 .gallery {
     display: flex; /* Arranges images in a flex container */
-    flex-wrap: wrap; /* Allows images to wrap to next line if there is not enough space */
+    flex-wrap: wrap; /* Allows images to wrap around to next line if there is not enough space */
     padding: 0 16px; /* Space between the left/right side of gallery and window border */
 }
-  
-.column { 
+
+.column {
     max-width: 25%; /* Set maximum width of each column, to allow space for four columns in each row */
     padding: 16px; /* Add spacing between columns */
     box-sizing: border-box; /* Include padding and border in the element's total width and height */
 }
-  
+
 .gallery img {
     padding: 20px 0; /* Adds space between each image in a column */
 }
@@ -20,14 +20,14 @@
 
 .main {
   background: var(--background-color); /* Apply CSS variable */
-  border-bottom: 2px solid #FEBBCC;
+  border-bottom: 2px solid #FEBBCC; 
 }
 
 
-.introduction { 
+.introduction {
     padding: 50px 50px 0 50px;
 }
- 
+
   /* Style for the modal */
   .modal {
     display: none; /* Does not display by default */
@@ -37,7 +37,7 @@
     height: 100%;
     background: var(--background-color);
   }
-  
+
   .modal-content {
     max-width: 90%; /* Set maximum width for the modal content */
     max-height: 90%;/* Set maximum height for the modal content */
@@ -45,14 +45,14 @@
   }
 
   .modal img {
-    max-width: 80%; 
-    max-height: 80%; 
+    max-width: 80%;
+    max-height: 80%;
     margin: auto; /* Center the image */
     position: absolute; /* Position the image absolutely within the modal */
     top: 0; /* top, left, right, bottom specifies the exact position of the image relative to the modal */
-    left: 0; 
-    right: 0; 
-    bottom: 0; 
+    left: 0;
+    right: 0;
+    bottom: 0;
     box-shadow: 0 3px 10px rgba(0, 0, 0, 0.4);
   }
 
