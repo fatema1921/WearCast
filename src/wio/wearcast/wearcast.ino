@@ -10,7 +10,7 @@
 #include <Adafruit_NeoPixel.h>
 #include <math.h> // Math library for mathematical calculations
 #include "Wire.h" // Wire library for I2C communication
-#include "DHT.h" // DHT library 
+#include "DHT.h" // DHT library
 #include "TFT_eSPI.h" // TFT LCD library for Wio Terminal
 #include "rpcWiFi.h" // WiFi library for Wio Terminal
 #include <PubSubClient.h> // MQTT client library for Wio Terminal
@@ -34,7 +34,7 @@ const int B_VALUE = 4275; // B value of the temperature sensor's thermistor
 
 /* Definitions for humidity sensor */
 #define DHTPIN PIN_WIRE_SCL //Use I2C port as Digital Port for Grove - Temperature and Humidity sensor
-#define DHTTYPE DHT11 //Define DHT sensor type 
+#define DHTTYPE DHT11 //Define DHT sensor type
 
 /* Boolean for connecting to broker the first time*/
 bool firstConnect = true;
@@ -148,10 +148,10 @@ void setup() {
   pinMode(LED_PIN, OUTPUT);
 
   Serial.begin(9600); // Initialize serial communication at 9600 baud rate; for general logging (initialize communication between microcontroller and computer (serial monitor))
- 
+
   tft.begin(); // Initialize TFT (i.e. Wio Terminal LCD screen)
   tft.setRotation(3); // Set screen rotation
-  
+
   pixels.setBrightness(40);
   pixels.begin();
 
@@ -192,7 +192,7 @@ void loop() {
   float temperature = 1.0 / (log(resistance/100000.0) / B_VALUE +1 / 298.15) - 273.15; // Convert to temperature (using datasheet)
 
   /* Humidity reading */
-  int humidity = dht.readHumidity(); // Read digital value from humidity sensor 
+  int humidity = dht.readHumidity(); // Read digital value from humidity sensor
 
   /* Display temperature */
   tft.setTextColor(TFT_WHITE);
@@ -240,16 +240,16 @@ void loop() {
     if (i < numPixels) {
       pixels.setPixelColor(i, color);
        pixels.show();
-        delay(delayval); 
+        delay(delayval);
     } else {
       pixels.setPixelColor(i, pixels.Color(0, 0, 0)); // Turn off the remaining pixels
      pixels.show();
-      delay(delayval); 
-     } 
+      delay(delayval);
+     }
 
   }
   // Update the LED display
- 
+
   /* MQTT message publishing*/
   client.publish(temperature_topic, String(temperature).c_str()); // Publish temperature to broker
   client.publish(humidity_topic, String(humidity).c_str()); // Publish humidity to broker
@@ -275,7 +275,7 @@ void loop() {
  * @param topic   : The topic of MQTT message
  * @param payload : The payload of MQTT message
  * @param length  : The length of payload
- * 
+ *
 void callback(char* topic, byte* payload, unsigned int length){
   tft.fillScreen(TFT_BLACK);
   Serial.print("Message arrived [");
