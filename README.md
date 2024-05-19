@@ -202,6 +202,22 @@ You can run the web application locally, by executing the following steps:
 
 3. Right-click any `.html` file and click `Open with Live Server`.
 
+#### API-keys
+
+To set up the project you will need to generate your own API keys to use certain functions in the `index.js` file
+
+Then you will have to add them in `src/web/src/home/index.js`
+* on line 14 switch out __"INSERT_YOUR_API_KEY_HERE"__ with your API key that you can get from [OpenWeather](https://openweathermap.org/appid).
+
+```       const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=gothenburg,se&APPID="INSERT_YOUR_API_KEY_HERE"`);```
+* on line 42 switch out __"INSERT_YOUR_API_KEY_HERE"__ with your API key that you can get from [OpenCage](https://opencagedata.com/api).
+
+```       fetch(`https://api.opencagedata.com/geocode/v1/json?q=${lat}+${lon}&key="INSERT_YOUR_API_KEY_HERE"`);```
+
+**NOTE:** We tried to use environment variables to store the API keys which worked great before the branch got merged into main. Unfortunately we did not have time to solve this issue before deadline but we kept the code (commented-out) in related files
+* `index.js`
+* `webpack.config.js`
+
 ### Demo Video
 
 The team behind WearCast has created a demo video that showcases the need for it and how to use it. [WearCast - Demo Video](https://youtu.be/kn96rUHvSbA) 
