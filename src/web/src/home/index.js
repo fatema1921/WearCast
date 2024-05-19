@@ -12,7 +12,7 @@ console.log(process.env)
 console.log(weatherAPIkey)
 console.log(ocAPIkey) */
 
-import { TEMPERATURE_TOPIC, HUMIDITY_TOPIC } from './mqtt_config.js'; // Import MQTT topic names for temperature and humidity from the configuration file.
+import { TEMPERATURE_TOPIC, HUMIDITY_TOPIC, SERVER } from './mqtt_config.js'; // Import MQTT topic names for temperature and humidity from the configuration file.
 //import { TEMPERATURE_TOPIC, HUMIDITY_TOPIC } from './mqtt_config.js'; // Import MQTT topic names for temperature and humidity from the configuration file.
 
 /* Function to call the weather API and update the weather icon */
@@ -62,7 +62,7 @@ function fetchLocation() {
 }
 
 // Create an MQTT client instance
-var client = new Paho.MQTT.Client("broker.emqx.io", 8083, "clientId");
+var client = new Paho.MQTT.Client(SERVER, 8083, "clientId");
 
 // Set callback handlers
 client.onConnectionLost = onConnectionLost;
