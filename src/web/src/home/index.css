@@ -118,35 +118,6 @@
     margin-bottom: 10px; /* Add margin below heading */
 }
 
-/* FOOTER */
-#footerbar {
-    background-color: #FFDDCC;
-	max-height: 30vh;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0;
-    width: 100%;
-}
-
-.footer-content {
-    padding: 20px; /* Add padding for spacing */
-}
-
-.footer-links {
-    margin-top: 10px; /* Add margin to separate links */
-}
-
-.footer-links a {
-    margin-right: 10px; /* Add margin between links */
-    color: #bc0936;
-    text-decoration: none;
-}
-
-.footer-links a:hover {
-    color: #15070a;
-}
-
 /* RESPONSIVE DESIGN */
 /* Media query for screens smaller than 768px */
 @media screen and (max-width: 768px) {
