@@ -4,9 +4,9 @@
 ### Table of Contents
 - [WearCast](#wearcast)
        - [Table of Contents](#table-of-contents)
-   - [Background & Description](#background--description)
-       - [Features](#features)
-    - [Purpose and Benefits](#purpose--benefits)
+    - [Background & Description](#background--description)
+        - [Features](#features)
+        - [Purpose & Benefits](#purpose-&-benefits)
    - [Dependencies & Requirements](#dependencies--requirements)
         - [Required Hardware Components](#required-hardware-components)
         - [Required Software Components](#required-software-components)
@@ -15,10 +15,12 @@
        - [Web-based Application | Local Installation](#web-based-application--local-installation)
    - [Usage](#usage)
         - [Wio Terminal | Usage](#wio-terminal--usage)
-        - [Web-based Application | Local Usage](#web-based-application--local-usage)
+        - [Web Application | Local Usage](#Web-Application--local-usage)
+        - [Demo Video](#demo-video)
     - [System Design](#system-design)
-   - [Team & Contributions](#Team-&-Contributions)
+   - [Team & Contributions](#team-&-contributions)
    - [License](#license)
+
 
 ## Background & Description
 We've all been there: staring at the closet, struggling to figure out what to wear as the weather changes outside. **WearCast** is the answer to your problem! 
@@ -29,6 +31,8 @@ By undertaking this project as a part of the System Development course at Univer
 
 ### Features
 * **Real-time Weather Data Integration:** WearCast gathers continuous updates on temperature and humidity to provide users with accurate weather information.
+
+* **API integration:** WearCast integrates APIs to fetch current location and local weather data. The location is rendered on the screen along with an icon that visualizes the current weather.  
 
 * **Visual Temperature Representation:** The system is connected to a LED sensor that changes color to visually represent the temperature - red for warmth and blue for coolness.
 
@@ -167,11 +171,30 @@ These commands will prepare your local environment to run the WearCast web appli
 
 ## Usage
 
-### Wio Terminal | Usage
-1. Arduino IDE | Usage
+### Wio terminal | Usage
 
+Assuming that the [Installation](#installation) is completed, follow the listed steps to use the Wio terminal:
 
-### Web-based Application | Local Usage
+1. Open the Arduino IDE and navigate to `File > Open...`
+2. Open the terminarium file by following this path `src\wio\wearcast\wearcast.ino`.
+3. Connect the Wio terminal to your computer via the USB cable. 
+4. Click the `Upload` button, to upload the sketch to the Wio terminal. 
+5. To view the Serial Monitor, navigate to `Tools > Serial Monitor` and select the `9600 baud` option.
+
+### Web Application | Local Usage
+
+You can run the web application locally, by executing the following steps:
+
+1. Open the WearCast directory and run the following commands in the temrinal:
+
+        cd src\web\src
+        npm run dev
+
+2. Copy the port adress that is displayed in the terminal and paste it in the search bar of the browser. It should be in the following format `localhost:XXXX`.
+
+### Demo Video
+
+The team behind WearCast has created a demo video that showcases the need for it and how to use it. [WearCast - Demo Video](url) 
 
 ## System Design
 
