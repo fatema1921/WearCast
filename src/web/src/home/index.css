@@ -152,22 +152,6 @@
         max-width: none; /* Remove max width for cards */
     }
 
-    /* FOOTER */
-    footer {
-        padding: 20px; /* Add padding for better spacing */
-    }
-
-    .footer-content {
-        text-align: center; /* Center align footer content */
-    }
-
-    .footer-links {
-        margin-top: 10px; /* Add margin to separate links */
-    }
-
-    .footer-links a {
-        margin-right: 10px; /* Add margin between links */
-    }
 }
 
 /* EXTRA */
