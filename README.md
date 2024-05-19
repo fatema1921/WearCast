@@ -167,7 +167,7 @@ WearCast uses Node.js and npm (the Node Package Manager) to install the necessar
 
     - You can obtain these API keys from the respective developer portals. For example, OpenWeatherMap API keys can be obtained from the [OpenWeatherMap website](https://openweathermap.org/appid), and OpenCage API keys can be obtained from the [OpenCage Geocoding API website](https://opencagedata.com/api).
 
-These commands will prepare your local environment to run the WearCast web application. Make sure you have Node.js and npm installed on your system before proceeding.
+    These commands will prepare your local environment to run the WearCast web application. Make sure you have Node.js and npm installed on your system before proceeding.
 
 5. Configure WiFi and MQTT Settings for the Wio Terminal
 
@@ -176,6 +176,7 @@ These commands will prepare your local environment to run the WearCast web appli
         1. Replace the placeholder values for **ssid** and **password** with your actual WiFi network credentials.
         2. Replace the placeholder values for **mqtt_server**, **temperature_topic**, and **humidity_topic** with your actual MQTT broker URL and topic names.
 
+    By completing these steps, you ensure that your Wio Terminal can connect to your specified WiFi network and communicate with your MQTT broker using the provided credentials and topic names.
 
 ## Usage
 
