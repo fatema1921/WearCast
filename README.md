@@ -192,14 +192,15 @@ Assuming that the [Installation](#installation) is completed, follow the listed 
 
 ### Web Application | Local Usage
 
+Note: We apologize that we currently are only able to provide you with the instructions for using it with VS code. Although, the instructions will be updated to cover usage for any IDE, as soon as possible. 
+
 You can run the web application locally, by executing the following steps:
 
-1. Open the WearCast directory and run the following commands in the temrinal:
+1. Navigate to `Extensions` and download the `Live Server`.
 
-        cd src\web\src
-        npm run dev
+2. Open the WearCast directory and navigate to `src\web\src`. 
 
-2. Copy the port adress that is displayed in the terminal and paste it in the search bar of the browser. It should be in the following format `localhost:XXXX`.
+3. Right-click any `.html` file and click `Open with Live Server`.
 
 ### Demo Video
 
