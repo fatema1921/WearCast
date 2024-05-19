@@ -1,81 +1,109 @@
 /* About Us Page */
-/* Styling for the main content area */
+
 main {
-    padding: 30px; /* Adds padding around the main content */
-    box-sizing: border-box; /* Ensures padding is included in element's total width and height */
+    padding: 30px; /* Adds 30 pixels of padding around the content inside the <main> element */
+    box-sizing: border-box; /* Includes padding and border in the element's total width and height */
+    max-width: 1200px; /* Sets the maximum width of the <main> element to 1200 pixels */
+    margin: 0 auto; /* Centers the <main> element horizontally by setting left and right margins to auto */
 }
 
 .about-section {
-    display: flex;
-    flex-wrap: wrap; /* Allows sections to wrap on smaller screens */
-    margin-bottom: 30px;
+    display: flex; /* Displays the element as a flex container */
+    flex-direction: column; /* Sets the flex container's main axis to be vertical */
+    gap: 30px; /* Sets the gap between child elements within the flex container to 30 pixels */
 }
 
-.intro {
-    flex: 1 1 50%; /* Takes up 50% width on larger screens, shrinks on smaller ones */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 0;
+.row {
+    display: flex; /* Displays the element as a flex container */
+    flex-wrap: nowrap; /* Prevents child elements from wrapping to the next line */
+    align-items: center; /* Aligns child elements vertically at the center of the flex container */
+    justify-content: space-between; /* Distributes child elements evenly along the main axis with space between them */
+    gap: 20px; /* Sets the gap between child elements within the flex container to 20 pixels */
+    padding: 20px; /* Adds 20 pixels of padding around the content inside the <div> element with the class "row" */
+    box-sizing: border-box; /* Includes padding and border in the element's total width and height */
 }
 
-.motto {
-    padding: 20px;
-    text-align: center;
+.content {
+    flex: 3; /* Sets the flex grow factor of the element to 3, allowing it to occupy more space within the flex container */
+    text-align: left; /* Aligns the text content of the element to the left */
+    border-radius: 0; /* Sets the border radius of the element to 0, making it have sharp corners */
+    margin-left: 10px; /* Adds 10 pixels of margin to the left side of the element */
+    margin-right: 10px; /* Adds 10 pixels of margin to the right side of the element */
 }
 
-.motto-img {
-    width: 100%;  /* Image takes full width of its container */
-    height: auto;
-    border-radius: 20%;
+.row img {
+    flex: 1; /* Sets the flex grow factor of the image element to 1, allowing it to occupy equal space with other flex items */
+    border-radius: 10%; /* Sets the border radius of the image element to 10%, making it have rounded corners */
+    max-width: 250px; /* Sets the maximum width of the image element to 250 pixels */
+    height: auto; /* Automatically adjusts the height of the image element while maintaining its aspect ratio */
+    margin-left: 10px; /* Adds 10 pixels of margin to the left side of the image element */
+    margin-right: 10px; /* Adds 10 pixels of margin to the right side of the image element */
 }
 
-.about-content {
-    flex: 1 1 100%; /* Takes up full width on smaller screens */
-    display: flex;
-    flex-wrap: wrap; /* Allows sections within .about-content to wrap on smaller screens */
-    justify-content: space-between; /* Evenly distributes sections horizontally */
+.row:nth-child(odd) {
+    background-color: var(--darker-gradient-color); /* Applies a background color to odd rows using a CSS variable */
 }
 
-.mission, .members-names {
-    background-color: var(--lighter-pink);
-}
-.wio, .contact-info {
-    background-color: var(--lighter-gradient-color);
+.row:nth-child(even) {
+    background-color: var(--lighter-gradient-color); /* Applies a background color to even rows using a CSS variable */
 }
 
-.mission,
-.wio,
-.members-names,
+.motto{
+    background-color: var(--darker-gradient-color); /* Applies a background color to the element with the class "motto" using a CSS variable */
+}
+
+.mission{
+    background-color: var(--lighter-gradient-color); /* Applies a background color to the element with the class "mission" using a CSS variable */
+}
+
+.members-names {
+    text-align: center; /* Aligns the text content of the element to the center */
+    background-color: var(--lighter-gradient-color); /* Applies a background color to the element with the class "members-names" using a CSS variable */
+}
+
 .contact-info {
-    border-radius: 20%;
-    flex: 1 1 33%;  /* Takes up 1/3 width on larger screens, adjusts on smaller ones */
-    padding: 20px;
-    text-align: center;
-    margin: 10px; /* Adjusts margins for better spacing on smaller screens */
+    text-align: center; /* Aligns the text content of the element to the center */
 }
 
-.mission-img,
-.wio-img,
-.members-img,
-.contact-img {
-    border-radius: 20%;
-    width: 100%;  /* Images take full width of their containers */
-    height: auto;
-    margin: 10px auto; /* Centers images on smaller screens */
+.contact-info a {
+    display: inline-block; /* Displays the element as an inline block */
+    margin-top: 10px; /* Adds 10 pixels of margin to the top of the element */
+    text-decoration: none; /* Removes the underline decoration from the anchor element */
+    color: var(--text-color); /* Sets the text color of the anchor element using a CSS variable */
+    font-weight: bold; /* Sets the font weight of the anchor element to bold */
 }
 
-/* Media queries for additional adjustments on smaller screens */
 @media only screen and (max-width: 768px) {
-    .about-section {
-        flex-direction: column; /* Stacks sections vertically on smaller screens */
+    .row {
+        flex-direction: column; /* Changes the flex container's main axis to be vertical on screens with a maximum width of 768 pixels */
+        text-align: center; /* Aligns the text content of the element to the center */
     }
 
-    .intro,
-    .mission,
-    .wio,
-    .members-names,
-    .contact-info {
-        margin: 15px 0; /* Adjusts margins for better spacing on smaller screens */
+    .row img {
+        max-width: 80%; /* Reduces the maximum width of the image element to 80% on screens with a maximum width of 768 pixels */
     }
+
+    .content {
+        text-align: center; /* Aligns the text content of the element to the center */
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .row {
+        flex-direction: column; /* Changes the flex container's main axis to be vertical on screens with a maximum width of 480 pixels */
+    }
+
+    .row img {
+        max-width: 100%; /* Sets the maximum width of the image element to 100% on screens with a maximum width of 480 pixels */
+    }
+
+    .content {
+        text-align: center; /* Aligns the text content of the element to the center */
+    }
+}
+
+body, html {
+    margin: 0; /* Sets the margin of the <body> and <html> elements to 0 */
+    padding: 0; /* Sets the padding of the <body> and <html> elements to 0 */
+    overflow-x: hidden; /* Hides horizontal scrollbars if the content exceeds the viewport width */
 }
