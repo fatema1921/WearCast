@@ -1,6 +1,6 @@
 .gallery {
     display: flex; /* Arranges images in a flex container */
-    flex-wrap: wrap; /* Allows images to wrap to next line if there is not enough space */
+    flex-wrap: wrap; /* Allows images to wrap around to next line if there is not enough space */
     padding: 0 16px; /* Space between the left/right side of gallery and window border */
 }
 
@@ -20,7 +20,7 @@
 
 .main {
   background: var(--background-color); /* Apply CSS variable */
-  border-bottom: 2px solid #FEBBCC;
+  border-bottom: 2px solid #FEBBCC; 
 }
 
 

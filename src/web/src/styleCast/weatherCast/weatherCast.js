@@ -48,9 +48,9 @@ function onClick(element) {
     var randomText = arbitraryMotivation[randomIndex];
 
     // Display the modal with the image and random text
-    document.getElementById("img").src = imgSrc;
-    document.getElementById("imageText").innerHTML = randomText; // Update the text container
-    document.getElementById("modal").style.display = "block";
+    document.getElementById("img").src = imgSrc; // Update src of img in modal
+    document.getElementById("imageText").innerHTML = randomText; // Update the text container to display random text
+    document.getElementById("modal").style.display = "block"; // Make modal visible by changing display property to "block"
 }
 
   // Function to hide the modal
