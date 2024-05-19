@@ -98,15 +98,31 @@ body {
 
 /* FOOTER */
 #footerbar {
-    background-color: var(--primary-color);
+    background-color: #FFDDCC;
 	max-height: 30vh;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 35px;
+    padding: 0;
     width: 100%;
-    margin-bottom: 30px;
-    margin-left: 30px;
+}
+
+.footer-content {
+    padding: 20px; /* Add padding for spacing */
+}
+
+.footer-links {
+    margin-top: 10px; /* Add margin to separate links */
+}
+
+.footer-links a {
+    margin-right: 10px; /* Add margin between links */
+    color: #bc0936;
+    text-decoration: none;
+}
+
+.footer-links a:hover {
+    color: #15070a;
 }
 
 .email-icon{

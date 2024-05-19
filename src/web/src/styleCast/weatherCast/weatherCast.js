@@ -5,7 +5,7 @@ var arbitraryMotivation = [
     "Wow, this would really suit you!",
     "Yes, go for this one!",
     "A personalized look is always the best look!",
-    "If this makes you feel great, you better trust that it is great!", 
+    "If this makes you feel great, you better trust that it is great!",
     "You would totally rock in this!",
     "This is definitely the OOTD!",
     "Your personal touch on this would make wonders!",
@@ -36,23 +36,23 @@ var arbitraryMotivation = [
     "Fashion is freedom, so own it!",
     "Confidence looks good on you!"
   ];
-  
+
 // Function to handle click on image
 function onClick(element) {
     var imgSrc = element.src;
-    
+
     // Get a random index from the arbitraryTexts array
     var randomIndex = Math.floor(Math.random() * arbitraryMotivation.length);
-    
+
     // Get the arbitrary text corresponding to the random index
     var randomText = arbitraryMotivation[randomIndex];
-    
+
     // Display the modal with the image and random text
     document.getElementById("img").src = imgSrc;
     document.getElementById("imageText").innerHTML = randomText; // Update the text container
     document.getElementById("modal").style.display = "block";
 }
-  
+
   // Function to hide the modal
   function hideModal() {
     document.getElementById("modal").style.display = "none";

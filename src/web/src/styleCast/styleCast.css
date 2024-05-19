@@ -12,8 +12,8 @@
 }
 
 .category img {
-    width: 400px; 
-    height: 400px; 
+    width: 400px;
+    height: 400px;
     object-fit: cover; /* proportionates image to fit the shape and size */
     border-radius: 50%; /* makes image round */
     box-shadow: 0 3px 10px rgba(0, 0, 0, 0.4);
@@ -22,7 +22,7 @@
  a { /* textlink underneath picture */
     text-decoration: none; /* Remove underline from link */
     color: black; /* Set text color to black */
-} 
+}
 
 .heading {
     text-align: center;
