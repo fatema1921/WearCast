@@ -169,6 +169,14 @@ WearCast uses Node.js and npm (the Node Package Manager) to install the necessar
 
 These commands will prepare your local environment to run the WearCast web application. Make sure you have Node.js and npm installed on your system before proceeding.
 
+5. Configure WiFi and MQTT Settings for the Wio Terminal
+
+    - Open the `network_info.h` and the `mqtt_info.h` file located in the project directory. 
+
+        1. Replace the placeholder values for **ssid** and **password** with your actual WiFi network credentials.
+        2. Replace the placeholder values for **mqtt_server**, **temperature_topic**, and **humidity_topic** with your actual MQTT broker URL and topic names.
+
+
 ## Usage
 
 ### Wio terminal | Usage
