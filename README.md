@@ -185,7 +185,7 @@ WearCast uses Node.js and npm (the Node Package Manager) to install the necessar
 Assuming that the [Installation](#installation) is completed, follow the listed steps to use the Wio terminal:
 
 1. Open the Arduino IDE and navigate to `File > Open...`
-2. Open the terminarium file by following this path `src\wio\wearcast\wearcast.ino`.
+2. Open the wearcast file by following this path `src\wio\wearcast\wearcast.ino`.
 3. Connect the Wio terminal to your computer via the USB cable. 
 4. Click the `Upload` button, to upload the sketch to the Wio terminal. 
 5. To view the Serial Monitor, navigate to `Tools > Serial Monitor` and select the `9600 baud` option.
@@ -203,7 +203,7 @@ You can run the web application locally, by executing the following steps:
 
 ### Demo Video
 
-The team behind WearCast has created a demo video that showcases the need for it and how to use it. [WearCast - Demo Video](url) 
+The team behind WearCast has created a demo video that showcases the need for it and how to use it. [WearCast - Demo Video](https://youtu.be/kn96rUHvSbA) 
 
 ## System Design
 
