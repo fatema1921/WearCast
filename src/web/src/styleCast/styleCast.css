@@ -1,3 +1,5 @@
+/* css for the navigation bar and footer is placed in global.css */
+
 .category-container {
     display: flex; /* align items horizontally */
     flex-wrap: wrap;
@@ -8,18 +10,18 @@
     box-sizing: border-box; /* Include padding and border in the element's total width */
     text-align: center;
     padding: 60px 0 0 0; /* Adjust padding as needed */
-    box-sizing: border-box; /* Include padding and border in the element's total width */
+    box-sizing: border-box; 
 }
 
 .category img {
     width: 400px;
     height: 400px;
-    object-fit: cover; /* proportionates image to fit the shape and size */
+    object-fit: cover; /* Ensure the image covers the entire container while maintaining aspect ratio */
     border-radius: 50%; /* makes image round */
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.4); /* Adds shadow behind images */
 }
 
- a { /* textlink underneath picture */
+ a { /* textlink underneath pictures */
     text-decoration: none; /* Remove underline from link */
     color: black; /* Set text color to black */
 }
@@ -44,7 +46,7 @@ p {
         align-items: center;
     }
 
-    .category {
+    .category { /* Ensures responsivness of the images */
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
