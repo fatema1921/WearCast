@@ -4,23 +4,23 @@ window.onload=function() {
     getWeather();
 }
 
-require('dotenv').config() // dot env project --> will look for .env
+/* require('dotenv').config() // dot env project --> will look for .env
 var weatherAPIkey = process.env.WEATHER_APIKEY
 var ocAPIkey = process.env.OPENCAGE_API_KEY
 
 console.log(process.env)
 console.log(weatherAPIkey)
-console.log(ocAPIkey)
+console.log(ocAPIkey) */
 
 import { TEMPERATURE_TOPIC, HUMIDITY_TOPIC } from './mqtt_config.js'; // Import MQTT topic names for temperature and humidity from the configuration file.
-
+//import { TEMPERATURE_TOPIC, HUMIDITY_TOPIC } from './mqtt_config.js'; // Import MQTT topic names for temperature and humidity from the configuration file.
 
 /* Function to call the weather API and update the weather icon */
 const getWeather = async () => {
     try {
-        const response = await fetch('https://api.openweathermap.org/data/2.5/weather?q=gothenburg,se&APPID='+weatherAPIkey);
+        //const response = await fetch('https://api.openweathermap.org/data/2.5/weather?q=gothenburg,se&APPID='+weatherAPIkey);
         //const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=gothenburg,se&APPID=${process.env.WEATHER_API_KEY}`);
-        //const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=gothenburg,se&APPID=c95f90301395e8ce1cb18d910cd184cb`);
+        const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=gothenburg,se&APPID=c95f90301395e8ce1cb18d910cd184cb`);
         const data = await response.json();
         const weatherIconID = data.weather[0].icon;
 
@@ -46,9 +46,9 @@ function fetchLocation() {
         navigator.geolocation.getCurrentPosition(function(position) {
             const lat = position.coords.latitude;
             const lon = position.coords.longitude;
-            fetch('https://api.opencagedata.com/geocode/v1/json?q=${lat}+${lon}&key='+ocAPIkey)
+            //fetch('https://api.opencagedata.com/geocode/v1/json?q=${lat}+${lon}&key='+ocAPIkey)
             //fetch(`https://api.opencagedata.com/geocode/v1/json?q=${lat}+${lon}&key=${process.env.OPENCAGE_API_KEY}`)
-            //fetch(`https://api.opencagedata.com/geocode/v1/json?q=${lat}+${lon}&key=3661a45eca484dfdb9eda5299d447535`)
+            fetch(`https://api.opencagedata.com/geocode/v1/json?q=${lat}+${lon}&key=3661a45eca484dfdb9eda5299d447535`)
                 .then(response => response.json())
                 .then(data => {
                     const city = data.results[0].components.city;
