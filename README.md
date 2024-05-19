@@ -208,25 +208,26 @@ The Wio Terminal subsystem includes sensors for temperature and humidity, a micr
 
 **Abbasi, Reihaneh** (@abbasir) <br>
 Backend development of the Wio terminal.<br>
-Interface development of the Homepage.<br>
+Interface development of web application.<br>
 Creation of demo-video.<br>
 Finalization of Wiki.<br>
 
 **Ahsan Abid, Rawan** (@rawanah) <br>
 Backend and frontend development of the Wio terminal.<br>
-Interface development of the Homepage.<br>
+Interface development of web application.<br>
 Implementation of automated build process.<br>
 Refactorization of code.<br>
 Finalization of README.<br>
 
 **Akbarifar, Fatemeh** (@fatakb) <br>
-Interface development of the About page.<br>
-Backend development of the Homepage.<br>
+Backend development of Wio terminal. <br>
+Interface development of web application.<br>
+Refactorization of code.<br>
 Finalization of Wiki.<br>
 
 **Alirani, Cazandra** (@cazandra) <br>
 Frontend development of the Wio terminal. <br>
-Interface development of the StyleCast, SummerCast, ChillyCast and Wintercast pages.<br>
+Interface development of web application.<br>
 Creation of demo-video.<br>
 Finalization of README.<br>
 
@@ -234,7 +235,7 @@ Finalization of README.<br>
 Backend and frontend development of the Wio terminal. <br>
 Creation of Wireframes. <br>
 Initialization of README and Wiki. <br>
-Interface development of the Homepage. <br>
+Interface development of web application. <br>
 Implementation of automated build process and CI. <br>
 Refactorization of code. <br>
 
